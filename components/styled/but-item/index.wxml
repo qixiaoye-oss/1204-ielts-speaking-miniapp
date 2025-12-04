@@ -32,7 +32,7 @@
     </block>
   </view>
   <view wx:if="{{pattern === 'quit'}}" class="~btn-action ~btn--quit {{disabled ? '~btn--dis' : ''}}" bind:tap="change">
-    <view class="~grey-font-color">{{text}}</view>
+    <view>{{text}}</view>
   </view>
 </block>
 <block wx:else>

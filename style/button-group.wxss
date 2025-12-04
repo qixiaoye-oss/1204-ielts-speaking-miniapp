@@ -366,8 +366,8 @@ page {
 
 /* 退出/放弃按钮 */
 .btn--quit {
-  border: 2px solid rgba(0, 0, 0, 0.2);
-  color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  color: #212121;
 }
 
 /* 灰色文字 */

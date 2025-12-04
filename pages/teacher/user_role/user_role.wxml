@@ -1,3 +1,6 @@
+<import src="/templates/loading-progress.wxml"/>
+<template is="loadingProgress" data="{{loading, loadProgress}}"/>
+
 <search-user bind:input='bindinput' list="{{userList}}" bind:selectResult="selectResult" bind:hide="hide"></search-user>
 <view class="form_container">
   <form bindsubmit="submit" bindreset="reset" report-submit="true" hidden="{{inputShowed}}">

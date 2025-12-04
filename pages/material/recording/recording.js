@@ -1,7 +1,9 @@
+const loadingProgress = require('../../../behaviors/loadingProgress')
 const api = getApp().api
 const audioUtil = require('../../../utils/audioUtil')
 let intervalTimer
 Page({
+  behaviors: [loadingProgress],
   data: {
     pageUnload: false,
     file: {
@@ -43,6 +45,7 @@ Page({
     })
   },
   onLoad(options) {
+    this.startLoading()
     this.getData(true)
     wx.enableAlertBeforeUnload({
       message: "是否确认退出练习？",
@@ -246,6 +249,8 @@ Page({
       this.setData({
         groupData: this.data.list[this.data.index[0]]
       })
+    }).finally(() => {
+      this.finishLoading()
     })
   },
   saveData(fileUrl) {

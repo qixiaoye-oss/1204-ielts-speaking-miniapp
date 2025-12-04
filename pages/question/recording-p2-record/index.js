@@ -1,10 +1,13 @@
 const api = getApp().api
+const loadingProgress = require('../../../behaviors/loadingProgress')
 let audioContext = null
 Page({
+  behaviors: [loadingProgress],
   data: {
   },
   // ===========生命周期 Start===========
   onShow() {
+    this.startLoading()
     this.listData(true)
   },
   onLoad() {
@@ -75,6 +78,8 @@ Page({
       ...this.options
     }, isPull).then(res => {
 
+    }).finally(() => {
+      this.finishLoading()
     })
   }
   // ===========数据获取 End===========

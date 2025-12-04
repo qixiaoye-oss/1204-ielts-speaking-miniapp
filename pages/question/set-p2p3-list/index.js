@@ -1,11 +1,14 @@
 const api = getApp().api
+const loadingProgress = require('../../../behaviors/loadingProgress')
 Page({
+  behaviors: [loadingProgress],
   data: {
     seriesIndex: 0
   },
   // ===========生命周期 Start===========
   onLoad(options) { },
   onShow() {
+    this.startLoading()
     this.listSeriesData(false)
   },
   // ===========生命周期 End===========
@@ -53,7 +56,7 @@ Page({
       userId: api.getUserId()
     }, isPull).then(res => {
       this.listData(false)
-    })
+    }).finally(() => { this.finishLoading() })
   },
   listData(isPull) {
     const { seriesList, seriesIndex } = this.data
@@ -65,7 +68,7 @@ Page({
     if (seriesList.length > 0) {
       param['seriesId'] = seriesList[seriesIndex].id
     }
-    api.request(this, '/set/v3/list', param, isPull).then()
+    api.request(this, '/set/v3/list', param, isPull).then().finally(() => { this.finishLoading() })
   },
   // 验证P2是否有答案内容
   hasAnswer(setId) {

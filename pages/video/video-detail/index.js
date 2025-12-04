@@ -1,5 +1,7 @@
 const api = getApp().api
+const loadingProgress = require('../../../behaviors/loadingProgress')
 Page({
+  behaviors: [loadingProgress],
 
   /**
    * 页面的初始数据
@@ -12,13 +14,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    this.startLoading()
     this.setData({
       user: wx.getStorageSync('user'),
     })
     api.request(this, '/video/v2/detail', {
       userId: api.getUserId(),
       ...this.options
-    }, false)
+    }, false).finally(() => {
+      this.finishLoading()
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

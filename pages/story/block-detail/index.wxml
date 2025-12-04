@@ -1,3 +1,6 @@
+<import src="/templates/loading-progress.wxml"/>
+<template is="loadingProgress" data="{{loading, loadProgress}}"/>
+
 <view wx:if="{{detail}}" class="page">
   <!-- <view class="block">
     <view class="block__header">

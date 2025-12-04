@@ -1,9 +1,11 @@
+const loadingProgress = require('../../../behaviors/loadingProgress')
 const api = getApp().api
 const audioUtil = require('../../../utils/audioUtil')
 let recorderManager = null
 let audioContext = null
 let timer = null
 Page({
+  behaviors: [loadingProgress],
   data: {
     recorderManagerConfig: {
       duration: 600000,
@@ -32,6 +34,7 @@ Page({
     })
   },
   onLoad(options) {
+    this.startLoading()
     this.getData(true)
     this.setData({
       queryParam: options
@@ -291,6 +294,8 @@ Page({
       })
       audioUtil.loadRecordedSentences(this)
       this.saveBatchIsShow()
+    }).finally(() => {
+      this.finishLoading()
     })
   },
   batchSaveRecordingFile(listData, map) {

@@ -1,3 +1,6 @@
+<import src="/templates/loading-progress.wxml"/>
+<template is="loadingProgress" data="{{loading, loadProgress}}"/>
+
 <block wx:if="{{list.length > 0}}">
   <progress list="{{list}}" recording="{{recorderState === 'play'}}" time="{{recordingTime}}"></progress>
   <view class="recording__group-title" style="color:{{color}}">{{groupData.title}}</view>

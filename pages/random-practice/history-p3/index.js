@@ -1,5 +1,7 @@
 const api = getApp().api
+const loadingProgress = require('../../../behaviors/loadingProgress')
 Page({
+  behaviors: [loadingProgress],
 
   /**
    * 页面的初始数据
@@ -13,6 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    this.startLoading()
     this.listData()
     const audioContext = wx.createInnerAudioContext()
     this.setData({ audioContext })
@@ -93,6 +96,8 @@ Page({
   listData() {
     api.request(this, '/question/v2/p3/practice/random/record', { userId: api.getUserId() }, true).then(res => {
 
+    }).finally(() => {
+      this.finishLoading()
     })
   }
 })

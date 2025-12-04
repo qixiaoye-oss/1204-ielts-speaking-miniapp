@@ -1,8 +1,11 @@
+const loadingProgress = require('../../../behaviors/loadingProgress')
 const api = getApp().api
 Page({
+  behaviors: [loadingProgress],
   data: {},
   // ===========生命周期 Start===========
   onShow() {
+    this.startLoading()
     this.getData(true)
   },
   onLoad(options) {
@@ -21,7 +24,7 @@ Page({
       ...this.data.queryParam
     }, isPull).then(res => {
 
-    })
+    }).finally(() => { this.finishLoading() })
   },
   // ===========数据获取 End===========
 })

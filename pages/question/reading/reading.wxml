@@ -1,3 +1,6 @@
+<import src="/templates/loading-progress.wxml"/>
+<template is="loadingProgress" data="{{loading, loadProgress}}"/>
+
 <view class="tip f14">提示：评分功能需要上传音频并做处理，所以需要一些时间（1分钟左右），请先退出当前页面，稍作等待返回查看结果即可。</view>
 <view class="answer_container" wx:if="{{list.length > 0}}">
   <view wx:for="{{list}}" wx:key="sentence" wx:for-item="sentence" wx:for-index="sentenceIndex" class="sentence_contailer">

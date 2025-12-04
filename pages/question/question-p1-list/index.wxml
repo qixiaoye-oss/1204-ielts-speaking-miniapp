@@ -1,3 +1,6 @@
+<import src="/templates/loading-progress.wxml"/>
+<template is="loadingProgress" data="{{loading, loadProgress}}"/>
+
 <view class="mastered">
   <view class="mastered__title">是否搞定</view>
   <view class="mastered__switch">

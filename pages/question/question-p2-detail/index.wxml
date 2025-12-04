@@ -1,3 +1,6 @@
+<import src="/templates/loading-progress.wxml"/>
+<template is="loadingProgress" data="{{loading, loadProgress}}"/>
+
 <block wx:if="{{detail}}">
   <full-screen-view animation="{{animationData}}">
     <view class="unit-detail" bind:tap="playMainAudio" style="background: {{backgroundColor}}; border-color: {{color}};">

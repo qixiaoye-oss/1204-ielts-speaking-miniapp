@@ -1,3 +1,6 @@
+<import src="/templates/loading-progress.wxml"/>
+<template is="loadingProgress" data="{{loading, loadProgress}}"/>
+
 <view class="series" wx:if="{{seriesList}}">
   <view class="series__item {{seriesIndex === index?'series__active':''}}" wx:for="{{seriesList}}" wx:key="index" bind:tap="changeLabel" data-index="{{index}}">
     <view style="background: {{item.backgroundColor}};">

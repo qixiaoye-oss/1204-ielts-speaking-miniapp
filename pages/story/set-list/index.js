@@ -1,5 +1,7 @@
 const api = getApp().api
+const loadingProgress = require('../../../behaviors/loadingProgress')
 Page({
+  behaviors: [loadingProgress],
   data: {
     dateLabel: {
       value: '',
@@ -11,6 +13,7 @@ Page({
   onLoad(options) {
   },
   onShow() {
+    this.startLoading()
     this.listDateLabel()
   },
   // ===========生命周期 End===========
@@ -34,7 +37,7 @@ Page({
       albumType: 4,
       dateLabel: this.data.dateLabel.value,
       userId: api.getUserId()
-    }, isPull)
+    }, isPull).finally(() => { this.finishLoading() })
   },
   // ===========数据获取 End===========
   // ===========切换时间标签 Start ===========

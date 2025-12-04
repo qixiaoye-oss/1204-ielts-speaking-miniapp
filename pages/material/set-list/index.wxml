@@ -1,3 +1,6 @@
+<import src="/templates/loading-progress.wxml"/>
+<template is="loadingProgress" data="{{loading, loadProgress}}"/>
+
 <view class="list_item_container">
   <view class="list_item_top">
     <image class="img" src="/image/v2/round-pushpin.png"></image>

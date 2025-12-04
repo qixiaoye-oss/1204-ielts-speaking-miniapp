@@ -1,7 +1,9 @@
+const loadingProgress = require('../../../behaviors/loadingProgress')
 const api = getApp().api
 let audio = null
 let timer = null
 Page({
+  behaviors: [loadingProgress],
   data: {
     showPopus: false,
     showReportModal: false,
@@ -13,6 +15,7 @@ Page({
   },
   // ===========生命周期 Start===========
   onShow() {
+    this.startLoading()
     this.getData(true)
     if (!api.isEmpty(wx.getStorageSync('questionIdArr'))) {
       this.setData({
@@ -219,7 +222,7 @@ Page({
       this.setData({
         index: idArr.indexOf(queryParam.id),
       })
-    })
+    }).finally(() => { this.finishLoading() })
   },
   popupConfirm(e) {
     api.request(this, '/question/signIn', {

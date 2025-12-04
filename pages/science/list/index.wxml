@@ -1,3 +1,6 @@
+<import src="/templates/loading-progress.wxml"/>
+<template is="loadingProgress" data="{{loading, loadProgress}}"/>
+
 <view class="main-page" wx:if="{{list.length > 0}}">
   <view class="main-item" wx:for="{{list}}" wx:key="index">
     <view class="main-item__title" style="background: {{item.colorRgba}};">

@@ -1,13 +1,16 @@
 const api = getApp().api
+const loadingProgress = require('../../../behaviors/loadingProgress')
 let audio = null
 let timer = null
 Page({
+  behaviors: [loadingProgress],
   data: {
     msg: ""
   },
   // ===========生命周期 Start===========
   onShow() { },
   onLoad(options) {
+    this.startLoading()
     api.getUser(this)
     audio = wx.createInnerAudioContext()
     audio.onPlay(() => {
@@ -81,7 +84,9 @@ Page({
   listRecording(isPull) {
     api.request(this, '/recording/list2Continuous', {
       ...this.options
-    }, isPull)
+    }, isPull).finally(() => {
+      this.finishLoading()
+    })
   },
   delRecording(id) {
     const _this = this

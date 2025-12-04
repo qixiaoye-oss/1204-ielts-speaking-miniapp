@@ -1,3 +1,6 @@
+<import src="/templates/loading-progress.wxml"/>
+<template is="loadingProgress" data="{{loading, loadProgress}}"/>
+
 <view class="chapter-cell">
   <view class="chapter" wx:for="{{list}}" wx:for-item="chapter" wx:for-index="chapterIndex" wx:key="chapter" bind:tap="toChildPage" data-id="{{chapter.id}}" data-child-total="{{chapter.childCount}}">
     <view class="chapter__header">

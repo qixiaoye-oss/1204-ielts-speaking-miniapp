@@ -1,8 +1,10 @@
 const api = getApp().api
+const loadingProgress = require('../../../../behaviors/loadingProgress')
 let timer
 let recorderManager
 let audioContext
 Page({
+  behaviors: [loadingProgress],
   // ===========生命周期 Start===========
   data: {
     recorderState: 'stop',
@@ -55,6 +57,7 @@ Page({
     });
   },
   onShow() {
+    this.startLoading()
     this.getData(true)
     wx.getSetting({
       success(res) {
@@ -178,7 +181,9 @@ Page({
     api.request(this, '/v2/p1/detail', {
       userId: api.getUserId(),
       ...this.options
-    }, isPull)
+    }, isPull).finally(() => {
+      this.finishLoading()
+    })
   },
   save(audioUrl) {
     const { file, openFlag, originalFlag } = this.data

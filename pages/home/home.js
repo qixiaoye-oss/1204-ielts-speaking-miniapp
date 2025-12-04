@@ -77,10 +77,10 @@ Page({
   // ===========业务操作 End===========
   // ===========数据获取 Start===========
   listData(isPull) {
-    api.request(this, '/v2/home/list', {}, isPull)
+    return api.request(this, '/v2/home/list', {}, isPull)
   },
   listPopularScienceData(isPull) {
-    api.request(this, '/v2/home/popular/science/list', {}, isPull)
+    return api.request(this, '/v2/home/popular/science/list', {}, isPull)
   }
   // ===========数据获取 End===========
 })

@@ -18,10 +18,10 @@ Page({
   onShow() {},
   onShowLogin() {
     this.startLoading()
-    this.listData(true).finally(() => {
+    this.listData(false).finally(() => {
       this.finishLoading()
     })
-    // this.listPopularScienceData(true)
+    // this.listPopularScienceData(false)
   },
   onShareAppMessage() {
     return api.share('考雅狂狂说', this)

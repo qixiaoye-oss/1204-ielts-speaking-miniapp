@@ -1,4 +1,20 @@
 Component({
+  externalClasses: [
+    'btn-action',
+    'btn-action-icon',
+    'btn--audio',
+    'btn--correct',
+    'btn--label',
+    'btn--exercise',
+    'btn--recording',
+    'btn--practice',
+    'btn--quit',
+    'btn--dis',
+    'btn-corner-mark',
+    'btn--recording-corner-mark',
+    'btn--practice-corner-mark',
+    'grey-font-color'
+  ],
   properties: {
     disabled: {
       type: Boolean,

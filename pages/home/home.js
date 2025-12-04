@@ -1,5 +1,8 @@
 const api = getApp().api
+const loadingProgress = require('../../behaviors/loadingProgress')
+
 Page({
+  behaviors: [loadingProgress],
   data: {
     url: {
       "BASIC": "/pages/practice/set-list/index",
@@ -14,7 +17,10 @@ Page({
   // ===========生命周期 Start===========
   onShow() {},
   onShowLogin() {
-    this.listData(true)
+    this.startLoading()
+    this.listData(true).finally(() => {
+      this.finishLoading()
+    })
     // this.listPopularScienceData(true)
   },
   onShareAppMessage() {

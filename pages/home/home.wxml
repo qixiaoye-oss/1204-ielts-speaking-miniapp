@@ -1,3 +1,6 @@
+<import src="/templates/loading-progress.wxml"/>
+<template is="loadingProgress" data="{{loading, loadProgress}}"/>
+
 <view class="home">
   <view wx:if="{{popularScience.list.length>0}}">
     <view class="home-main-item" style="background:{{popularScience.colorRgba}}">

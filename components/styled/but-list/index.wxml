@@ -1,0 +1,5 @@
+<view class="buts-fixed-cell {{shadow ? 'shadow' : ''}}">
+  <view class="~btn-group-layout-inline-center">
+    <slot></slot>
+  </view>
+</view>

@@ -1,0 +1,4 @@
+<view class="noData">
+  <image src="{{image}}" mode="widthFix" class="noDataImg"></image>
+  <view class="noDataText">{{text}}</view>
+</view>

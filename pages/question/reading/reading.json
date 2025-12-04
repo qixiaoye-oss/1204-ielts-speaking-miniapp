@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "parse-text": "/components/styled/parse-text/index",
+    "buts": "/components/styled/but-list/index",
+    "but": "/components/styled/but-item/index",
+    "no-data": "/components/no-data/index"
+  }
+}

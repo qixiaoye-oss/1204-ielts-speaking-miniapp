@@ -1,0 +1,68 @@
+.chapter-cell {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex: 1;
+}
+
+.chapter {
+  width: 100%;
+  border-width: 1px;
+  border-radius: 9px;
+  border-style: solid;
+  border-color: var(--solid-border-color);
+  box-sizing: border-box;
+}
+
+.chapter__header {
+  width: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+}
+
+.chapter__header:after {
+  content: " ";
+  display: inline-block;
+  height: 8px;
+  width: 8px;
+  border-width: 2px 2px 0 0;
+  border-color: var(--solid-border-color);
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  top: -2px;
+  position: absolute;
+  top: 50%;
+  margin-top: -5px;
+  right: 15px;
+}
+
+.chapter__header-title {
+  padding: 5px;
+  border-radius: 3px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  position: relative;
+  left: -5px;
+  min-width: 0;
+  gap: 10px;
+  margin-right: 18px;
+}
+
+.chapter__title-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.chapter__title-text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 1.4;
+}

@@ -1,0 +1,20 @@
+<view class="detail-block__header">
+  <view class="detail-header__left">
+    <view class="detail-header__left_left" style="background: {{titleBackground}};">
+      <image class="detail-header__left-title-icon" wx:if="{{iconUrl}}" src="{{iconUrl}}" />
+      <view class="detail-header__left-title" wx:if="{{title}}">{{title}}</view>
+    </view>
+    <image class="detail-header__left-icon" wx:if="{{hasAudio}}" src="/image/v2/speaker-high-volume.png"></image>
+  </view>
+  <view class="~recording__switch" wx:if="{{top}}">
+    <view class="~recording__switch-text  {{isTop ?'~recording__switch-text--sel':''}}">置顶</view>
+    <switch class="wx-switch-input" checked="{{isTop}}" bindchange="switchChange" color="rgba(255,176,45, 1)"></switch>
+  </view>
+  <view class="~recording__switch" wx:if="{{preferred}}">
+    <view class="~recording__switch-text  {{isTop ?'~recording__switch-text--sel':''}}">选择</view>
+    <switch class="wx-switch-input" checked="{{isTop}}" bindchange="switchChange" color="rgba(255,176,45, 1)"></switch>
+  </view>
+  <view class="detail-header__right" wx:if="{{probe}}">
+    <view class="probe">追问</view>
+  </view>
+</view>

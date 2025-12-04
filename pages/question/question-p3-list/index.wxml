@@ -1,0 +1,48 @@
+<view class="chapter-cell">
+  <view class="chapter" wx:for="{{list}}" wx:for-item="chapter" wx:for-index="chapterIndex" wx:key="chapter" bind:tap="toChildPage" data-id="{{chapter.id}}" data-child-total="{{chapter.childCount}}">
+    <view class="chapter__header">
+      <view class="chapter__header-title" style="background: {{backgroundColorHex}};">
+        <image class="chapter__title-icon" wx:if="{{iconUrl}}" src="{{iconUrl}}" />
+        <view class="chapter__title-text">{{chapter.content}}</view>
+      </view>
+    </view>
+    <view class="chapter__intervals"></view>
+    <view class="chapter__footer">
+      <image class="chapter__footer-icon" src="/image/v2/ballot-box-with-ballot.png" />
+      <view class="tag tag__multi tag__multi--gray" wx:if="{{chapter.signInTotal == 0}}">
+        <view>打卡</view>
+        <view class="tag__intervals"></view>
+        <view>未完成</view>
+      </view>
+      <view class="tag tag__multi tag__multi--green" wx:else>
+        <view>打卡</view>
+        <view class="tag__intervals"></view>
+        <view>已完成</view>
+      </view>
+      <block wx:if="{{chapter.grading === 1}}">
+        <view class="tag tag__multi tag__multi--green">
+          <view>评分</view>
+          <view class="tag__intervals"></view>
+          <view>已完成</view>
+        </view>
+      </block>
+      <block wx:else>
+        <block wx:if="{{chapter.recordTotal === 0}}">
+          <view class="tag tag__multi tag__multi--gray">
+            <view>评分</view>
+            <view class="tag__intervals"></view>
+            <view>未完成</view>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="tag tag__multi tag__multi--green">
+            <view>评分</view>
+            <view class="tag__intervals"></view>
+            <view>已完成</view>
+          </view>
+        </block>
+      </block>
+    </view>
+  </view>
+</view>
+<no-data wx:if="{{list.length == 0}}"></no-data>

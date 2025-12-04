@@ -1,0 +1,48 @@
+<view class="layout_flex progress_cell">
+  <view class="progress_item progress_100" wx:if="{{status === 1}}"></view>
+  <view class="grey_b2 progress_item" wx:else></view>
+</view>
+<view class="layout_flex f_ac f_jb f14 recorder_cell_play" wx:if="{{status === 1}}">
+  <view>录音中</view>
+  <view>已录制{{file.duration}}s</view>
+</view>
+<view class="layout_flex f_ac f_jb f14 recorder_cell grey_c6 grey_b1" wx:else>
+  <view>未开始</view>
+  <view>已录制{{file.duration}}s</view>
+</view>
+<view class="layout_flex_col content_cell" style="background: {{background}};">
+  <view class="question_content">
+    <text>{{detail.content}}</text>
+  </view>
+  <view class="additional_content" wx:if="{{detail.additionalContent}}">
+    <text>{{detail.additionalContent}}</text>
+  </view>
+  <view class="supplementary_content" wx:if="{{detail.supplementaryContent}}">
+    <view class="f9 cell_lable_mini content_tag layout_flex f_cen2">补</view>
+    <text>{{detail.supplementaryContent}}</text>
+  </view>
+</view>
+<view class="cell layout_flex f_ac f_jb fwb f14 radius9" wx:if="{{file.url}}">
+  <view>{{file.time}}</view>
+  <view class="layout_flex">
+    <view class="audio_duration" style="margin-right: 10px;">{{file.duration}}秒</view>
+    <image class="img20" wx:if="{{audioStatus == 'stop'}}" src="/image/icon/play.png" bind:tap="playAudio"></image>
+    <image class="img20" wx:else src="/image/icon/pause.png" bind:tap="stopAudio"></image>
+  </view>
+</view>
+<view class="f12 recording_tip" wx:if="{{detail.type == 2}}">请先自行计时1分钟做准备，准备好后点击开始录制；回答完毕后点击结束停止录制。时间限制2分钟以内。</view>
+<view class="f12 recording_tip" wx:else>点击开始录制后，系统会自动读题（单题），听后直接作答即可；回答完毕后点击结束停止录制。时间限制1分钟以内。</view>
+<view class="bottom_spacing"></view>
+<buts>
+  <but bind:change="cancel" text="放弃" pattern='quit'></but>
+  <view class="flex1"></view>
+  <block wx:if="{{status === 0}}">
+    <but bind:change="gatUserAuthor" imgDisabled text="点击开始答题/录音" img-url="/image/v2/stop.png"></but>
+  </block>
+  <block wx:if="{{status === 1}}">
+    <but bind:change="stopRecoding" text="录音中，用时{{file.duration}}秒" img-url="/image/v2/stop.png"></but>
+  </block>
+  <block wx:if="{{status === 2}}">
+    <but bind:change="confirm" text="点击提交保存" img-url="/image/v2/down.png"></but>
+  </block>
+</buts>

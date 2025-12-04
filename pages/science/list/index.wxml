@@ -1,0 +1,21 @@
+<view class="main-page" wx:if="{{list.length > 0}}">
+  <view class="main-item" wx:for="{{list}}" wx:key="index">
+    <view class="main-item__title" style="background: {{item.colorRgba}};">
+      <image class="main-item__title--icon" wx:if="{{item.iconUrl}}" src="{{item.iconUrl}}"></image>
+      <view class="main-item__title--text">{{item.title}}</view>
+    </view>
+    <block wx:for="{{item.list}}" wx:for-item="chapter" wx:for-index="chapterIndex" wx:key="chapterIndex">
+      <view class="sub-item" bind:tap="toDetail" data-album-id="{{item.id}}" data-item="{{chapter}}" data-group-background="{{parent.backgroundColor}}" style="border-color: {{chapter.color}};">
+        <view class="sub-item__header">
+          <view class="sub-item__title" style="background: {{chapter.colorRgba}};">
+            <image class="sub-item__title--icon" wx:if="{{chapter.iconUrl}}" src="{{chapter.iconUrl}}" />
+            <view class="sub-item__title--text" wx:if="{{chapter.title}}">{{chapter.title}}</view>
+          </view>
+          <view class="tag tag__multi--orange" style="margin-left: auto;">{{chapter.description}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+<view class="page-safe-area"></view>
+<view class="no-data" wx:if="{{list.length==0}}">暂无数据</view>

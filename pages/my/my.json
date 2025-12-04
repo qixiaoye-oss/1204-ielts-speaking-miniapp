@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "role_info_popup": "/components/role_info_popup/index"
+  }
+}

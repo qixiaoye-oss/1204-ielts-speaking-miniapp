@@ -1,0 +1,15 @@
+<view class="detail-block__header">
+  <view class="detail-header__left">
+  </view>
+  <view class="detail-header__right" bind:tap="toRecording">
+    <view class="detail-header__right-grading {{ grading === 1 ? 'footer__meter-sv2' : recordTotal === 0 ? '' : 'footer__meter-sv3' }}">
+      <block wx:if="{{grading === 1}}">纠音中</block>
+      <block wx:else>
+        <block wx:if="{{recordTotal === 0}}">AI纠音</block>
+        <block wx:if="{{recordTotal > 0}}">有评分</block>
+      </block>
+    </view>
+    <!-- <view class="detail-header__right-recording">录音/评分</view> -->
+    <image class="detail-body__content-icon" src="/image/v2/robot.png"></image>
+  </view>
+</view>

@@ -1,0 +1,32 @@
+.progress_cell {
+  width: 100%;
+  gap: 5px;
+}
+
+.progress_item {
+  height: 6px;
+  flex: 1;
+}
+
+.progress_100 {
+  background: rgba(248, 49, 47, 1);
+}
+
+.recorder_cell {
+  padding: 10px;
+}
+
+.recorder_cell_play {
+  background: rgba(248, 49, 47, 0.2);
+  color: rgba(248, 49, 47, 1);
+  padding: 10px;
+}
+
+.sentence_cell {
+  border: 1px solid var(--solid-border-color);
+  padding: 10px;
+}
+
+.sel_ {
+  border-color: var(--solid-border-color);
+}

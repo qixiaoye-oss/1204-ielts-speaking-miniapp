@@ -1,0 +1,225 @@
+page {
+  /* 按钮边框样式1 */
+  --btn-border-theme-1: 1px solid var(--solid-border-color);
+  /* 按钮边框样式2 */
+  --btn-border-theme-2: 2px solid var(--solid-border-color);
+  /* 按钮边框样式-无边框 */
+  --btn-border-theme: 2px solid transparent;
+  /* 按钮边框宽 */
+  --btn-border-width: 1px;
+  /* 按钮边框宽 */
+  --btn-border-width-2: 2px;
+  /* 按钮边框颜色 */
+  --btn-border-color: var(--solid-border-color);
+  --btn-no-border-color: transparent;
+  /* 按钮字体大小 */
+  --btn-font-size: 15px;
+  /* 按钮字体行距 */
+  --btn-line-height: 1.4
+}
+
+/* 基础按钮样式 */
+.btn-action {
+  font-size: var(--btn-font-size);
+  /* border: var(--btn-border-theme); */
+  border-radius: 6px;
+  height: 36px;
+  min-height: 36px;
+  max-height: 36px;
+  padding-left: 5px;
+  padding-right: 5px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.btn-action image {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  margin-left: 5px;
+}
+
+.btn-action-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border: var(--btn-border-theme);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+
+.btn-action-icon image {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+}
+
+/* 主要按钮 */
+.btn-action-primary {}
+
+/* 次要按钮 */
+.btn-action-secondary {}
+
+/* 按钮组模式 1（上下结构） */
+.btn-group-layout-split {
+  border: var(--btn-border-theme-1);
+  box-sizing: border-box;
+  border-radius: 9px;
+}
+
+/* 按钮组模式 1 - 头部 */
+.btn-group-layout-split__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+/* 按钮组模式 1 - 头部与底部间隔 */
+.btn-group-layout-split__divider {
+  width: 100%;
+  height: var(--btn-border-width);
+  background: var(--btn-border-color);
+}
+
+/* 按钮组模式 1 - 底部 */
+.btn-group-layout-split__footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+/*  按钮组模式 2（单行居中） */
+.btn-group-layout-inline-center {
+  border: var(--btn-border-theme-1);
+  box-sizing: border-box;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+/* 按钮组模式 3：一行三段式水平布局（左 / 中 / 右，带间隔线） */
+.btn-group-layout-tripartite {}
+
+/* 按钮组模式 3：左 */
+.btn-group-layout-tripartite__left {}
+
+/* 按钮组模式 3：中 */
+.btn-group-layout-tripartite__center {}
+
+/* 按钮组模式 3：右） */
+.btn-group-layout-tripartite__right {}
+
+/* 按钮组模式 3：间隔线） */
+.btn-group-layout-tripartite__divider {
+  color: #FFB02D;
+}
+
+/* 固定页面底部按钮 */
+.btn-page-bottom {
+  position: fixed;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 20px;
+  bottom: 0;
+  left: 0;
+}
+
+.btn-corner-mark {
+  position: absolute;
+  top: -10px;
+  right: -14px;
+  width: 22px;
+  height: 22px;
+  font-size: 10px;
+  border-radius: 3px;
+  transform: scale(0.9);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+}
+
+/* 功能按钮对应颜色展示 */
+.btn--visible {
+  /* #7D4533 */
+  background-color: rgba(125, 69, 51, 0.15);
+}
+
+.btn--setting {
+  /* #998EA4 */
+  background-color: rgba(153, 142, 164, 0.15);
+}
+
+.btn--list {
+  /* #FFB02D */
+  color: #FFB02D;
+  background-color: rgba(255, 176, 46, 0.15);
+}
+
+.btn--audio {
+  /* #00A6ED */
+  color: #00A6ED;
+  background-color: rgba(0, 166, 237, 0.15);
+}
+
+.btn--correct {
+  /* #00D26A */
+  color: #00D26A;
+  background-color: rgba(0, 210, 106, 0.15);
+}
+
+.btn--label {
+  /* #00D26A */
+  color: #F8312F;
+  background-color: rgba(248, 49, 47, 0.15);
+}
+
+.btn--label-n {
+  /* #00D26A */
+  color: #F8312F;
+  border-color: #F8312F;
+}
+
+.btn--recording {
+  color: #212121;
+  background-color: rgba(33, 33, 33, 0.15);
+}
+
+.btn--recording-corner-mark {
+  color: #212121;
+  border-color: rgba(33, 33, 33, 1);
+}
+
+.btn--practice {
+  color: #433B6B;
+  background-color: rgba(67, 59, 107, 0.15);
+}
+
+.btn--practice-corner-mark {
+  color: #433B6B;
+  border-color: rgba(67, 59, 107, 1);
+}
+
+.btn--exercise {
+  color: #533566;
+  background-color: rgba(83, 53, 102, 0.15);
+}
+
+.btn--dis {
+  opacity: 0.3;
+}

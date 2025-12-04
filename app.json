@@ -1,0 +1,102 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/science/list/index",
+    "pages/science/detail/index",
+    "pages/practice/set-list/index",
+    "pages/practice/menu-list/index",
+    "pages/practice/recording/recording",
+    "pages/practice/record_detail/record_detail",
+    "pages/question/set-p1-list/index",
+    "pages/question/question-p1-list/index",
+    "pages/question/question-p1-detail/index",
+    "pages/question/set-p2p3-list/index",
+    "pages/question/question-p2-detail/index",
+    "pages/question/question-p3-list/index",
+    "pages/question/question-p3-detail/index",
+    "pages/question/recording-p1/index",
+    "pages/question/recording-p1-record/index",
+    "pages/question/recording-p2/index",
+    "pages/question/recording-p2-record/index",
+    "pages/question/reading/reading",
+    "pages/question/reading_detail/reading_detail",
+    "pages/random-practice/history-p3/index",
+    "pages/random-practice/practice-p3/index",
+    "pages/video/set-list/index",
+    "pages/video/video-list/index",
+    "pages/video/video-detail/index",
+    "pages/story/set-list/index",
+    "pages/story/block-group/index",
+    "pages/story/block-detail/index",
+    "pages/material/set-list/index",
+    "pages/material/block-group/index",
+    "pages/material/block-detail/index",
+    "pages/material/link-question/index",
+    "pages/recording/record/record",
+    "pages/recording/list/list",
+    "pages/recording/record_answer_p3/index",
+    "pages/recording/questions_recording/questions_recording",
+    "pages/recording/questions_record_list/questions_record_list",
+    "pages/recording/questions_record_detail/questions_record_detail",
+    "pages/recording/single/p1/index",
+    "pages/recording/single/p1-history/index",
+    "pages/story/recording/recording",
+    "pages/story/record_detail/record_detail",
+    "pages/material/recording/recording",
+    "pages/material/record_detail/record_detail",
+    "pages/my/my",
+    "pages/user/login/login",
+    "pages/teacher/widget/widget",
+    "pages/teacher/user_permission/user_permission",
+    "pages/teacher/user_role/user_role"
+  ],
+  "window": {
+    "backgroundColor": "#ffffff",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#FFF",
+    "navigationBarTitleText": "考雅狂狂说",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": false,
+    "pageOrientation": "auto"
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#000000",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "口语",
+        "iconPath": "image/v2/speaking.png",
+        "selectedIconPath": "image/v2/speaking_.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "image/v2/me.png",
+        "selectedIconPath": "image/v2/me_.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "resizable": true,
+  "usingComponents": {},
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "useExtendedLib": {
+    "weui": true
+  },
+  "permission": {
+    "scope.record": {
+      "desc": "获取录音权限用于音频上传功能"
+    }
+  },
+  "plugins": {
+    "t-video": {
+      "version": "1.0.11",
+      "provider": "wx5474241b2a65b906"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+.sentence_cell {
+  border: 1px solid var(--solid-border-color);
+  padding: 10px;
+  border-radius: 9px;
+}
+
+.sel_ {
+  border-color: var(--solid-border-color);
+}
+
+.text_right {
+  text-align: right;
+}

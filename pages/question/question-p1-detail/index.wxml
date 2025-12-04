@@ -1,0 +1,66 @@
+<full-screen-view animation="{{animationData}}">
+  <view class="unit-detail" style="background:{{detail.questionBackgroundColor}};border-color: {{detail.questionBorderColor}};">
+    <view class="unit-detail__text" bind:tap="playMainAudio">{{detail.question}}</view>
+    <image class="unit-detail__icon" wx:if="{{detail.audioUrl}}" src="/image/v2/speaker-high-volume.png" />
+  </view>
+  <view class="series" wx:if="{{menus.length > 1}}">
+    <block wx:for="{{menus}}" wx:key="item">
+      <view wx:if="{{seriesIndex == index }}" class="series__item series__active" style="background: {{detail.questionBackgroundColor}};" bind:tap="checkSeries" data-index="{{index}}">
+        <view>{{item.title}}</view>
+        <image class=" series__item--preferred" wx:if="{{item.isPreferred}}" src="/image/v2/check-mark-button.png"></image>
+      </view>
+      <view wx:else class="series__item" bind:tap="checkSeries" data-index="{{index}}">
+        <view>{{item.title}}</view>
+        <image class=" series__item--preferred" wx:if="{{item.isPreferred}}" src="/image/v2/check-mark-button.png"></image>
+      </view>
+    </block>
+  </view>
+  <view class="detail-block" wx:for="{{list}}" wx:for-item="answer" wx:for-index="answerIndex" wx:key="answerIndex" wx:if="{{answer.show}}">
+    <header title="{{answer.title}}" is-top="{{answer.isPreferred}}" hasAudio="{{answer.audioTotal == answer.sentenceTotal}}" titleBackground="{{detail.questionBackgroundColor}}" bind:switch="switchChange" data-index="{{answerIndex}}" preferred="{{list.length > 1}}"></header>
+    <view class="detail-block__intervals"></view>
+    <view class="detail-block__body">
+      <view class="detail-body__content" style="{{sentence.playStatus === 'playing' ? 'background:'+detail.questionBackgroundColor:''}}" wx:for="{{answer.list}}" wx:for-item="sentence" wx:for-index="sentenceIndex" wx:key="sentenceIndex" bind:tap="playSentenceAudio" data-answer-index="{{answerIndex}}" data-sentence-index="{{sentenceIndex}}">
+        <sentence content="{{sentence}}" tagWidth="{{tagWidth}}"></sentence>
+      </view>
+    </view>
+    <view class="detail-block__intervals"></view>
+    <footer title="{{answer.title}}" grading="{{answer.grading}}" recordTotal="{{answer.recordTotal}}" hasAudio="{{answer.audioTotal == answer.sentenceTotal}}" bind:click="recordAndRate" data-index="{{answerIndex}}"></footer>
+  </view>
+  <view wx:if="{{showUserRecord}}" class="detail-block">
+    <header title="用户回答" titleBackground="{{detail.questionBackgroundColor}}"></header>
+    <block wx:for="{{userPublicRecords}}" wx:key="index">
+      <view class="detail-block__intervals"></view>
+      <view class="detail-block__body">
+        <view class="user">
+          <image class="user-head" src="{{item.userHeadUrl}}"></image>
+          <view>{{item.userNickName}}</view>
+        </view>
+        <view class="public-record">
+          <view class="public-record__audio" bind:tap="playUserAudio" data-index="{{index}}">
+            <image class="user-head" src="/image/v2/play.png" wx:if="{{item.player == 'stop'}}"></image>
+            <image class="user-head" src="/image/v2/pause_1.png" wx:if="{{item.player == 'play'}}"></image>
+            <view style="width: {{item.width}}px;"></view>
+            <view>{{item.duration}}"</view>
+          </view>
+        </view>
+        <view class="public-record">
+          <view class="public-record__create">{{item.audioCreateTime}}</view>
+          <view class="tag {{item.isFavorite?'tag--favorite':''}}" bind:tap="favorite" data-index="{{index}}">
+            <image class="tag--img" src="/image/favorite.png"></image>
+            {{item.favoriteCount}}
+          </view>
+          <view class="tag {{item.isLike?'tag--like':''}}" bind:tap="like" data-index="{{index}}">
+            <image class="tag--img" src="/image/like.png"></image>
+            {{item.likeCount}}
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</full-screen-view>
+<buts>
+  <but wx:if="{{idArr.length > 0}}" disabled="{{index == 0}}" bind:change="changeQuestion" type="last" rotate img-url="/image/v2/next.png"></but>
+  <but bind:change="practice" text="{{menuName}}" img-url="/image/v2/practice.png" pattern='practice'></but>
+  <but wx:if="{{idArr.length > 0}}" disabled="{{index == (idArr.length -1)}}" bind:change="changeQuestion" type="next" img-url="/image/v2/next.png"></but>
+</buts>
+<custom_popus show="{{showPopus}}" bind:cancel="popupCancel" bind:confirm="popupConfirm" selected="{{level}}"></custom_popus>

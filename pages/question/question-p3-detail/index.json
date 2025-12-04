@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "full-screen-view": "/components/full-screen-view/index",
+    "no-data": "/components/no-data/index",
+    "custom_popus": "/components/custom_popup/custom_popup",
+    "header": "/components/detail-page/header/index",
+    "footer": "/components/detail-page/footer/index",
+    "sentence": "/components/detail-page/sentence/index",
+    "buts": "/components/styled/but-list/index",
+    "but": "/components/styled/but-item/index"
+  }
+}

@@ -1,0 +1,9 @@
+.recording_cell {
+  padding: 15px 20px;
+  border: 1px solid var(--solid-border-color);
+  border-radius: 9px;
+}
+
+.audio_duration {
+  color: #c5c5c5;
+}

@@ -1,0 +1,43 @@
+<view class="chapter-container">
+  <view class="chapter-group" wx:for="{{list}}" wx:for-item="group" wx:for-index="groupIndex" wx:key="group" wx:if="{{!group.hidden}}">
+    <view class="chapter-group__header--layout">
+      <view class="chapter-group__header" style="background:{{group.titleBackgroundColor}};">
+        <image class="chapter-group__icon" wx:if="{{group.iconUrl}}" src="{{group.iconUrl}}" />
+        <text class="chapter-group__title">{{group.title}}</text>
+      </view>
+    </view>
+    <view class="chapter-cell">
+      <view class="chapter" wx:for="{{group.list}}" wx:for-item="chapter" wx:for-index="chapterIndex" wx:key="chapter" bind:tap="toUnit" data-item="{{chapter}}" wx:if="{{!chapter.hidden}}">
+        <view class="chapter__header">
+          <view class="chapter__header-title" style="background: {{chapter.titleBackgroundColor}};">
+            <image class="chapter__title-icon" wx:if="{{chapter.iconUrl}}" src="{{chapter.iconUrl}}" />
+            <view class="chapter__title-text">{{chapter.title}}</view>
+          </view>
+          <view class="chapter__tag">
+            <view class="chapter__focus-tag" wx:if="{{chapter.description}}">{{chapter.description}}</view>
+            <view class="chapter__auth-tag" wx:if="{{chapter.isChargeable == 1}}">权限</view>
+            <view class="chapter__free-tag" wx:if="{{chapter.isChargeable == 0}}">体验</view>
+          </view>
+        </view>
+        <view class="chapter__intervals" wx:if="{{false}}"></view>
+        <view class="chapter__footer" wx:if="{{false}}">
+          <image class="chapter__footer-icon" src="/image/v2/ballot-box-with-ballot.png" />
+          <view class="footer__right">
+            <view class="chapter__meter {{ meter.signInTotal < 3 ? meter.signInTotal > 0 ? 'footer__meter-sv2' : '' : 'footer__meter-sv3' }}" wx:for="{{chapter.list}}" wx:for-item="meter" wx:for-index="materIndex" wx:key="meter">
+              <view class="chapter__meter-index">{{materIndex + 1}}</view>
+              <view class="chapter__meter-count">{{meter.signInTotal}}次</view>
+            </view>
+            <view class="chapter__meter chapter__meter--grading {{ chapter.grading === 1 ? 'footer__meter-sv2' : chapter.recordTotal === 0 ? '' : 'footer__meter-sv3' }}">
+              <block wx:if="{{chapter.grading === 1}}">评分中</block>
+              <block wx:else>
+                <block wx:if="{{chapter.recordTotal === 0}}">无评分</block>
+                <block wx:if="{{chapter.recordTotal > 0}}">有评分</block>
+              </block>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<no-data wx:if="{{list.length == 0}}"></no-data>

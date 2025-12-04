@@ -1,0 +1,147 @@
+/* 主要部分 */
+.block-body {
+  width: 100%;
+  border-width: 1px;
+  border-radius: 9px;
+  border-style: solid;
+  border-color: var(--solid-border-color);
+  box-sizing: border-box;
+}
+
+.block-body__intervals {
+  width: 100%;
+  height: 1px;
+  background: var(--solid-border-color);
+}
+
+.block-body__content {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.block-body__menu {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.block-body__menu-item {
+  border: 1px solid var(--solid-border-color);
+  border-radius: 3px;
+  padding: 2px 8px;
+  line-height: 1.4;
+  font-size: 12px;
+}
+
+video {
+  width: 100% !important;
+  position: relative;
+}
+
+.voido-watermark {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 12px;
+}
+
+.watermark {
+  color: rgba(0, 0, 0, 0.1);
+  /* color: #ffffff; */
+  font-size: 12px;
+  white-space: nowrap;
+  position: absolute;
+  top: 50%;
+  transform: rotate(325deg);
+}
+
+.canvas-watermark {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+}
+
+.canvas_cell {
+  position: fixed;
+  /* left: -750rpx; */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.speed {
+  position: absolute;
+  z-index: 10000;
+  color: rgba(255, 255, 255, 0.5);
+  right: 14px;
+  bottom: 40px;
+}
+
+.fullscreen {
+  bottom: 65px;
+}
+
+.speed__title {
+  height: 20px;
+  line-height: 20px;
+  font-size: 14px;
+}
+
+.speed-body {
+  width: 60px;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  z-index: 10000;
+  color: rgba(255, 255, 255, 0.5);
+  right: 0px;
+  bottom: 43px;
+  padding-block: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.speed-body__menu {
+  height: 24px;
+  line-height: 24px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.speed-body__menu-active {
+  color: var(--theme-color);
+}
+
+.fadeAwayToLeft {
+  animation: animate_left 0.2s linear 1;
+}
+
+.fadeAwayToRight {
+  animation: animate_right 0.2s linear 1;
+}
+
+@keyframes animate_left {
+  from {
+    right: -60px;
+  }
+
+  to {
+    right: 0;
+  }
+}
+
+@keyframes animate_right {
+  from {
+    left: 60px;
+  }
+
+  to {
+    left: 0rpx;
+  }
+}

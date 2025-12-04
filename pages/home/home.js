@@ -1,0 +1,80 @@
+const api = getApp().api
+Page({
+  data: {
+    url: {
+      "BASIC": "/pages/practice/set-list/index",
+      "P1": "/pages/question/set-p1-list/index",
+      "P2": "/pages/question/set-p2p3-list/index",
+      "VIDEO": "/pages/video/set-list/index",
+      "STORY": "/pages/story/set-list/index",
+      "MATERIAL": "/pages/material/set-list/index",
+      "POPULAR_SCIENCE": "/pages/science/list/index"
+    }
+  },
+  // ===========生命周期 Start===========
+  onShow() {},
+  onShowLogin() {
+    this.listData(true)
+    // this.listPopularScienceData(true)
+  },
+  onShareAppMessage() {
+    return api.share('考雅狂狂说', this)
+  },
+  // ===========生命周期 End===========
+  // ===========业务操作 Start===========
+  // toChildPage(e) {
+  //   const item = e.currentTarget.dataset
+  //   // 根据不同类型进入不同页面
+  //   let url = '/pages/question/list_big/list_big'
+  //   if (item.type == 1) {
+  //     url = '/pages/question/set-p1-list/index'
+  //   }
+  //   if (item.type == 2) {
+  //     url = '/pages/question/set-p2p3-list/index'
+  //   }
+  //   if (item.type == 4) {
+  //     url = '/pages/story/set-list/index'
+  //   }
+  //   if (item.type == 5) {
+  //     url = '/pages/material/set-list/index'
+  //   }
+  //   if (item.type == 6) {
+  //     url = '/pages/practice/set-list/index'
+  //   }
+  //   if (item.type == 7) {
+  //     url = '/pages/video/set-list/index'
+  //   }
+  //   url = url + api.parseParams(item)
+  //   wx.navigateTo({ url })
+  // },
+  toChildPage(e) {
+    const {
+      url
+    } = this.data
+    const item = e.currentTarget.dataset
+    // 根据不同类型进入不同页面
+    wx.navigateTo({
+      url: `${url[item.type]}?id=${item.id}`
+    })
+  },
+  toPopularSciencePage(e) {
+    const id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: `/pages/science/detail/index?id=${id}`,
+    })
+  },
+  toPopularScienceListPage() {
+    wx.navigateTo({
+      url: `/pages/science/list/index`,
+    })
+  },
+  // ===========业务操作 End===========
+  // ===========数据获取 Start===========
+  listData(isPull) {
+    api.request(this, '/v2/home/list', {}, isPull)
+  },
+  listPopularScienceData(isPull) {
+    api.request(this, '/v2/home/popular/science/list', {}, isPull)
+  }
+  // ===========数据获取 End===========
+})

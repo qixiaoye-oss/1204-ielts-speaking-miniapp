@@ -1,0 +1,11 @@
+<view class="chapter-cell">
+  <view class="chapter" wx:for="{{list}}" wx:for-item="chapter" wx:for-index="chapterIndex" wx:key="chapter" bind:tap="toChildPage" data-id="{{chapter.id}}">
+    <view class="chapter__header">
+      <view class="chapter__header-title" style="background: {{backgroundColor}};">
+        <image class="chapter__title-icon" wx:if="{{iconUrl}}" src="{{iconUrl}}" />
+        <view class="chapter__title-text">{{chapter.title}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+<no-data wx:if="{{list.length == 0}}"></no-data>

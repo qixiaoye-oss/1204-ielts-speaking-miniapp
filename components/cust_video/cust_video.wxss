@@ -1,0 +1,80 @@
+.video {
+  width: 100%;
+  display: block;
+}
+
+.slider-container {
+  width: 100%;
+  position: absolute;
+  bottom: 10px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-inline: 28rpx;
+  box-sizing: border-box;
+}
+
+.pauseBtn,
+.playBtn,
+.fullBtn {
+  width: 20px;
+  height: 20px;
+}
+
+.slider-container .text {
+  color: #fff;
+  text-align: center;
+  line-height: 1.4;
+  min-width: 40px;
+}
+
+.slider-container slider {
+  padding: 0;
+  margin: 0 6px;
+  width: 0;
+  flex-grow: 1;
+}
+
+.baseFun {
+  position: relative;
+}
+
+.doubleSpeed {
+  position: absolute;
+  width: 60px;
+  bottom: 20px;
+  right: -10px;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4);
+  /* border: 1px solid red; */
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 30px;
+}
+
+.doubleSpeed view {
+  width: 100%;
+}
+
+.doubleSpeed view:last-child {
+  border-bottom: 0;
+}
+
+.active {
+  font-weight: bold;
+  color: var(--theme-color);
+}
+
+.watermark {
+  color: rgba(0, 0, 0, 0.1);
+  /* color: #ffffff; */
+  font-size: 12px;
+  white-space: nowrap;
+  position: absolute;
+  top: 50%;
+  transform: rotate(325deg);
+}

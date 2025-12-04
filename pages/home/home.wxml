@@ -1,0 +1,46 @@
+<view class="home">
+  <view wx:if="{{popularScience.list.length>0}}">
+    <view class="home-main-item" style="background:{{popularScience.colorRgba}}">
+      <view class="home-main-item__title" style="color:{{popularScience.colorRgb}}">{{popularScience.title}}</view>
+      <view class="{{popularScience.layoutMode === 'QUAD_GRID' ? 'home-main-item__content--grid' : 'home-main-item__content'}}">
+        <block wx:for="{{popularScience.list}}" wx:key="albumIndex" wx:for-item="album" wx:for-index="albumIndex">
+          <view class="home-sub-item" style="background:{{popularScience.colorRgba}};border-color:{{popularScience.colorRgb}};" bind:tap="toPopularSciencePage" data-id="{{album.id}}">
+            <view class="home-sub-item__content--small">
+              <view class="home-sub-item__description--text" style="color: {{popularScience.colorRgb}};">{{album.subtitle}}</view>
+              <view class="home-sub-item__title--text">{{album.title}}</view>
+              <view class="helpful-count">
+                <image src="/image/helpful.png"></image>
+                <view>{{album.helpfulCount}}人觉得有用</view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <view class="popular-science btn-action" style="background: {{popularScience.colorRgba}};" bind:tap="toPopularScienceListPage">
+        <view style="color: {{popularScience.colorRgb}};">查看所有</view>
+        <image src="/image/v2/next.png"></image>
+      </view>
+    </view>
+  </view>
+  <block wx:for="{{list}}" wx:key="subjectIndex" wx:for-item="subject" wx:for-index="subjectIndex" wx:if="{{subject.list.length > 0}}">
+    <view class="home-main-item" style="background:{{subject.colorRgba}}">
+      <view class="home-main-item__title" style="color:{{subject.colorRgb}}">{{subject.title}}</view>
+      <view class="{{subject.layoutMode === 'QUAD_GRID' ? 'home-main-item__content--grid' : 'home-main-item__content'}}">
+        <block wx:for="{{subject.list}}" wx:key="albumIndex" wx:for-item="album" wx:for-index="albumIndex">
+          <view class="home-sub-item" style="background:{{subject.colorRgba}};border-color:{{subject.colorRgb}};" bind:tap="toChildPage" data-id="{{album.id}}" data-type="{{album.type}}">
+            <view class="home-sub-item__content" wx:if="{{album.themeStyle == 'base'}}">
+              <view class="home-sub-item__header">
+                <image class="home-sub-item__title--icon" wx:if="{{album.iconUrl}}" src="{{album.iconUrl}}" />
+                <view class="home-sub-item__title--text album__title-text">{{album.title}}</view>
+              </view>
+              <view class="home-sub-item__footer">
+                <view class="tag tag--orange" style="background:{{subject.color}}">{{album.description}}</view>
+                <view class="tag tag--transparent" style="color:{{subject.colorRgb}};border-color:{{subject.colorRgb}}">{{album.childTotal}}</view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </block>
+</view>

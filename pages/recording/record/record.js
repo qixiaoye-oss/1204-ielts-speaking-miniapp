@@ -1,0 +1,188 @@
+const api = getApp().api
+let timer
+let manager
+let audio
+Page({
+  // ===========生命周期 Start===========
+  data: {
+    nowTime: 0,
+    status: 0,
+    file: {
+      time: "",
+      url: "",
+      duration: 0
+    },
+    audioStatus: "stop",
+    duration: 0
+  },
+  onLoad(options) {
+    this.setData({
+      color: options.color,
+      background: options.background
+    })
+    audio = wx.createInnerAudioContext()
+    audio.onEnded(() => {
+      this.stopAduio()
+    })
+    audio.onError((res) => {
+      console.log(res);
+    })
+
+    manager = wx.getRecorderManager()
+    manager.onStop(res => {
+      audio.src = res.tempFilePath
+      let time = api.formatTime(new Date())
+      this.setData({
+        duration: res.duration,
+        [`file.time`]: time,
+        [`file.url`]: res.tempFilePath,
+        status: 2,
+      })
+      clearInterval(timer)
+    })
+    manager.onError((res) => {
+      // api.modal("录音模块启动失败", res.errMsg, false)
+      api.recorderErr("P2", res.errMsg)
+    })
+    manager.onStart(() => {
+      this.startRecoding()
+    })
+    wx.enableAlertBeforeUnload({
+      message: "未保存录音退出将丢失录音文件，是否退出？",
+    });
+  },
+  onShow() {
+    this.getData(true)
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.record']) {
+          wx.authorize({
+            scope: 'scope.record'
+          })
+        }
+      }
+    })
+  },
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide() { },
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload() {
+    audio.stop()
+    manager.stop()
+    clearInterval(timer)
+  },
+  // ===========生命周期 End===========
+  // ===========业务操作 Start===========
+  gatUserAuthor() {
+    const then = this
+    wx.getSetting({
+      success(res) {
+        if (res.authSetting['scope.record']) {
+          then.initRecoding()
+        } else {
+          api.toast("未开启麦克风权限无法进行录音")
+        }
+      }
+    })
+  },
+  initRecoding() {
+    let duration = 60000
+    if (this.data.detail.type == 2) {
+      duration = 120000
+    }
+    manager.start({
+      duration: duration,
+      sampleRate: 48000,
+      numberOfChannels: 1,
+      encodeBitRate: 320000,
+      format: 'mp3',
+      frameSize: 50
+    })
+  },
+  startRecoding() {
+    this.setData({
+      status: 1,
+      nowTime: Date.now(),
+    })
+    this.recordingTimer()
+    this.startPlayingQuesionAudio()
+  },
+  stopRecoding() {
+    this.setData({
+      status: 2,
+    })
+    manager.stop()
+    clearInterval(timer)
+  },
+  recordingTimer() {
+    timer = setInterval(() => {
+      const { nowTime } = this.data
+      const difference = Date.now() - nowTime;
+      this.setData({
+        [`file.duration`]: Math.round(difference / 1000)
+      })
+    }, 100);
+  },
+  startPlayingQuesionAudio() {
+    if (this.data.detail.audioUrl) {
+      audio.src = this.data.detail.audioUrl
+      this.playAudio()
+    }
+  },
+  playAudio() {
+    audio.play()
+    audio.duration
+    this.setData({
+      audioStatus: 'play'
+    })
+  },
+  stopAduio() {
+    if (!audio.paused) {
+      audio.stop()
+    }
+    this.setData({
+      audioStatus: 'stop'
+    })
+  },
+  cancel() {
+    wx.navigateBack()
+  },
+  confirm() {
+    if (api.isEmpty(this.data.file.url)) {
+      api.toast("没有录音需要保存");
+      return
+    }
+    api.upload(this.data.file.url, '/oral/recording/', this).then(res => {
+      this.save(res)
+    })
+  },
+  // ===========业务操作 End===========
+  // ===========数据获取 Start===========
+  getData(isPull) {
+    const _this = this
+    api.request(this, '/question/detailNoAnswer', {
+      userId: api.getUserId(),
+      ...this.options
+    }, isPull)
+  },
+  save(audioUrl) {
+    let param = {
+      userId: api.getUserId(),
+      type: this.options.type,
+      setId: this.options.setId,
+      resourceId: this.options.id,
+      audioUrl: audioUrl,
+      recordingTime: this.data.file.time,
+      duration: this.data.duration
+    }
+    api.request(this, '/recording/save', param, true, "POST").then(res => {
+      wx.redirectTo({
+        url: '../list/list' + api.parseParams(this.options),
+      })
+    })
+  },
+})

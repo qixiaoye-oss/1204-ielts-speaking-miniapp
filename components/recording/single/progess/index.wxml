@@ -1,0 +1,14 @@
+<view class="progress">
+  <view class="progress__status">
+    <view class="progress__status--zero" wx:if="{{status === 'stop' || status === 'over'}}"></view>
+    <view class="progress__status--finish" wx:if="{{status === 'play'}}"></view>
+  </view>
+  <view class="progress__content state_play" wx:if="{{status === 'play'}}">
+    <view>录音中</view>
+    <view>已录制{{time}}s</view>
+  </view>
+  <view class="progress__content state_none" wx:if="{{status === 'stop' || status === 'over'}}">
+    <view>未开始</view>
+    <view>已录制{{time}}s</view>
+  </view>
+</view>

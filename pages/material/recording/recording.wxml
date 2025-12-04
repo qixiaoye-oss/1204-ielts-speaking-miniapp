@@ -1,0 +1,26 @@
+<block wx:if="{{list.length > 0}}">
+  <progress list="{{list}}" recording="{{recorderState === 'play'}}" time="{{recordingTime}}"></progress>
+  <view class="layout_flex_col " style="margin-top:15px;gap:15px">
+    <block wx:for="{{groupData.list}}" wx:key="item">
+      <question index="{{index+1}}" detail="{{item}}" color="{{queryParam.color}}" background="{{queryParam.background}}" bind:selected="keywordConfirm" bind:previewImage="previewImage"></question>
+    </block>
+  </view>
+  <view class="bottom_spacing"></view>
+  <buts>
+    <but bind:change="cancel" pattern="quit" text="放弃"></but>
+    <view class="flex1"></view>
+    <block wx:if="{{recorderState === 'none'}}">
+      <but bind:change="startRecoding" text="点击开始答题/录音" img-url="/image/v2/stop.png"></but>
+    </block>
+    <block wx:if="{{recorderState === 'play' && !isLastSentence}}">
+      <but bind:change="nextSentence" text="请回答.../点击下一题" img-url="/image/v2/next.png"></but>
+    </block>
+    <block wx:if="{{recorderState === 'play' && !isLastPage && isLastSentence}}">
+      <but bind:change="nextPage" text="请回答.../点击下一页" img-url="/image/v2/next.png"></but>
+    </block>
+    <block wx:if="{{recorderState === 'play' && isLastPage && isLastSentence}}">
+      <but bind:change="saveReady" text="请回答最后一题..." img-url="/image/v2/down.png"></but>
+    </block>
+  </buts>
+</block>
+<no-data wx:if="{{list.length == 0}}" text="暂无数据"></no-data>

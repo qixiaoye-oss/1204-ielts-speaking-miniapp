@@ -1,0 +1,82 @@
+.progress_cell {
+  width: 100%;
+  gap: 5px;
+}
+
+.progress_item {
+  height: 6px;
+  flex: 1;
+}
+
+.progress_100 {
+  background: rgba(248, 49, 47, 1);
+}
+
+.recorder_cell {
+  padding: 10px;
+}
+
+.recorder_cell_play {
+  background: rgba(248, 49, 47, 0.2);
+  color: rgba(248, 49, 47, 1);
+  padding: 10px;
+}
+
+.content_cell {
+  border-radius: 9px;
+  margin-block: 15px;
+  padding: 20px 20px;
+  border: 0px;
+  background: var(--background-color-1);
+}
+
+.question_content {
+  font-weight: bold;
+  line-height: 1.4;
+  position: relative;
+}
+
+.additional_content {
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+.supplementary_content {
+  margin-left: 30px;
+  margin-top: 10px;
+  line-height: 1.4;
+  position: relative;
+}
+
+.content_tag {
+  color: var(--old-main-color);
+  border: 1px solid var(--solid-border-color);
+  width: 17px;
+  height: 17px;
+  position: absolute;
+  left: -30px;
+  margin-top: 2px;
+}
+
+.cell {
+  padding: 19px;
+}
+
+.audio_duration {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.text_right {
+  text-align: right;
+}
+
+.recording_tip {
+  border-radius: 9px;
+  position: fixed;
+  right: 20px;
+  bottom: 108px;
+  width: 240px;
+  border: 1px solid #F9C176;
+  padding: 10px;
+  background: #FEF0DF;
+}

@@ -1,0 +1,45 @@
+<view class="mastered">
+  <view class="mastered__title">是否搞定</view>
+  <view class="mastered__switch">
+    <view class="mastered__switch-text mastered__switch-text--sel" wx:if="{{hasMastered}}">搞定</view>
+    <view class="mastered__switch-text" wx:if="{{!hasMastered}}">未搞定</view>
+    <switch class="wx-switch-input" checked="{{hasMastered}}" bindchange="switchChange" color="rgba(0,210,106, 1)"></switch>
+  </view>
+</view>
+<view class="chapter-cell">
+  <view class="chapter" wx:for="{{list}}" wx:for-item="chapter" wx:for-index="chapterIndex" wx:key="chapter" bind:tap="toChildPage" data-id="{{chapter.id}}" data-child-total="{{chapter.childCount}}">
+    <view class="chapter__header">
+      <view class="chapter__header-title" style="background: {{backgroundColorHex}};">
+        <image class="chapter__title-icon" wx:if="{{iconUrl}}" src="{{iconUrl}}" />
+        <view class="chapter__title-text">{{chapter.content}}</view>
+      </view>
+    </view>
+    <view class="chapter__intervals"></view>
+    <view class="chapter__footer">
+      <view class="tag chapter__footer--title" style="background: {{color}};">练习</view>
+      <view class="chapter__footer--content">
+        <block wx:for="{{chapter.progressList}}" wx:for-item="progress" wx:for-index="progressIndex" wx:key="progressIndex">
+          <view class="tag tag__multi tag__multi--gray" wx:if="{{progress.status == 0}}">
+            <view>{{progress.title}}</view>
+            <view class="tag__intervals"></view>
+            <view>未完成</view>
+          </view>
+          <view class="tag tag__multi tag__multi--orange" wx:if="{{progress.status == 1}}">
+            <view>{{progress.title}}</view>
+            <view class="tag__intervals"></view>
+            <view>进行中</view>
+          </view>
+          <view class="tag tag__multi tag__multi--green" wx:if="{{progress.status == 2}}">
+            <view>{{progress.title}}</view>
+            <view class="tag__intervals"></view>
+            <view>已完成</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>
+<buts>
+  <but bind:change="recordingOrClocking" badge count="{{recordingCount}}" text="连续录音" img-url="/image/v2/recording.png" pattern='recording' color="{{color}}"></but>
+</buts>
+<no-data wx:if="{{list.length == 0}}"></no-data>

@@ -1,0 +1,95 @@
+<block wx:if="{{detail}}">
+  <full-screen-view animation="{{animationData}}">
+    <view class="unit-detail" bind:tap="playMainAudio" style="background: {{backgroundColor}}; border-color: {{textColor}};">
+      <view class="unit-detail__text">
+        <view>{{detail.content}}</view>
+        <view class="unit-detail__text-supplementary" wx:if="{{detail.supplementaryContent}}">
+          <text class="unit-detail__text-supplementary-icon" style="border-color:{{textColor}}">补</text>
+          <text>{{detail.supplementaryContent}}</text>
+        </view>
+      </view>
+      <image class="unit-detail__icon" wx:if="{{detail.audioUrl}}" src="/image/v2/speaker-high-volume.png" />
+    </view>
+    <view class="link-block" bind:tap="gotoMaterialBlock" wx:for="{{materials}}" wx:key="item" data-id="{{item.id}}">
+      <view class="link-block__title">
+        <view class="link-block__title-content" style="background: {{item.backgroundColor}};">
+          <image class="link-block__title-img" wx:if="{{item.iconUrl}}" src="{{item.iconUrl}}" />
+          <view class="link-block__title-text">{{item.title}}</view>
+        </view>
+      </view>
+      <view class="link-block__tag">展开查看</view>
+    </view>
+    <view class="answer-detail" wx:for="{{list}}" wx:key="answer" wx:for-item="answer" wx:for-index="answerIndex">
+      <header title="{{answer.content}}" hasAudio="{{answer.audioTotal == answer.sentenceTotal}}" titleBackground="{{backgroundColor}}"></header>
+      <view class="answer-detail__intervals"></view>
+      <view class="answer-link-block" bind:tap="gotoMaterialBlock" wx:for="{{answer.blockList}}" wx:key="item" data-id="{{item.id}}">
+        <view class="link-block__title">
+          <view class="link-block__title-content" style="background: {{item.backgroundColor}};">
+            <image class="link-block__title-img" wx:if="{{item.iconUrl}}" src="{{item.iconUrl}}" />
+            <view class="link-block__title-text">{{item.title}}</view>
+          </view>
+        </view>
+        <view class="link-block__tag">展开查看</view>
+      </view>
+      <view class="answer-detail__content">
+        <view class="paragraph" wx:for="{{answer.list}}" wx:key="paragraph" wx:for-item="paragraph" wx:for-index="paragraphIndex">
+          <block wx:if="{{paragraph.title}}">
+            <view class="paragraph__title">
+              <view class="paragraph__title-text">{{paragraph.title}}</view>
+            </view>
+            <view class="paragraph__content">
+              <view class="paragraph__content-sentence" wx:for="{{paragraph.list}}" wx:key="sentence" wx:for-item="sentence" wx:for-index="sentenceIndex" style="{{sentence.playStatus === 'playing' ? 'background:'+backgroundColor:''}}" data-answer-index="{{answerIndex}}" data-sentence-index="{{sentenceIndex}}" data-group-index="{{paragraphIndex}}" bind:tap="playSentence">
+                <sentence content="{{sentence}}" tagWidth="{{tagWidth}}"></sentence>
+              </view>
+            </view>
+          </block>
+          <block wx:else>
+            <view class="paragraph__content-sentence" wx:for="{{paragraph.list}}" wx:key="sentence" wx:for-item="sentence" wx:for-index="sentenceIndex" style="{{sentence.playStatus === 'playing' ? 'background:'+backgroundColor:''}}" data-answer-index="{{answerIndex}}" data-sentence-index="{{sentenceIndex}}" data-group-index="{{paragraphIndex}}" bind:tap="playSentence">
+              <sentence content="{{sentence}}" tagWidth="{{tagWidth}}"></sentence>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view class="answer-detail__intervals"></view>
+      <footer title="{{answer.title}}" grading="{{answer.grading}}" recordTotal="{{answer.recordTotal}}" hasAudio="{{answer.audioTotal == answer.sentenceTotal}}" bind:click="recordAndRate" data-index="{{answerIndex}}"></footer>
+      <block wx:if="{{answer.probeContent}}">
+        <view class="answer-detail__intervals"></view>
+        <header title="{{answer.probeContent}}" hasAudio="{{answer.audioTotal == answer.sentenceTotal}}" titleBackground="{{backgroundColor}}" probe></header>
+        <view class="answer-detail__intervals"></view>
+        <view class="answer-link-block" bind:tap="gotoMaterialBlock" wx:for="{{answer.probeBlockList}}" wx:key="item" data-id="{{item.id}}">
+          <view class="link-block__title">
+            <view class="link-block__title-content" style="background: {{item.backgroundColor}};">
+              <image class="link-block__title-img" wx:if="{{item.iconUrl}}" src="{{item.iconUrl}}" />
+              <view class="link-block__title-text">{{item.title}}</view>
+            </view>
+          </view>
+          <view class="link-block__tag">展开查看</view>
+        </view>
+        <view class="answer-detail__content">
+          <view class="paragraph">
+            <view class="paragraph__content-sentence" wx:for="{{answer.probeList}}" wx:key="sentence" wx:for-item="sentence" wx:for-index="sentenceIndex">
+              <sentence content="{{sentence}}" tagWidth="{{tagWidth}}"></sentence>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view class="" wx:if="{{detail.similarList.length > 0}}">
+      <view class="similar_cell" wx:for="{{detail.similarList}}" wx:key="item">
+        <view class="similar_tag_cell ">
+          <text wx:if="{{(index + 1) < 10}}">相似题0{{index + 1}}</text>
+          <text wx:else>相似题{{index + 1}}</text>
+        </view>
+        <view class="question_content">{{item.content}}</view>
+        <view class="question_illustrate mt10" wx:if="{{item.illustrate}}">{{item.illustrate}}</view>
+      </view>
+    </view>
+  </full-screen-view>
+  <buts>
+    <but wx:if="{{idArr.length > 0}}" disabled="{{index == 0}}" bind:change="changeQuestion" type="last" rotate img-url="/image/v2/next.png"></but>
+    <but bind:change="recordingOrClocking" badge count="{{recordingCount}}" text="单题打卡/录音" img-url="/image/v2/recording.png" pattern='recording' color="{{textColor}}"></but>
+    <but wx:if="{{idArr.length > 0}}" disabled="{{index == (idArr.length -1)}}" bind:change="changeQuestion" type="next" img-url="/image/v2/next.png"></but>
+  </buts>
+</block>
+<no-data wx:else></no-data>
+<custom_popus show="{{showPopus}}" bind:cancel="popupCancel" bind:confirm="popupConfirm" selected="{{level}}"></custom_popus>

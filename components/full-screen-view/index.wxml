@@ -1,0 +1,6 @@
+<scroll-view class="full_creen {{animationData}}" scroll-y="{{sy}}" style="height: {{wh}};">
+  <view class="p20">
+    <slot></slot>
+  </view>
+  <view class="~bottom_spacing"></view>
+</scroll-view>

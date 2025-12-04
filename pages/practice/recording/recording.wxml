@@ -1,0 +1,52 @@
+<block wx:if="{{list.length > 0}}">
+  <progress list="{{list}}" recording="{{recorderState === 'play'}}" time="{{recordingTime}}"></progress>
+  <view class="recording__group-title" style="color:{{color}}">{{groupData.title}}</view>
+  <view class="layout_flex_col" style="gap:15px">
+    <block wx:for="{{groupData.list}}" wx:key="item">
+      <question index="{{index+1}}" detail="{{item}}" color="{{color}}" background="{{backgroundColor}}" bind:selected="keywordConfirm" bind:listenAudio="playSentenceAudio"></question>
+    </block>
+  </view>
+  <view class="bottom_spacing"></view>
+  <buts>
+    <but bind:change="cancel" text="放弃" pattern='quit'></but>
+    <view style="flex-grow:1"></view>
+    <block wx:if="{{recorderState === 'none'}}">
+      <view class="btn-action btn--label" bind:tap="answerStart">
+        <view>开始录音</view>
+        <image src="/image/talk.png"></image>
+      </view>
+    </block>
+    <block wx:if="{{recorderState === 'play'}}">
+      <view class="recording__countdown">{{countdown}}</view>
+      <view class="btn-action btn--correct">
+        <view>说完了</view>
+        <image src="/image/v2/check-mark-button.png"></image>
+      </view>
+    </block>
+    <block wx:if="{{recorderState === 'stop'}}">
+      <view class="recording__switch">
+        <view class="recording__switch-text  {{switchChecked ?'recording__switch-text--sel':''}}">不熟</view>
+        <switch class="wx-switch-input" checked="{{switchChecked}}" bindchange="switchChange" color="rgba(255,176,45, 1)"></switch>
+      </view>
+    </block>
+    <block wx:if="{{recorderState === 'stop' && !isLastSentence}}">
+      <view class="btn-action btn--audio" bind:tap="nextSentence">
+        <view>下一个</view>
+        <image src="/image/next-1.png"></image>
+      </view>
+    </block>
+    <block wx:if="{{recorderState === 'stop' && !isLastPage && isLastSentence}}">
+      <view class="btn-action btn--audio" bind:tap="nextPage">
+        <view>下一个</view>
+        <image src="/image/next-1.png"></image>
+      </view>
+    </block>
+    <block wx:if="{{recorderState === 'stop' && isLastPage && isLastSentence}}">
+      <view class="btn-action btn--audio" bind:tap="answerOver">
+        <view>结束练习</view>
+        <image src="/image/v2/down.png"></image>
+      </view>
+    </block>
+  </buts>
+</block>
+<no-data wx:if="{{list.length == 0}}" text="暂无数据"></no-data>

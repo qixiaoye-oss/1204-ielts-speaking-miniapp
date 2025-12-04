@@ -1,0 +1,18 @@
+.noData {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 40rpx;
+  justify-content: center;
+  align-items: center;
+}
+
+.noDataImg {
+  width: 150px;
+}
+
+.noDataText {
+  font-size: 12px;
+  color: #dbdbdb;
+  margin-top: 20px;
+}

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "buts": "/components/styled/but-list/index",
+    "but": "/components/styled/but-item/index"
+  }
+}

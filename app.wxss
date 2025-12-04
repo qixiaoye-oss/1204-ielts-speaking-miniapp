@@ -13,6 +13,7 @@
 @import "style/layout.wxss";
 @import "style/theme.wxss";
 @import "style/default-styles.wxss";
+@import "style/loading-progress.wxss";
 
 page {
   background-color: #ffffff;

@@ -1,7 +1,10 @@
 const api = getApp().api
+const loadingProgress = require('../../behaviors/loadingProgress')
 Page({
+  behaviors: [loadingProgress],
   data: {},
   onShow() {
+    this.startLoading()
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({
         selected: 1
@@ -69,7 +72,9 @@ Page({
   listData(isPull) {
     api.request(this, '/user/expirationDate', {
       userId: api.getUserId()
-    }, isPull).then(res => { })
+    }, isPull).then(res => { }).finally(() => {
+      this.finishLoading()
+    })
   },
   // 接口调用-修改发音
   updateAudioType(type) {

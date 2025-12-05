@@ -1,10 +1,13 @@
 const api = getApp().api
+const loadingProgress = require('../../../behaviors/loadingProgress')
 Page({
+  behaviors: [loadingProgress],
   data: {
     hasMastered: false
   },
   // ===========生命周期 Start===========
   onShow() {
+    this.startLoading()
     this.listData(true)
   },
   onLoad(options) {
@@ -87,6 +90,8 @@ Page({
         idArr.push(i.id)
       })
       wx.setStorageSync('questionIdArr', idArr)
+    }).finally(() => {
+      this.finishLoading()
     })
   },
   saveMastered() {

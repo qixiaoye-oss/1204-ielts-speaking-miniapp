@@ -1,8 +1,10 @@
 const api = getApp().api
+const loadingProgress = require('../../../behaviors/loadingProgress')
 let timer
 let manager
 let audio
 Page({
+  behaviors: [loadingProgress],
   // ===========生命周期 Start===========
   data: {
     pageUnload: false,
@@ -63,6 +65,7 @@ Page({
     });
   },
   onShow() {
+    this.startLoading()
     this.listData(true)
     wx.getSetting({
       success(res) {
@@ -191,7 +194,9 @@ Page({
   // ===========业务操作 End===========
   // ===========数据获取 Start===========
   listData(isPull) {
-    api.request(this, '/question/v2/p3/audios', { userId: api.getUserId(), ...this.options }, isPull)
+    api.request(this, '/question/v2/p3/audios', { userId: api.getUserId(), ...this.options }, isPull).finally(() => {
+      this.finishLoading()
+    })
   },
   save(audioUrl) {
     let param = {

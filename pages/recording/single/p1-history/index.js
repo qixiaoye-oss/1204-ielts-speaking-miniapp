@@ -1,13 +1,16 @@
 const api = getApp().api
+const loadingProgress = require('../../../../behaviors/loadingProgress')
 let audio = null
 let timer = null
 Page({
+  behaviors: [loadingProgress],
   data: {
     msg: ""
   },
   // ===========生命周期 Start===========
   onShow() { },
   onLoad(options) {
+    this.startLoading()
     api.getUser(this)
     if (options.userId == this.data.user.id || this.data.user.isManager == 1) {
       this.listRecording(false)
@@ -106,13 +109,17 @@ Page({
     api.request(this, '/v2/p1/detail', {
       ...this.options,
       userId: api.getUserId()
-    }, isPull)
+    }, isPull).finally(() => {
+      this.finishLoading()
+    })
   },
   listRecording(isPull) {
     api.request(this, '/v2/p1/single/user/record', {
       ...this.options,
       userId: api.getUserId()
-    }, isPull)
+    }, isPull).finally(() => {
+      this.finishLoading()
+    })
   },
   delRecording(id) {
     const _this = this

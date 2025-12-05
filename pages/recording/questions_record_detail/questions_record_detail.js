@@ -1,8 +1,10 @@
 const api = getApp().api
+const loadingProgress = require('../../../behaviors/loadingProgress')
 let audio = null
 let timer = null
 let wordArr = []
 Page({
+  behaviors: [loadingProgress],
   data: {
     nowPlayIndex: 0,
     showPlayIndex: -1,
@@ -12,6 +14,7 @@ Page({
   // ===========生命周期 Start===========
   onShow() { },
   onLoad(options) {
+    this.startLoading()
     api.getUser(this)
     audio = wx.createInnerAudioContext()
     audio.onPlay(() => {
@@ -104,6 +107,8 @@ Page({
       wx.nextTick(() => {
         audio.duration
       })
+    }).finally(() => {
+      this.finishLoading()
     })
   }
   // ===========数据获取 End===========

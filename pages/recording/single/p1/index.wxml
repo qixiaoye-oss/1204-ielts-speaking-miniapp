@@ -1,3 +1,6 @@
+<import src="/templates/loading-progress.wxml"/>
+<template is="loadingProgress" data="{{loading, loadProgress}}"/>
+
 <progess status="{{recorderState}}" time="{{file.duration}}"></progess>
 <question detail="{{detail}}" background="{{detail.colorRgba}}" border-color="{{detail.colorRgb}}"></question>
 <view class="cell layout_flex f_ac f_jb fwb f14 radius9" wx:if="{{file.url}}">

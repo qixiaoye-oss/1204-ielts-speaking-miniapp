@@ -1,3 +1,6 @@
+<import src="/templates/loading-progress.wxml"/>
+<template is="loadingProgress" data="{{loading, loadProgress}}"/>
+
 <view class="layout_grid" style="gap: 15px;">
   <view wx:for="{{list}}" wx:key="item" class="recording_cell layout_flex f_ac f_jb fwb f14">
     <view bind:tap="toDetail" data-id="{{item.id}}">{{item.recordingTime}}</view>

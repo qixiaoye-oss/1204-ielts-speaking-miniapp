@@ -1,8 +1,10 @@
 const api = getApp().api
+const loadingProgress = require('../../../behaviors/loadingProgress')
 let timer
 let manager
 let audio
 Page({
+  behaviors: [loadingProgress],
   // ===========生命周期 Start===========
   data: {
     pageUnload: false,
@@ -61,6 +63,7 @@ Page({
     });
   },
   onShow() {
+    this.startLoading()
     this.listData(true)
     wx.getSetting({
       success(res) {
@@ -173,7 +176,9 @@ Page({
   listData(isPull) {
     api.request(this, '/question/v2/p3/practice/random', {
       userId: api.getUserId()
-    }, isPull).then(() => { })
+    }, isPull).then(() => { }).finally(() => {
+      this.finishLoading()
+    })
   },
   save(audioUrl) {
     const questionIds = this.data.list.map(item => item.id).join(',');

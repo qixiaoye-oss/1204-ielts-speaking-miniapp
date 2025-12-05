@@ -1,3 +1,6 @@
+<import src="/templates/loading-progress.wxml"/>
+<template is="loadingProgress" data="{{loading, loadProgress}}"/>
+
 <view style="padding: 15px;border: 1px solid var(--dashed-border-color);border-radius: 9px;">
   <rich-text nodes="{{content}}"></rich-text>
 </view>

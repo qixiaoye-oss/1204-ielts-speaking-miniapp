@@ -1,50 +1,42 @@
-<!-- <view class="but_container {{disabled?'dis':''}}" style="border-radius: {{radius}}px; " bind:tap="change">
-  <slot></slot>
-  <view class="badge {{ count < 3 ? count > 0 ? 'badge-sv2' : '' : 'badge-sv3' }}" wx:if="{{badge}}">{{count}}</view>
-</view> -->
 <block wx:if="{{text}}">
-  <view wx:if="{{pattern === 'base'}}" class="~btn-action ~btn--audio {{disabled ? 'dis' : ''}}" bind:tap="change">
+  <view wx:if="{{pattern === 'base'}}" class="~btn-action ~btn--audio {{disabled ? '~btn--dis' : ''}}" bind:tap="change">
     <view>{{text}}</view>
-    <image src="{{imgUrl}}" class="{{imgDisabled ? 'dis' : ''}}"></image>
+    <image src="{{imgUrl}}" class="{{imgDisabled ? '~btn--dis' : ''}}"></image>
   </view>
-  <view wx:if="{{pattern === 'correct'}}" class="~btn-action ~btn--correct {{disabled ? 'dis' : ''}}" bind:tap="change">
+  <view wx:if="{{pattern === 'correct'}}" class="~btn-action ~btn--correct {{disabled ? '~btn--dis' : ''}}" bind:tap="change">
     <view>{{text}}</view>
-    <image src="{{imgUrl}}" class="{{imgDisabled ? 'dis' : ''}}"></image>
+    <image src="{{imgUrl}}" class="{{imgDisabled ? '~btn--dis' : ''}}"></image>
   </view>
-  <view wx:if="{{pattern === 'label'}}" class="~btn-action ~btn--label {{disabled ? 'dis' : ''}}" bind:tap="change">
+  <view wx:if="{{pattern === 'label'}}" class="~btn-action ~btn--label {{disabled ? '~btn--dis' : ''}}" bind:tap="change">
     <view>{{text}}</view>
-    <image src="{{imgUrl}}" class="{{imgDisabled ? 'dis' : ''}}"></image>
+    <image src="{{imgUrl}}" class="{{imgDisabled ? '~btn--dis' : ''}}"></image>
   </view>
-  <view wx:if="{{pattern === 'exercise'}}" class="~btn-action ~btn--exercise {{disabled ? 'dis' : ''}}" bind:tap="change">
+  <view wx:if="{{pattern === 'exercise'}}" class="~btn-action ~btn--exercise {{disabled ? '~btn--dis' : ''}}" bind:tap="change">
     <view>{{text}}</view>
-    <image src="{{imgUrl}}" class="{{imgDisabled ? 'dis' : ''}}"></image>
+    <image src="{{imgUrl}}" class="{{imgDisabled ? '~btn--dis' : ''}}"></image>
   </view>
-  <view wx:if="{{pattern === 'recording'}}" class="~btn-action ~btn--recording {{disabled ? 'dis' : ''}}" bind:tap="change">
+  <view wx:if="{{pattern === 'recording'}}" class="~btn-action ~btn--recording {{disabled ? '~btn--dis' : ''}}" bind:tap="change">
     <view>{{text}}</view>
-    <image src="{{imgUrl}}" class="{{imgDisabled ? 'dis' : ''}}"></image>
+    <image src="{{imgUrl}}" class="{{imgDisabled ? '~btn--dis' : ''}}"></image>
     <block wx:if="{{badge}}">
       <view class="~btn-corner-mark ~btn--recording-corner-mark" wx:if="{{count == 0}}">{{count}}</view>
       <view class="~btn-corner-mark ~btn--recording-corner-mark" wx:else style="border-color: {{color}};color: {{color}};">{{count}}</view>
     </block>
   </view>
-  <view wx:if="{{pattern === 'practice'}}" class="~btn-action ~btn--practice {{disabled ? 'dis' : ''}}" bind:tap="change">
+  <view wx:if="{{pattern === 'practice'}}" class="~btn-action ~btn--practice {{disabled ? '~btn--dis' : ''}}" bind:tap="change">
     <view>{{text}}</view>
-    <image src="{{imgUrl}}" class="{{imgDisabled ? 'dis' : ''}}"></image>
+    <image src="{{imgUrl}}" class="{{imgDisabled ? '~btn--dis' : ''}}"></image>
     <block wx:if="{{badge}}">
       <view class="~btn-corner-mark ~btn--practice-corner-mark" wx:if="{{count == 0}}">{{count}}</view>
       <view class="~btn-corner-mark ~btn--practice-corner-mark" wx:else style="border-color: {{color}};color: {{color}};">{{count}}</view>
     </block>
   </view>
-  <view wx:if="{{pattern === 'quit'}}" class="~btn-action quit {{disabled ? 'dis' : ''}}" bind:tap="change">
-    <view class="grey-font-color">{{text}}</view>
+  <view wx:if="{{pattern === 'quit'}}" class="~btn-action ~btn--quit {{disabled ? '~btn--dis' : ''}}" bind:tap="change">
+    <view>{{text}}</view>
   </view>
 </block>
 <block wx:else>
-  <view class="~btn-action-icon ~btn--audio {{disabled ? 'dis' : ''}}" bind:tap="change">
+  <view class="~btn-action-icon ~btn--audio {{disabled ? '~btn--dis' : ''}}" bind:tap="change">
     <image src="{{imgUrl}}" class="{{rotate ? 'rotate' : ''}}"></image>
   </view>
 </block>
-<!-- <view class="but_container {{disabled?'dis':''}}" style="border-radius: {{radius}}px; " bind:tap="change">
-  <slot></slot>
-  <view class="badge {{ count < 3 ? count > 0 ? 'badge-sv2' : '' : 'badge-sv3' }}" wx:if="{{badge}}">{{count}}</view>
-</view> -->

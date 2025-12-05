@@ -1,10 +1,13 @@
 const api = getApp().api
+const loadingProgress = require('../../../behaviors/loadingProgress')
 Page({
+  behaviors: [loadingProgress],
   data: {
     tapIndex: 0
   },
   // ===========生命周期 Start===========
   onShow() {
+    this.startLoading()
     this.listData(true)
   },
   // ===========生命周期 End===========
@@ -26,7 +29,7 @@ Page({
       albumId: this.options.id,
       albumType: 7,
       userId: api.getUserId()
-    }, isPull)
+    }, isPull).finally(() => { this.finishLoading() })
   },
   // ===========数据获取 End===========
 })

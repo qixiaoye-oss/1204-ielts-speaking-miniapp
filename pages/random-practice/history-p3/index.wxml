@@ -1,3 +1,6 @@
+<import src="/templates/loading-progress.wxml"/>
+<template is="loadingProgress" data="{{loading, loadProgress}}"/>
+
 <view class="list_item_container" bind:tap="startPractice">
   <view class="list_item_top">开始练习</view>
 </view>

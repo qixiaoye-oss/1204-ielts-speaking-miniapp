@@ -1,8 +1,11 @@
 const api = getApp().api
+const loadingProgress = require('../../../behaviors/loadingProgress')
 Page({
+  behaviors: [loadingProgress],
   data: {},
   // ===========生命周期 Start===========
   onShow() {
+    this.startLoading()
     this.listData()
   },
   // ===========生命周期 End===========
@@ -12,7 +15,7 @@ Page({
   // ===========数据获取 Start===========
   // 访问接口获取数据
   listData() {
-    api.request(this, `/v2/popular/science/${this.options.id}`, {}, true)
+    api.request(this, `/v2/popular/science/${this.options.id}`, {}, true).finally(() => { this.finishLoading() })
   },
   // ===========数据获取 End===========
 })

@@ -1,3 +1,6 @@
+<import src="/templates/loading-progress.wxml"/>
+<template is="loadingProgress" data="{{loading, loadProgress}}"/>
+
 <block wx:if="{{list}}">
   <full-screen-view animation="{{animationData}}">
     <!-- <view class="block">

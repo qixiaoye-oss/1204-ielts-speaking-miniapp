@@ -1,8 +1,10 @@
+const loadingProgress = require('../../../behaviors/loadingProgress')
 const api = getApp().api
 const audioUtil = require('../../../utils/audioUtil')
 let intervalTimer
 let countdownTimer
 Page({
+  behaviors: [loadingProgress],
   data: {
     model: 'practice',
     // 录音
@@ -36,6 +38,7 @@ Page({
   },
   // ===========生命周期 Start===========
   onShow() {
+    this.startLoading()
     this.getData(true)
     api.verifyRecordingPermission()
   },
@@ -303,6 +306,8 @@ Page({
       this.setData({
         groupData: this.data.list[this.data.index[0]]
       })
+    }).finally(() => {
+      this.finishLoading()
     })
   },
   // 准备提交录音记录

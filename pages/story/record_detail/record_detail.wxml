@@ -1,3 +1,6 @@
+<import src="/templates/loading-progress.wxml"/>
+<template is="loadingProgress" data="{{loading, loadProgress}}"/>
+
 <view class="layout_grid " style="gap: 15px;">
   <view class="group" wx:for="{{list}}" wx:for-item="group" wx:key="groupIndex" wx:for-index="groupIndex">
     <view class="group__title" style="background: {{background}};color: {{color}};">{{group.title}}</view>

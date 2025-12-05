@@ -1,0 +1,376 @@
+/**
+ * 按钮组样式库 (Button Group Styles)
+ * @version 1.5.1
+ * @date 2025-12-04
+ * @description 微信小程序通用按钮组 CSS 样式工具类库，包含固定底部容器、多种布局模式和蒙版功能
+ * @note 这是一个纯 CSS 样式库，不是微信小程序自定义组件。通过 @import 引入后直接使用类名即可。
+ *
+ * @features
+ *   - 纯 CSS 实现，无需 js/json/wxml 文件
+ *   - 固定底部按钮组容器（含蒙版A和蒙版B）
+ *   - 双层结构布局（split）
+ *   - 单行居中布局（inline-center）
+ *   - 三分式布局（tripartite）
+ *   - 基础按钮样式（带图标、纯图标）
+ *   - 10种功能色彩类
+ *   - 零外部依赖，开箱即用
+ */
+
+/* ==================== 配置变量 ==================== */
+/* 使用者可在 app.wxss 或页面 wxss 中覆盖这些变量以自定义样式 */
+
+page {
+  /* 基础配置 */
+  --button-group-border-width: 1px;
+  --button-group-border-color: rgba(0, 0, 0, 0.3);  /* 边框颜色 */
+  --button-group-border-radius: 9px;           /* 容器圆角 */
+  --button-group-padding: 15px;                /* 容器内边距 */
+  --button-group-gap: 15px;                    /* 按钮间距 */
+
+  /* 按钮基础配置 */
+  --button-font-size: 15px;                    /* 按钮文字大小 */
+  --button-line-height: 15px;                  /* 按钮行高 */
+  --button-padding: 5px;                       /* 按钮内边距 */
+  --button-border-radius: 3px;                 /* 按钮圆角 */
+  --button-icon-size: 25px;                    /* 图标尺寸 */
+  --button-icon-margin: 5px;                   /* 图标与文字间距 */
+
+  /* 固定底部容器配置 */
+  --button-group-bottom-distance: 20px;        /* 距底部距离 */
+  --button-group-left-distance: 20px;          /* 距左侧距离 */
+  --button-group-right-distance: 20px;         /* 距右侧距离 */
+  --button-group-z-index: 1000;                /* 层级 */
+
+  /* 蒙版配置 */
+  --button-group-mask-bg: #FFFFFF;             /* 蒙版背景色 */
+  --button-group-mask-gradient-height: 15px;   /* 渐变蒙版高度 */
+
+  /* 功能色彩（可根据项目主题色调整） */
+  --button-color-audio: #00A6ED;               /* 音频播放 - 蓝色 */
+  --button-color-correct: #00D26A;             /* 正确确认 - 绿色 */
+  --button-color-wrong: #F92F60;               /* 错误删除 - 红色 */
+  --button-color-list: #FFB02D;                /* 列表导航 - 黄色 */
+  --button-color-setting: #998EA4;             /* 设置配置 - 紫灰 */
+  --button-color-visible: #7D4533;             /* 显示隐藏 - 棕色 */
+  --button-color-label: #F8312F;               /* 标记标签 - 红色 */
+  --button-color-recording: #212121;           /* 录音相关 - 黑色 */
+  --button-color-practice: #433B6B;            /* 练习模式 - 深紫 */
+  --button-color-exercise: #533566;            /* 习题练习 - 紫色 */
+  --button-color-disabled: #CCCCCC;            /* 禁用状态 - 灰色 */
+}
+
+/* ==================== 1. 基础按钮样式 ==================== */
+
+/* 带文字和图标的按钮 */
+.btn-action {
+  font-size: var(--button-font-size);
+  line-height: var(--button-line-height);
+  border-radius: var(--button-border-radius);
+  padding: var(--button-padding);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.btn-action image {
+  flex-shrink: 0;
+  width: var(--button-icon-size);
+  height: var(--button-icon-size);
+  margin-left: var(--button-icon-margin);
+}
+
+/* 纯图标按钮 */
+.btn-action-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--button-border-radius);
+  padding: var(--button-padding);
+  position: relative;
+  box-sizing: border-box;
+}
+
+.btn-action-icon image {
+  flex-shrink: 0;
+  width: var(--button-icon-size);
+  height: var(--button-icon-size);
+}
+
+/* ==================== 2. 按钮组布局 - 双层结构 ==================== */
+/* 适用场景：按钮数量 > 3 或需要区分主次操作（上层主操作，下层辅助操作） */
+
+.btn-group-layout-split {
+  border: var(--button-group-border-width) solid var(--button-group-border-color);
+  border-radius: var(--button-group-border-radius);
+  box-sizing: border-box;
+}
+
+/* 上层（Header） */
+.btn-group-layout-split__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: var(--button-group-gap);
+  padding: var(--button-group-padding);
+}
+
+/* 分割线 */
+.btn-group-layout-split__divider {
+  width: 100%;
+  height: var(--button-group-border-width);
+  background: var(--button-group-border-color);
+}
+
+/* 下层（Footer） */
+.btn-group-layout-split__footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--button-group-gap);
+  padding: var(--button-group-padding);
+}
+
+/* Footer 中最后一个 btn-action 靠右对齐 */
+.btn-group-layout-split__footer > btn-action:last-child,
+.btn-group-layout-split__footer > .btn-action:last-child {
+  margin-left: auto;
+}
+
+/* Footer 中只有一个按钮时居中 */
+.btn-group-layout-split__footer > btn-action:only-child,
+.btn-group-layout-split__footer > .btn-action:only-child,
+.btn-group-layout-split__footer > btn-action-icon:only-child,
+.btn-group-layout-split__footer > .btn-action-icon:only-child {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==================== 3. 按钮组布局 - 单行居中 ==================== */
+/* 适用场景：按钮数量 1-3 个，且所有按钮同等重要 */
+
+.btn-group-layout-inline-center {
+  border: var(--button-group-border-width) solid var(--button-group-border-color);
+  border-radius: var(--button-group-border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--button-group-gap);
+  padding: var(--button-group-padding);
+  box-sizing: border-box;
+}
+
+/* ==================== 4. 按钮组布局 - 三分式 ==================== */
+/* 适用场景：一行三段式水平布局（左 / 中 / 右，带间隔线） */
+
+.btn-group-layout-tripartite {
+  border: var(--button-group-border-width) solid var(--button-group-border-color);
+  border-radius: var(--button-group-border-radius);
+  display: flex;
+  align-items: center;
+  padding: var(--button-group-padding);
+  box-sizing: border-box;
+}
+
+.btn-group-layout-tripartite__left {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.btn-group-layout-tripartite__center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-group-layout-tripartite__right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-group-layout-tripartite__divider {
+  width: var(--button-group-border-width);
+  height: 20px;
+  background: var(--button-group-border-color);
+  margin: 0 var(--button-group-gap);
+}
+
+/* ==================== 5. 固定底部容器（含蒙版） ==================== */
+
+/**
+ * .btn-page-bottom 是一个完整的固定底部按钮组容器
+ * 包含三个核心部分：
+ * 1. 容器定位：固定在视窗底部
+ * 2. 蒙版A（::before）：白色背景，覆盖到视窗底部
+ * 3. 蒙版B（::after）：白色渐变，实现平滑过渡
+ */
+.btn-page-bottom {
+  position: fixed;
+  bottom: var(--button-group-bottom-distance);
+  left: var(--button-group-left-distance);
+  right: var(--button-group-right-distance);
+  z-index: var(--button-group-z-index);
+}
+
+/**
+ * 蒙版A：白色背景
+ * 作用：从按钮组顶部向下覆盖到视窗底部，防止滚动内容透出
+ */
+.btn-page-bottom::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: calc(-1 * var(--button-group-left-distance));
+  right: calc(-1 * var(--button-group-right-distance));
+  bottom: calc(-1 * var(--button-group-bottom-distance));
+  background: var(--button-group-mask-bg);
+  z-index: -1;
+}
+
+/**
+ * 蒙版B：渐变过渡
+ * 作用：从按钮组顶部向上渐变到透明，实现平滑视觉过渡
+ */
+.btn-page-bottom::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: calc(-1 * var(--button-group-left-distance));
+  right: calc(-1 * var(--button-group-right-distance));
+  height: var(--button-group-mask-gradient-height);
+  background: linear-gradient(to top, var(--button-group-mask-bg), transparent);
+  pointer-events: none;
+}
+
+/* ==================== 6. 功能色彩类 ==================== */
+
+/* 音频播放相关操作 */
+.btn--audio {
+  color: var(--button-color-audio);
+  background-color: rgba(0, 166, 237, 0.15);
+}
+
+/* 正确答案、提交确认 */
+.btn--correct {
+  color: var(--button-color-correct);
+  background-color: rgba(0, 210, 106, 0.15);
+}
+
+/* 错误答案、删除操作 */
+.btn--wrong {
+  color: var(--button-color-wrong);
+  background-color: rgba(249, 47, 96, 0.15);
+}
+
+/* 列表、导航 */
+.btn--list {
+  color: var(--button-color-list);
+  background-color: rgba(255, 176, 46, 0.15);
+}
+
+/* 设置、配置 */
+.btn--setting {
+  background-color: rgba(153, 142, 164, 0.15);
+}
+
+/* 显示/隐藏切换 */
+.btn--visible {
+  background-color: rgba(125, 69, 51, 0.15);
+}
+
+/* 标记、标签 */
+.btn--label {
+  color: var(--button-color-label);
+  background-color: rgba(248, 49, 47, 0.15);
+}
+
+/* 标记标签（带边框） */
+.btn--label-n {
+  color: var(--button-color-label);
+  border-color: var(--button-color-label);
+}
+
+/* 录音相关 */
+.btn--recording {
+  color: var(--button-color-recording);
+  background-color: rgba(33, 33, 33, 0.15);
+}
+
+/* 练习模式 */
+.btn--practice {
+  color: var(--button-color-practice);
+  background-color: rgba(67, 59, 107, 0.15);
+}
+
+/* 习题练习 */
+.btn--exercise {
+  color: var(--button-color-exercise);
+  background-color: rgba(83, 53, 102, 0.15);
+}
+
+/* 禁用状态 */
+.btn--dis {
+  opacity: 0.3;
+}
+
+/* ==================== 7. 辅助类 ==================== */
+
+/* 按钮角标（用于显示数字或状态） */
+.btn-corner-mark {
+  position: absolute;
+  top: -10px;
+  right: -14px;
+  width: 22px;
+  height: 22px;
+  font-size: 10px;
+  border-radius: 3px;
+  transform: scale(0.9);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  background: #FFFFFF;
+}
+
+/* 录音角标颜色 */
+.btn--recording-corner-mark {
+  color: var(--button-color-recording);
+  border-color: var(--button-color-recording);
+}
+
+/* 练习角标颜色 */
+.btn--practice-corner-mark {
+  color: var(--button-color-practice);
+  border-color: var(--button-color-practice);
+}
+
+/* 晃动动画 - 用于提示用户点击 */
+@keyframes btn-shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+  20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+.btn--shake {
+  animation: btn-shake 0.6s ease-in-out;
+}
+
+/* ==================== 8. 特殊按钮样式 ==================== */
+
+/* 退出/放弃按钮 */
+.btn--quit {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  color: #212121;
+}
+
+/* 灰色文字 */
+.grey-font-color {
+  color: rgba(0, 0, 0, 0.3);
+}

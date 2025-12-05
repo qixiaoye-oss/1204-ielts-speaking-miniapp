@@ -1,3 +1,6 @@
+<import src="/templates/loading-progress.wxml"/>
+<template is="loadingProgress" data="{{loading, loadProgress}}"/>
+
 <full-screen-view animation="{{animationData}}">
   <view class="unit-detail" style="background:{{detail.questionBackgroundColor}};border-color: {{detail.questionBorderColor}};">
     <view class="unit-detail__text" bind:tap="playMainAudio">{{detail.question}}</view>

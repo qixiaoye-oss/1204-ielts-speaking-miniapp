@@ -1,8 +1,10 @@
 const api = getApp().api
 const audioUtil = require('../../../utils/audioUtil')
+const loadingProgress = require('../../../behaviors/loadingProgress')
 let intervalTimer
 let countdownTimer
 Page({
+  behaviors: [loadingProgress],
   /**
    * 页面的初始数据
    */
@@ -48,6 +50,7 @@ Page({
   onLoad(options) {
     const _this = this
     // 获取数据
+    _this.startLoading()
     _this.fetchDataList()
     // 初始化音频控件
     this.audioContext = wx.createInnerAudioContext()
@@ -407,6 +410,8 @@ Page({
       ...this.options
     }, true).then(() => {
       this.loadData()
+    }).finally(() => {
+      this.finishLoading()
     })
   },
   // 初始化数据

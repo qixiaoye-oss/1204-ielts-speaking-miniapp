@@ -1,7 +1,9 @@
+const loadingProgress = require('../../../behaviors/loadingProgress')
 const api = getApp().api
 const audioUtil = require('../../../utils/audioUtil')
 let intervalTimer
 Page({
+  behaviors: [loadingProgress],
   data: {
     pageUnload: false,
     file: {
@@ -23,6 +25,7 @@ Page({
   },
   // ===========生命周期 Start===========
   onShow() {
+    this.startLoading()
     this.getData(true)
     wx.getSetting({
       success(res) {
@@ -246,6 +249,8 @@ Page({
       this.setData({
         groupData: this.data.list[this.data.index[0]]
       })
+    }).finally(() => {
+      this.finishLoading()
     })
   },
   saveData(fileUrl) {

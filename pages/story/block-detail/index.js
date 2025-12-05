@@ -1,10 +1,13 @@
 const api = getApp().api
+const loadingProgress = require('../../../behaviors/loadingProgress')
 let audio = null
 let timer = null
 Page({
+  behaviors: [loadingProgress],
   data: {},
   // ===========生命周期 Start===========
   onShow() {
+    this.startLoading()
     this.getData(true)
   },
   onLoad(options) {
@@ -94,7 +97,7 @@ Page({
   // ===========数据获取 Start===========
   getData(isPull) {
     const userId = api.getUserId();
-    api.request(this, '/story/v2/getDetail', { userId, ...this.options }, isPull)
+    api.request(this, '/story/v2/getDetail', { userId, ...this.options }, isPull).finally(() => { this.finishLoading() })
   },
   // ===========数据获取 End===========
 })

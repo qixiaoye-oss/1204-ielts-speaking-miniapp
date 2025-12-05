@@ -1,10 +1,13 @@
 const api = getApp().api
+const loadingProgress = require('../../../behaviors/loadingProgress')
 let audioContext = null
 Page({
+  behaviors: [loadingProgress],
   data: {
   },
   // ===========生命周期 Start===========
   onShow() {
+    this.startLoading()
     this.listData(true)
   },
   onLoad() {
@@ -73,7 +76,9 @@ Page({
     api.request(this, '/v2/question/p1/practice/record', {
       userId: api.getUserId(),
       ...this.options
-    }, isPull)
+    }, isPull).finally(() => {
+      this.finishLoading()
+    })
   }
   // ===========数据获取 End===========
 })

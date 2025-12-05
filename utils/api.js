@@ -39,16 +39,10 @@ Promise.prototype.finally = function (callback) {
  * that 当前页面this
  * url 请求地址
  * data 以对象的格式传入
- * hasToast 是否需要显示toast(下拉刷新不需要toast)
+ * hasToast 是否需要显示toast(下拉刷新不需要toast) - 已废弃，改用页面进度条动效
  * method GET或POST请求
  */
 function request(that, url, data, hasToast, method) {
-  let timer
-  if (hasToast) {
-    timer = setTimeout(function () {
-      toast('努力加载中...', 'loading', 10000)
-    }, 1000)
-  }
   return new Promise((resolve, reject) => {
     wx.request({
       url: uri + url,
@@ -58,7 +52,6 @@ function request(that, url, data, hasToast, method) {
         'Content-Type': 'application/json'
       },
       success: function (res) {
-        wx.hideToast()
         if (res.data.code == '200') {
           if (isNotEmpty(that) && !isEmpty(that.route) && !isEmpty(res.data.data)) {
             that.setData(res.data.data)
@@ -69,11 +62,9 @@ function request(that, url, data, hasToast, method) {
         }
       },
       fail: function (res) {
-        wx.hideToast()
         toast('请求失败，请稍候再试')
       },
       complete: function (res) {
-        clearTimeout(timer)
         wx.stopPullDownRefresh()
       }
     })

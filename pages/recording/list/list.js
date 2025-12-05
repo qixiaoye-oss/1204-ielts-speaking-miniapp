@@ -1,12 +1,16 @@
 const api = getApp().api
+const loadingProgress = require('../../../behaviors/loadingProgress')
 let audio = null
 let timer = null
 Page({
+  behaviors: [loadingProgress],
   data: {
     msg: ""
   },
   // ===========生命周期 Start===========
-  onShow() { },
+  onShow() {
+    this.startLoading()
+  },
   onLoad(options) {
     this.setData({
       color: options.color,
@@ -92,7 +96,9 @@ Page({
   listRecording(isPull) {
     api.request(this, '/recording/list', {
       ...this.options
-    }, isPull)
+    }, isPull).finally(() => {
+      this.finishLoading()
+    })
   },
   delRecording(id) {
     const _this = this

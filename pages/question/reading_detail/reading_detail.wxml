@@ -1,3 +1,6 @@
+<import src="/templates/loading-progress.wxml"/>
+<template is="loadingProgress" data="{{loading, loadProgress}}"/>
+
 <view class="tip f14">提示：评分在少数情况下会出现误判，这与录音质量相关，如果发现误判（自己朗读准确），请忽略。</view>
 <view class="answer_container">
   <block wx:for="{{list}}" wx:key="item">

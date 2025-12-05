@@ -1,7 +1,9 @@
+const loadingProgress = require('../../../behaviors/loadingProgress')
 const api = getApp().api
 let audio = null
 let timer = null
 Page({
+  behaviors: [loadingProgress],
   data: {
     showPopus: false,
     audioPlayer: false,
@@ -9,6 +11,7 @@ Page({
   },
   // ===========生命周期 Start===========
   onShow() {
+    this.startLoading()
     this.getData(true)
   },
   onLoad(options) {
@@ -210,7 +213,7 @@ Page({
       ...this.data.queryParam
     }, isPull).then(() => {
       _this.getStoryData(true)
-    })
+    }).finally(() => { this.finishLoading() })
   },
   getStoryData(isPull) {
     const { detail, seriesList, seriesIndex } = this.data

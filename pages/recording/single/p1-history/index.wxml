@@ -1,3 +1,6 @@
+<import src="/templates/loading-progress.wxml"/>
+<template is="loadingProgress" data="{{loading, loadProgress}}"/>
+
 <view class="layout_flex_col content_cell" style="background:{{detail.colorRgba}}">
   <view class="question_content">
     <text>{{detail.content}}</text>

@@ -1,3 +1,6 @@
+<import src="/templates/loading-progress.wxml"/>
+<template is="loadingProgress" data="{{loading, loadProgress}}"/>
+
 <view class="series">
   <view class="series__item {{showMode === 'full'?'full__active':''}}" bind:tap="changeShowMode" data-mode="full">
     <image src="/image/v2/list.png"></image>

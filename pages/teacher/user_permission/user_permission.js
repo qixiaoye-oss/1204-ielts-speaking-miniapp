@@ -1,11 +1,14 @@
+const loadingProgress = require('../../../behaviors/loadingProgress')
 const api = getApp().api
 let timer
 Page({
+  behaviors: [loadingProgress],
   data: {
     inputShowed: true
   },
   // ===========生命周期 Start===========
   onLoad() {
+    this.startLoading()
     this.listDict()
   },
   // ===========生命周期 End===========
@@ -85,7 +88,7 @@ Page({
   // ===========业务操作 End===========
   // ===========数据获取 Start===========
   listDict() {
-    api.request(this, '/sys/albumLabel', {}, true)
+    api.request(this, '/sys/albumLabel', {}, true).finally(() => { this.finishLoading() })
   },
   listUser() {
     api.request(this, '/user/listUserByName', {

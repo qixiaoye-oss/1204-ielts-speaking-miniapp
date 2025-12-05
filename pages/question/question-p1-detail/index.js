@@ -1,7 +1,9 @@
+const loadingProgress = require('../../../behaviors/loadingProgress')
 const api = getApp().api
 let audio = null
 let timer = null
 Page({
+  behaviors: [loadingProgress],
   data: {
     audioPlayer: false,  // 全局音频播放状态
     showPopus: false,  // 打卡窗口
@@ -16,6 +18,7 @@ Page({
   },
   // ===========生命周期 Start===========
   onShow() {
+    this.startLoading()
     this.setData({
       userPublicRecords: []
     })
@@ -276,7 +279,7 @@ Page({
         [`list[${this.data.seriesIndex}].show`]: true,
       })
       _this.listUserPublicAnswer()
-    })
+    }).finally(() => { this.finishLoading() })
   },
   // 处理打卡菜单
   createMenus() {

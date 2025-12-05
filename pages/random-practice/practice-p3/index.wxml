@@ -1,3 +1,6 @@
+<import src="/templates/loading-progress.wxml"/>
+<template is="loadingProgress" data="{{loading, loadProgress}}"/>
+
 <block wx:if="{{list.length > 0}}">
   <view class="layout_flex progress_cell">
     <block wx:for="{{list}}" wx:key="item">

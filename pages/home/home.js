@@ -5,8 +5,8 @@ Page({
   behaviors: [loadingProgress],
   data: {
     url: {
-      "P1": "/pages/question/set-p1-list/index",
-      "P2": "/pages/question/set-p2p3-list/index",
+      "P1": "/pages/question/set_p1_list/index",
+      "P2": "/pages/question/set_p2p3_list/index",
       "STORY": "/pages/p2_block/set_list/index",
       "MATERIAL": "/pages/p3_block/set_list/index",
       "POPULAR_SCIENCE": "/pages/science/list/index"

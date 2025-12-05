@@ -17,7 +17,7 @@ Page({
       ...e.currentTarget.dataset
     }
     wx.navigateTo({
-      url: '/pages/question/question-p3-detail/index' + api.parseParams(param),
+      url: '/pages/question/question_p3_detail/index' + api.parseParams(param),
     })
   },
   // ===========业务操作 End===========

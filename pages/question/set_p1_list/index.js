@@ -19,7 +19,7 @@ Page({
       return
     }
     wx.navigateTo({
-      url: `/pages/question/question-p1-list/index?setId=${item.id}&hasMastered=${item.hasMastered}`,
+      url: `/pages/question/question_p1_list/index?setId=${item.id}&hasMastered=${item.hasMastered}`,
     })
   },
   changeShowMode(e) {

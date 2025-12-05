@@ -34,7 +34,7 @@ Page({
       id: id
     }
     wx.navigateTo({
-      url: '/pages/question/question-p1-detail/index' + api.parseParams(param)
+      url: '/pages/question/question_p1_detail/index' + api.parseParams(param)
     })
   },
   recordingOrClocking() {

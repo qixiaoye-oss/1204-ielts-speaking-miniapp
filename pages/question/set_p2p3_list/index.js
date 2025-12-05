@@ -29,7 +29,7 @@ Page({
             break;
           case 1:
             wx.navigateTo({
-              url: `/pages/question/question-p3-list/index?setId=${item.id}`,
+              url: `/pages/question/question_p3_list/index?setId=${item.id}`,
             })
             break;
         }
@@ -69,7 +69,7 @@ Page({
     api.request(this, '/question/v2/p2/hasAnswer', { setId }, false).then(res => {
       if (res) {
         wx.navigateTo({
-          url: `/pages/question/question-p2-detail/index?setId=${setId}`,
+          url: `/pages/question/question_p2_detail/index?setId=${setId}`,
         })
       } else {
         api.modal('', "本题暂无答案", false)

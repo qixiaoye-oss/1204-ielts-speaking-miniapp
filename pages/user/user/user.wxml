@@ -22,4 +22,4 @@
   </block>
 </view>
 <view class="version">版本：{{version || '2.8.5'}}</view>
-<role_info_popup show="{{showPopup}}" roles="{{role}}" tags="{{tags}}"></role_info_popup>
+<role-info-popup show="{{showPopup}}" roles="{{role}}" tags="{{tags}}"></role-info-popup>

@@ -17,14 +17,14 @@
       <image class="unit-detail__icon" wx:if="{{detail.audioUrl}}" src="/image/v2/speaker-high-volume.png" />
     </view>
     <view class="series" wx:if="{{seriesList.length > 0}}">
-      <view class="series__item {{seriesIndex == index ?'series__active':''}}" bind:tap="checkSeries" wx:for="{{seriesList}}" wx:key="item" data-index="{{index}}">
+      <view class="series__item {{seriesIndex == index ?'series__active':''}}" hover-class="tap-active" bind:tap="checkSeries" wx:for="{{seriesList}}" wx:key="item" data-index="{{index}}">
         <view style="background: {{item.backgroundColor}};">
           <image wx:if="{{item.iconUrl}}" src="{{item.iconUrl}}" />
           <text>{{item.title}}</text>
         </view>
       </view>
     </view>
-    <view class="link-block" bind:tap="gotoStoryBlock" wx:for="{{story}}" wx:key="item" data-set-id="{{item.id}}">
+    <view class="link-block" hover-class="tap-active" bind:tap="gotoStoryBlock" wx:for="{{story}}" wx:key="item" data-set-id="{{item.id}}">
       <view class="link-block__title">
         <view class="link-block__title-content" style="background: {{item.backgroundColor}};">
           <image class="link-block__title-img" wx:if="{{item.iconUrl}}" src="{{item.iconUrl}}" />

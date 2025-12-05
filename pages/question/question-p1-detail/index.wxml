@@ -8,11 +8,11 @@
   </view>
   <view class="series" wx:if="{{menus.length > 1}}">
     <block wx:for="{{menus}}" wx:key="item">
-      <view wx:if="{{seriesIndex == index }}" class="series__item series__active" style="background: {{detail.questionBackgroundColor}};" bind:tap="checkSeries" data-index="{{index}}">
+      <view wx:if="{{seriesIndex == index }}" class="series__item series__active" style="background: {{detail.questionBackgroundColor}};" hover-class="tap-active" bind:tap="checkSeries" data-index="{{index}}">
         <view>{{item.title}}</view>
         <image class=" series__item--preferred" wx:if="{{item.isPreferred}}" src="/image/v2/check-mark-button.png"></image>
       </view>
-      <view wx:else class="series__item" bind:tap="checkSeries" data-index="{{index}}">
+      <view wx:else class="series__item" hover-class="tap-active" bind:tap="checkSeries" data-index="{{index}}">
         <view>{{item.title}}</view>
         <image class=" series__item--preferred" wx:if="{{item.isPreferred}}" src="/image/v2/check-mark-button.png"></image>
       </view>

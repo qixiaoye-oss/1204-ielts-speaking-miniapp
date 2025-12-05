@@ -13,7 +13,7 @@
       </view>
       <image class="unit-detail__icon" wx:if="{{detail.audioUrl}}" src="/image/v2/speaker-high-volume.png" />
     </view>
-    <view class="link-block" bind:tap="gotoMaterialBlock" wx:for="{{materials}}" wx:key="item" data-id="{{item.id}}">
+    <view class="link-block" hover-class="tap-active" bind:tap="gotoMaterialBlock" wx:for="{{materials}}" wx:key="item" data-id="{{item.id}}">
       <view class="link-block__title">
         <view class="link-block__title-content" style="background: {{item.backgroundColor}};">
           <image class="link-block__title-img" wx:if="{{item.iconUrl}}" src="{{item.iconUrl}}" />
@@ -25,7 +25,7 @@
     <view class="answer-detail" wx:for="{{list}}" wx:key="answer" wx:for-item="answer" wx:for-index="answerIndex">
       <header title="{{answer.content}}" hasAudio="{{answer.audioTotal == answer.sentenceTotal}}" titleBackground="{{backgroundColor}}"></header>
       <view class="answer-detail__intervals"></view>
-      <view class="answer-link-block" bind:tap="gotoMaterialBlock" wx:for="{{answer.blockList}}" wx:key="item" data-id="{{item.id}}">
+      <view class="answer-link-block" hover-class="tap-active" bind:tap="gotoMaterialBlock" wx:for="{{answer.blockList}}" wx:key="item" data-id="{{item.id}}">
         <view class="link-block__title">
           <view class="link-block__title-content" style="background: {{item.backgroundColor}};">
             <image class="link-block__title-img" wx:if="{{item.iconUrl}}" src="{{item.iconUrl}}" />
@@ -59,7 +59,7 @@
         <view class="answer-detail__intervals"></view>
         <header title="{{answer.probeContent}}" hasAudio="{{answer.audioTotal == answer.sentenceTotal}}" titleBackground="{{backgroundColor}}" probe></header>
         <view class="answer-detail__intervals"></view>
-        <view class="answer-link-block" bind:tap="gotoMaterialBlock" wx:for="{{answer.probeBlockList}}" wx:key="item" data-id="{{item.id}}">
+        <view class="answer-link-block" hover-class="tap-active" bind:tap="gotoMaterialBlock" wx:for="{{answer.probeBlockList}}" wx:key="item" data-id="{{item.id}}">
           <view class="link-block__title">
             <view class="link-block__title-content" style="background: {{item.backgroundColor}};">
               <image class="link-block__title-img" wx:if="{{item.iconUrl}}" src="{{item.iconUrl}}" />

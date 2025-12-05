@@ -42,12 +42,6 @@ Page({
     })
     this.listData(false)
   },
-  randomPractice() {
-    wx.navigateTo({
-      url: '/pages/random-practice/history-p3/index',
-    })
-  },
-
   // ===========业务操作 End===========
   // ===========数据获取 Start===========
   listSeriesData(isPull) {

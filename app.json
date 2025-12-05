@@ -3,10 +3,6 @@
     "pages/home/home",
     "pages/science/list/index",
     "pages/science/detail/index",
-    "pages/practice/set-list/index",
-    "pages/practice/menu-list/index",
-    "pages/practice/recording/recording",
-    "pages/practice/record_detail/record_detail",
     "pages/question/set-p1-list/index",
     "pages/question/question-p1-list/index",
     "pages/question/question-p1-detail/index",
@@ -20,11 +16,6 @@
     "pages/question/recording-p2-record/index",
     "pages/question/reading/reading",
     "pages/question/reading_detail/reading_detail",
-    "pages/random-practice/history-p3/index",
-    "pages/random-practice/practice-p3/index",
-    "pages/video/set-list/index",
-    "pages/video/video-list/index",
-    "pages/video/video-detail/index",
     "pages/p2-block/set-list/index",
     "pages/p2-block/block-group/index",
     "pages/p2-block/block-detail/index",
@@ -91,12 +82,6 @@
   "permission": {
     "scope.record": {
       "desc": "获取录音权限用于音频上传功能"
-    }
-  },
-  "plugins": {
-    "t-video": {
-      "version": "1.0.11",
-      "provider": "wx5474241b2a65b906"
     }
   }
 }

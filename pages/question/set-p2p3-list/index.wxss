@@ -32,21 +32,6 @@
   border-color: rgba(248, 49, 47, 1);
 }
 
-.random-practice {
-  border: 1px solid var(--solid-border-color);
-  box-sizing: border-box;
-  border-radius: 9px;
-  margin-bottom: 15px;
-}
-
-.random-practice view {
-  padding: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-}
-
 /* 正文样式 */
 .chapter-container {
   width: 100%;

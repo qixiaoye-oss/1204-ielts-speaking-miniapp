@@ -75,23 +75,8 @@ Page({
       url: '/pages/question/reading/reading' + api.parseParams(param),
     })
   },
-  punching() {
-    const { list, detail } = this.data
-    let menu = [], urls = [];
-    list.forEach(i => {
-      menu.push(i.title + '（训练）')
-      urls.push(`/pages/p2-block/recording/recording?id=${i.id}&blockId=${detail.id}&color=${detail.color}&background=${detail.backgroundColor}`)
-      if (i.recordId) {
-        menu.push(i.title + '（训练记录）')
-        urls.push(`/pages/p2-block/record_detail/record_detail?id=${i.recordId}&blockId=${detail.id}&color=${detail.color}&background=${detail.backgroundColor}`)
-      }
-    });
-    wx.showActionSheet({
-      itemList: menu,
-      success: (({ tapIndex }) => {
-        wx.navigateTo({ url: urls[tapIndex] })
-      })
-    })
+  goBack() {
+    wx.navigateBack()
   },
   // ===========业务操作 End===========
   // ===========数据获取 Start===========

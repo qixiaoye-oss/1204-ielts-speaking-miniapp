@@ -122,38 +122,8 @@ Page({
       this.getData(true)
     })
   },
-  punching() {
-    const { detail } = this.data
-    if (detail.clockInStatus == 1) {
-      this.toPracticePage()
-    } else {
-      this.setData({ showPopus: true })
-    }
-  },
-  // 去往句子练习页
-  toPracticePage() {
-    const { list, detail } = this.data
-    const _this = this
-    let menu = ['打卡']
-    let urls = ['']
-    list.forEach(i => {
-      menu.push(i.title + '（训练）')
-      urls.push(`/pages/p3-block/recording/recording?id=${i.id}&blockId=${detail.id}&color=${detail.color}&background=${detail.backgroundColor}`)
-      if (i.recordId) {
-        menu.push(i.title + '（训练记录）')
-        urls.push(`/pages/p3-block/record_detail/record_detail?id=${i.recordId}&blcokId=${detail.id}&color=${detail.color}&background=${detail.backgroundColor}`)
-      }
-    });
-    wx.showActionSheet({
-      itemList: menu,
-      success: (({ tapIndex }) => {
-        if (tapIndex === 0) {
-          this.setData({ showPopus: true })
-        } else {
-          wx.navigateTo({ url: urls[tapIndex] })
-        }
-      })
-    })
+  goBack() {
+    wx.navigateBack()
   },
   popupCancel() {
     this.setData({

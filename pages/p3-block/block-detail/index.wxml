@@ -30,7 +30,7 @@
   </full-screen-view>
   <buts wx:if="{{list.length > 0}}">
     <but disabled="{{blockIndex == 0}}" bind:change="changeQuestion" type="last" rotate img-url="/image/v2/next.png"></but>
-    <but bind:change="punching" text="打卡/训练" img-url="/image/v2/exercise.png" pattern='exercise'></but>
+    <but bind:change="goBack" text="返回" img-url="/image/v2/save-return.png" pattern='quit'></but>
     <but disabled="{{blockIndex==(idArr.length -1)}}" bind:change="changeQuestion" type="next" img-url="/image/v2/next.png"></but>
   </buts>
 </block>

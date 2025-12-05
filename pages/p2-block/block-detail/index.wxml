@@ -28,7 +28,7 @@
   </view>
   <view class="bottom_spacing"></view>
   <buts wx:if="{{list.length > 0}}">
-    <but bind:change="punching" text="训练" img-url="/image/v2/exercise.png" pattern='exercise'></but>
+    <but bind:change="goBack" text="返回" img-url="/image/v2/save-return.png" pattern='quit'></but>
   </buts>
 </view>
 <no-data wx:else></no-data>

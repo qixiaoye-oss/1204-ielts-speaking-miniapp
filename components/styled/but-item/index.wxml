@@ -33,6 +33,7 @@
   </view>
   <view wx:if="{{pattern === 'quit'}}" class="~btn-action ~btn--quit {{disabled ? '~btn--dis' : ''}}" hover-class="tap-active" bind:tap="change">
     <view>{{text}}</view>
+    <image wx:if="{{imgUrl}}" src="{{imgUrl}}" class="{{imgDisabled ? '~btn--dis' : ''}}"></image>
   </view>
 </block>
 <block wx:else>

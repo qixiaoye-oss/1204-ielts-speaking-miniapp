@@ -8,10 +8,23 @@ Page({
     msg: ""
   },
   // ===========生命周期 Start===========
-  onShow() { },
-  onLoad(options) {
+  onShow() {
     this.startLoading()
+  },
+  onLoad(options) {
+    this.setData({
+      color: options.color,
+      background: options.background
+    })
     api.getUser(this)
+    if (options.userId == this.data.user.id || this.data.user.isManager == 1) {
+      this.listRecording(false)
+    } else {
+      api.modal("提示", '暂无权限', false)
+      return
+    }
+    this.getData(true)
+    this.listRecording(false)
     audio = wx.createInnerAudioContext()
     audio.onPlay(() => {
       console.log('开始播放', new Date().getTime());
@@ -23,18 +36,17 @@ Page({
       api.audioErr(err, audio.src)
       // api.modal("", "本模块电脑版播放功能需要等待微信官方更新，目前手机/平板可以正常播放。", false)
     })
-    if (options.userId == this.data.user.id || this.data.user.isManager == 1) {
-      this.listRecording(false)
-    } else {
-      api.modal("提示", '暂无权限', false)
-      return
-    }
   },
   onUnload() {
     audio.destroy()
   },
   onShareAppMessage() {
     return api.share('考雅狂狂说', this)
+  },
+  toDetail(e) {
+    wx.navigateTo({
+      url: '../history_record_detail/index?id=' + e.currentTarget.dataset.id + '&userId=' + api.getUserId() + '&mode=single',
+    })
   },
   // ===========生命周期 End===========
   // ===========业务操作 Start===========
@@ -74,15 +86,15 @@ Page({
       })
     })
   },
-  toDetail(e) {
-    wx.navigateTo({
-      url: '../questions_record_detail/questions_record_detail?id=' + e.currentTarget.dataset.id + '&userId=' + api.getUserId() + '&mode=continuous',
-    })
-  },
   // ===========业务操作 End===========
   // ===========数据获取 Start===========
+  getData(isPull) {
+    api.request(this, '/question/detailNoAnswer', {
+      ...this.options
+    }, isPull)
+  },
   listRecording(isPull) {
-    api.request(this, '/recording/list2Continuous', {
+    api.request(this, '/recording/list', {
       ...this.options
     }, isPull).finally(() => {
       this.finishLoading()
@@ -90,7 +102,7 @@ Page({
   },
   delRecording(id) {
     const _this = this
-    api.request(this, '/recording/del2Continuous', {
+    api.request(this, '/recording/del', {
       id: id
     }, true).then(() => {
       api.toast("删除成功")

@@ -162,12 +162,12 @@ Page({
   },
   toRecording(param) {
     wx.navigateTo({
-      url: '/pages/recording/record_answer_p3/index' + api.parseParams(param),
+      url: '/pages/recording/p3_record/index' + api.parseParams(param),
     })
   },
   toRecordList(param) {
     wx.navigateTo({
-      url: '/pages/recording/list/list' + api.parseParams(param),
+      url: '/pages/recording/p2p3_record_list/index' + api.parseParams(param),
     })
   },
   punching() {

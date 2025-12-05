@@ -64,9 +64,9 @@ Page({
       userId: api.getUserId(),
     }
     menu.push('录音')
-    menuUrl.push('/pages/recording/questions_recording/questions_recording' + api.parseParams(param))
+    menuUrl.push('/pages/recording/p1_multirecord/index' + api.parseParams(param))
     menu.push('历史录音')
-    menuUrl.push('/pages/recording/questions_record_list/questions_record_list' + api.parseParams(param))
+    menuUrl.push('/pages/recording/p1_multirecord_list/index' + api.parseParams(param))
 
     wx.showActionSheet({
       itemList: menu,

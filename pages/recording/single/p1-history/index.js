@@ -40,7 +40,7 @@ Page({
   },
   toDetail(e) {
     // wx.navigateTo({
-    //   url: '../questions_record_detail/questions_record_detail?id=' + e.currentTarget.dataset.id + '&userId=' + api.getUserId() + '&mode=single',
+    //   url: '../../history_record_detail/index?id=' + e.currentTarget.dataset.id + '&userId=' + api.getUserId() + '&mode=single',
     // })
   },
   // ===========生命周期 End===========

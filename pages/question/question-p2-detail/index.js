@@ -141,8 +141,8 @@ Page({
       color: color,
       background: backgroundColor
     }
-    itemUrl.push('/pages/recording/record/record' + api.parseParams(param))
-    itemUrl.push('/pages/recording/list/list' + api.parseParams(param))
+    itemUrl.push('/pages/recording/p2_record/index' + api.parseParams(param))
+    itemUrl.push('/pages/recording/p2p3_record_list/index' + api.parseParams(param))
     const _this = this
     wx.showActionSheet({
       itemList: itemList,
@@ -159,7 +159,7 @@ Page({
   },
   toRecordList(param) {
     wx.navigateTo({
-      url: '/pages/recording/list/list' + api.parseParams(param),
+      url: '/pages/recording/p2p3_record_list/index' + api.parseParams(param),
     })
   },
   punching() {

@@ -135,7 +135,7 @@ Page({
       ...e.currentTarget.dataset
     }
     wx.navigateTo({
-      url: '/pages/material/block-detail/index' + api.parseParams(item),
+      url: '/pages/p3-block/block-detail/index' + api.parseParams(item),
     })
   },
   recordingOrClocking() {

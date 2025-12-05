@@ -374,3 +374,12 @@ page {
 .grey-font-color {
   color: rgba(0, 0, 0, 0.3);
 }
+
+/* ==================== 9. 点击反馈效果 ==================== */
+
+/* 通用点击效果 - 用于按钮和卡片 */
+.tap-active {
+  opacity: 0.7;
+  transform: scale(0.98);
+  transition: all 0.1s ease-out;
+}

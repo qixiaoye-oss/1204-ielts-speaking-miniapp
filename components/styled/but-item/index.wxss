@@ -9,3 +9,10 @@
 .rotate {
   transform: rotate(180deg);
 }
+
+/* 点击反馈效果 */
+.tap-active {
+  opacity: 0.7;
+  transform: scale(0.98);
+  transition: all 0.1s ease-out;
+}

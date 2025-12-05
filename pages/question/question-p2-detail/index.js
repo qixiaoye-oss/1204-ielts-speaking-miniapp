@@ -132,26 +132,6 @@ Page({
     const { detail, seriesIndex, seriesList, color, backgroundColor, recordId } = this.data
     let itemList = ['仅打卡']
     let itemUrl = ['']
-    if (detail.practiceStatus == 1) {
-
-      if (seriesList.length == 0) {
-        itemList.push('练习')
-        itemUrl.push(`../recording-p2/index?id=${detail.id}&setId=${this.options.setId}`)
-        if (!api.isEmpty(recordId)) {
-          itemList.push('查看练习记录')
-          itemUrl.push(`../recording-p2-record/index?practiceId=${recordId}`)
-        }
-      } else if (seriesList.length > 0) {
-        for (let i = 0; i < seriesList.length; i++) {
-          itemList.push('练习（' + seriesList[i].title + '）')
-          itemUrl.push(`../recording-p2/index?id=${detail.id}&seriesId=${seriesList[i].id}&setId=${this.options.setId}`)
-          if (!api.isEmpty(seriesList[i].recordId)) {
-            itemList.push("查看练习（" + seriesList[i].title + "）记录")
-            itemUrl.push(`../recording-p2-record/index?practiceId=${seriesList[i].recordId}`)
-          }
-        }
-      }
-    }
     itemList.push('录音')
     itemList.push('历史录音（' + this.data.recordingCount + '）条')
     let param = {

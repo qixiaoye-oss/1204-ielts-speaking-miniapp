@@ -294,17 +294,6 @@ Page({
       munuUrls.push(`/pages/recording/single/p1-history/index?questionId=${detail.id}&setId=${this.options.setId}`)
       menuNames.push("历史录音")
     }
-    if (detail.practiceStatus === '1') {
-      menuName = menuName + '/练习'
-      list.forEach(item => {
-        munuUrls.push(`../recording-p1/index?setId=${this.options.setId}&userId=${api.getUserId()}&questionId=${detail.id}&answerId=${item.id}`)
-        menuNames.push("练习（" + item.title + "）")
-        if (item.practiceId) {
-          menuNames.push("查看练习（" + item.title + "）记录")
-          munuUrls.push(`../recording-p1-record/index?practiceId=${item.practiceId}`)
-        }
-      })
-    }
     this.setData({
       menuName: menuName,
       munuUrls: munuUrls,

@@ -87,9 +87,9 @@ pages/random-practice/
 
 ### 移除的引用
 - `app.json`: 移除2个页面注册
-- `pages/question/set-p2p3-list/index.js`: 移除 randomPractice 函数
-- `pages/question/set-p2p3-list/index.wxml`: 移除"P3随机练"按钮
-- `pages/question/set-p2p3-list/index.wxss`: 移除 .random-practice 样式
+- `pages/question/set_p2p3_list/index.js`: 移除 randomPractice 函数
+- `pages/question/set_p2p3_list/index.wxml`: 移除"P3随机练"按钮
+- `pages/question/set_p2p3_list/index.wxss`: 移除 .random-practice 样式
 
 ### 原功能说明
 P3部分的随机练习功能，用户可以随机抽取P3题目进行练习。
@@ -126,8 +126,8 @@ pages/question/
 
 ### 移除的引用
 - `app.json`: 移除4个页面注册
-- `pages/question/question-p1-detail/index.js`: 移除练习菜单入口代码
-- `pages/question/question-p2-detail/index.js`: 移除练习菜单入口代码
+- `pages/question/question_p1_detail/index.js`: 移除练习菜单入口代码
+- `pages/question/question_p2_detail/index.js`: 移除练习菜单入口代码
 
 ### 原功能说明
 P1/P2问题详情页中的"练习"功能，用户可以针对特定答案进行录音练习。
@@ -158,27 +158,27 @@ P1/P2问题详情页中的"练习"功能，用户可以针对特定答案进行�
 
 ---
 
-## 5. 素材块训练功能 (pages/p2-block & pages/p3-block)
+## 5. 素材块训练功能 (pages/p2_block & pages/p3_block)
 
 ### 移除的目录
 ```
-pages/p2-block/
+pages/p2_block/
 ├── recording/         # P2素材块录音训练 (recording.js)
 └── record_detail/     # P2素材块训练记录 (record_detail.js)
 
-pages/p3-block/
+pages/p3_block/
 ├── recording/         # P3素材块录音训练 (recording.js)
 └── record_detail/     # P3素材块训练记录 (record_detail.js)
 ```
 
 ### 移除的引用
 - `app.json`: 移除4个页面注册
-- `pages/p2-block/block-detail/index.js`: 移除 punching 函数
-- `pages/p3-block/block-detail/index.js`: 移除 punching 和 toPracticePage 函数
+- `pages/p2_block/block_detail/index.js`: 移除 punching 函数
+- `pages/p3_block/block_detail/index.js`: 移除 punching 和 toPracticePage 函数
 
 ### 功能替代
-- `pages/p2-block/block-detail`: 底部按钮改为"返回"按钮
-- `pages/p3-block/block-detail`: 底部按钮改为"返回"按钮
+- `pages/p2_block/block_detail`: 底部按钮改为"返回"按钮
+- `pages/p3_block/block_detail`: 底部按钮改为"返回"按钮
 
 ### 原功能说明
 P2/P3素材块详情页中的"训练"功能，用户可以对素材块内容进行录音训练。
@@ -264,7 +264,9 @@ P2/P3素材块详情页中的"训练"功能，用户可以对素材块内容进�
 
 ## 相关重命名
 
-在本次清理中，同时对 `pages/recording` 目录进行了重命名以符合功能语义：
+### 1. pages/recording 目录重命名
+
+在本次清理中，对 `pages/recording` 目录进行了重命名以符合功能语义：
 
 | 原目录名 | 新目录名 | 说明 |
 |---------|---------|------|
@@ -274,6 +276,36 @@ P2/P3素材块详情页中的"训练"功能，用户可以对素材块内容进�
 | questions_record_list | p1_multirecord_list | P1多题录音列表 |
 | questions_record_detail | history_record_detail | 历史录音详情 |
 | list | p2p3_record_list | P2/P3录音列表 |
+
+### 2. pages/p2_block & pages/p3_block 目录重命名
+
+将目录名中的连字符改为下划线：
+
+| 原目录名 | 新目录名 |
+|---------|---------|
+| pages/p2-block | pages/p2_block |
+| pages/p2-block/block-detail | pages/p2_block/block_detail |
+| pages/p2-block/block-group | pages/p2_block/block_group |
+| pages/p2-block/set-list | pages/p2_block/set_list |
+| pages/p3-block | pages/p3_block |
+| pages/p3-block/block-detail | pages/p3_block/block_detail |
+| pages/p3-block/block-group | pages/p3_block/block_group |
+| pages/p3-block/link-question | pages/p3_block/link_question |
+| pages/p3-block/set-list | pages/p3_block/set_list |
+
+### 3. pages/question 目录重命名
+
+将目录名中的连字符改为下划线：
+
+| 原目录名 | 新目录名 |
+|---------|---------|
+| pages/question/question-p1-detail | pages/question/question_p1_detail |
+| pages/question/question-p1-list | pages/question/question_p1_list |
+| pages/question/question-p2-detail | pages/question/question_p2_detail |
+| pages/question/question-p3-detail | pages/question/question_p3_detail |
+| pages/question/question-p3-list | pages/question/question_p3_list |
+| pages/question/set-p1-list | pages/question/set_p1_list |
+| pages/question/set-p2p3-list | pages/question/set_p2p3_list |
 
 ---
 
@@ -293,12 +325,13 @@ git log --oneline
 # 恢复特定目录示例
 git checkout 82fc023^ -- pages/video/
 git checkout 398e6e4^ -- pages/question/recording-p1/
-git checkout 8cedb9b^ -- pages/p2-block/recording/
+git checkout 8cedb9b^ -- pages/p2_block/recording/
 ```
 
 ---
 
 ## 更新日志
 
+- **2025-12-05 v1.2**: 更新目录名称（连字符改为下划线），添加 p2_block、p3_block、question 目录重命名记录
 - **2025-12-05 v1.1**: 添加后端 API 接口清单和数据表信息
 - **2025-12-05 v1.0**: 初始文档创建，记录本次代码清理工作

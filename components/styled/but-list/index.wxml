@@ -1,5 +1,0 @@
-<view class="~btn-page-bottom">
-  <view class="~btn-group-layout-inline-center">
-    <slot></slot>
-  </view>
-</view>

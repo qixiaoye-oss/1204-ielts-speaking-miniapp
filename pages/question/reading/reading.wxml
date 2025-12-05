@@ -67,7 +67,12 @@
   </view>
 </view>
 <view class="bottom_spacing"></view>
-<buts>
-  <but bind:change="batchSaveRecord" disabled="{{!saveBatchButShow}}" text="提交并评分" img-url="/image/v2/medal.png" pattern="label"></but>
-</buts>
+<view class="btn-page-bottom">
+  <view class="btn-group-layout-inline-center">
+    <btn-action type="label" bindtap="batchSaveRecord" class="{{!saveBatchButShow ? 'btn--dis' : ''}}">
+      <view>提交并评分</view>
+      <image src="/image/v2/medal.png"></image>
+    </btn-action>
+  </view>
+</view>
 <no-data wx:if="{{list.length == 0}}"></no-data>

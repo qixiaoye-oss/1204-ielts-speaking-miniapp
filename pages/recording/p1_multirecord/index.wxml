@@ -20,21 +20,37 @@
     <view class="sentence_cell radius10 base-font-color f16 fwb {{status === 1 && index == nowPlayAudioIndex ? 'sel_':''}}" wx:for="{{newList}}" wx:key="item">Q{{index+1}}</view>
   </view>
   <view class="bottom_spacing"></view>
-  <buts>
-    <but bind:change="cancel" pattern="quit" text="放弃"></but>
-    <view class="flex1"></view>
-    <block wx:if="{{status === 0}}">
-      <but bind:change="gatUserAuthor" text="点击开始答题/录音" img-url="/image/v2/stop.png"></but>
-    </block>
-    <block wx:if="{{status === 1 && (nowPlayAudioIndex < (list.length - 1))}}">
-      <but bind:change="nextRecoding" disabled="{{audioStatus === 'play'}}" text="请回答.../点击下一题" img-url="/image/v2/next.png"></but>
-    </block>
-    <block wx:if="{{status === 1 && (nowPlayAudioIndex == (list.length - 1))}}">
-      <but bind:change="stopRecoding" disabled="{{audioStatus === 'play'}}" text="请回答最后一题..." img-url="/image/v2/down.png"></but>
-    </block>
-    <block wx:if="{{status === 2}}">
-      <but bind:change="stopRecoding" disabled="{{true}}" text="请回答最后一题..." img-url="/image/v2/down.png"></but>
-    </block>
-  </buts>
+  <view class="btn-page-bottom">
+    <view class="btn-group-layout-inline-center">
+      <btn-action type="quit" bindtap="cancel">
+        <view>放弃</view>
+      </btn-action>
+      <view class="flex1"></view>
+      <block wx:if="{{status === 0}}">
+        <btn-action type="audio" bindtap="gatUserAuthor">
+          <view>点击开始答题/录音</view>
+          <image src="/image/v2/stop.png"></image>
+        </btn-action>
+      </block>
+      <block wx:if="{{status === 1 && (nowPlayAudioIndex < (list.length - 1))}}">
+        <btn-action type="audio" bindtap="nextRecoding" class="{{audioStatus === 'play' ? 'btn--dis' : ''}}">
+          <view>请回答.../点击下一题</view>
+          <image src="/image/v2/next.png"></image>
+        </btn-action>
+      </block>
+      <block wx:if="{{status === 1 && (nowPlayAudioIndex == (list.length - 1))}}">
+        <btn-action type="audio" bindtap="stopRecoding" class="{{audioStatus === 'play' ? 'btn--dis' : ''}}">
+          <view>请回答最后一题...</view>
+          <image src="/image/v2/down.png"></image>
+        </btn-action>
+      </block>
+      <block wx:if="{{status === 2}}">
+        <btn-action type="audio" bindtap="stopRecoding" class="btn--dis">
+          <view>请回答最后一题...</view>
+          <image src="/image/v2/down.png"></image>
+        </btn-action>
+      </block>
+    </view>
+  </view>
 </block>
 <no-data wx:if="{{list.length == 0}}" text="暂无数据"></no-data>

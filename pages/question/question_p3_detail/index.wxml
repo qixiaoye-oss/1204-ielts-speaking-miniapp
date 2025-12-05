@@ -88,11 +88,22 @@
       </view>
     </view>
   </full-screen-view>
-  <buts>
-    <but wx:if="{{idArr.length > 0}}" disabled="{{index == 0}}" bind:change="changeQuestion" type="last" rotate img-url="/image/v2/next.png"></but>
-    <but bind:change="recordingOrClocking" badge count="{{recordingCount}}" text="单题打卡/录音" img-url="/image/v2/recording.png" pattern='recording' color="{{textColor}}"></but>
-    <but wx:if="{{idArr.length > 0}}" disabled="{{index == (idArr.length -1)}}" bind:change="changeQuestion" type="next" img-url="/image/v2/next.png"></but>
-  </buts>
+  <view class="btn-page-bottom">
+    <view class="btn-group-layout-inline-center">
+      <btn-action-icon wx:if="{{idArr.length > 0}}" type="audio" bindtap="changeQuestion" data-type="last" class="{{index == 0 ? 'btn--dis' : ''}}">
+        <image src="/image/v2/next.png" style="transform: rotate(180deg)"></image>
+      </btn-action-icon>
+      <btn-action type="recording" bindtap="recordingOrClocking">
+        <view>单题打卡/录音</view>
+        <image src="/image/v2/recording.png"></image>
+        <view class="btn-corner-mark btn--recording-corner-mark" wx:if="{{recordingCount > 0}}" style="border-color: {{textColor}};color: {{textColor}};">{{recordingCount}}</view>
+        <view class="btn-corner-mark btn--recording-corner-mark" wx:else>{{recordingCount}}</view>
+      </btn-action>
+      <btn-action-icon wx:if="{{idArr.length > 0}}" type="audio" bindtap="changeQuestion" data-type="next" class="{{index == (idArr.length -1) ? 'btn--dis' : ''}}">
+        <image src="/image/v2/next.png"></image>
+      </btn-action-icon>
+    </view>
+  </view>
 </block>
 <no-data wx:else></no-data>
 <custom_popus show="{{showPopus}}" bind:cancel="popupCancel" bind:confirm="popupConfirm" selected="{{level}}"></custom_popus>

@@ -1,12 +1,12 @@
 <view class="series" wx:if="{{seriesList}}">
-  <view class="series__item {{seriesIndex === index?'series__active':''}}" wx:for="{{seriesList}}" wx:key="index" bind:tap="changeLabel" data-index="{{index}}">
+  <view class="series__item {{seriesIndex === index?'series__active':''}}" wx:for="{{seriesList}}" wx:key="index" hover-class="tap-active" hover-stay-time="100" bind:tap="changeLabel" data-index="{{index}}">
     <view style="background: {{item.backgroundColor}};">
       <image src="{{item.iconUrl}}"></image>
       <text>{{ item.title }}</text>
     </view>
   </view>
 </view>
-<view class="random-practice" bind:tap="randomPractice">
+<view class="random-practice" hover-class="tap-active" hover-stay-time="100" bind:tap="randomPractice">
   <view>P3随机练</view>
 </view>
 <view class="chapter-container">
@@ -18,7 +18,7 @@
       </view>
     </view>
     <view class="chapter-cell">
-      <view class="chapter" wx:for="{{group.list}}" wx:for-item="chapter" wx:for-index="chapterIndex" wx:key="chapter" bind:tap="toUnit" data-item="{{chapter}}" wx:if="{{!chapter.hidden}}">
+      <view class="chapter" wx:for="{{group.list}}" wx:for-item="chapter" wx:for-index="chapterIndex" wx:key="chapter" hover-class="list-active" hover-stay-time="100" bind:tap="toUnit" data-item="{{chapter}}" wx:if="{{!chapter.hidden}}">
         <view class="chapter__header">
           <view class="chapter__header-title" style="background: {{chapter.backgroundColor}};">
             <image class="chapter__title-icon" wx:if="{{chapter.iconUrl}}" src="{{chapter.iconUrl}}" />

@@ -7,7 +7,7 @@
       <view class="home-main-item__title" style="color:{{popularScience.colorRgb}}">{{popularScience.title}}</view>
       <view class="{{popularScience.layoutMode === 'QUAD_GRID' ? 'home-main-item__content--grid' : 'home-main-item__content'}}">
         <block wx:for="{{popularScience.list}}" wx:key="albumIndex" wx:for-item="album" wx:for-index="albumIndex">
-          <view class="home-sub-item" style="background:{{popularScience.colorRgba}};border-color:{{popularScience.colorRgb}};" bind:tap="toPopularSciencePage" data-id="{{album.id}}">
+          <view class="home-sub-item" style="background:{{popularScience.colorRgba}};border-color:{{popularScience.colorRgb}};" hover-class="card-active" hover-stay-time="100" bind:tap="toPopularSciencePage" data-id="{{album.id}}">
             <view class="home-sub-item__content--small">
               <view class="home-sub-item__description--text" style="color: {{popularScience.colorRgb}};">{{album.subtitle}}</view>
               <view class="home-sub-item__title--text">{{album.title}}</view>
@@ -19,7 +19,7 @@
           </view>
         </block>
       </view>
-      <view class="popular-science btn-action" style="background: {{popularScience.colorRgba}};" bind:tap="toPopularScienceListPage">
+      <view class="popular-science btn-action" style="background: {{popularScience.colorRgba}};" hover-class="tap-active" hover-stay-time="100" bind:tap="toPopularScienceListPage">
         <view style="color: {{popularScience.colorRgb}};">查看所有</view>
         <image src="/image/v2/next.png"></image>
       </view>
@@ -30,7 +30,7 @@
       <view class="home-main-item__title" style="color:{{subject.colorRgb}}">{{subject.title}}</view>
       <view class="{{subject.layoutMode === 'QUAD_GRID' ? 'home-main-item__content--grid' : 'home-main-item__content'}}">
         <block wx:for="{{subject.list}}" wx:key="albumIndex" wx:for-item="album" wx:for-index="albumIndex">
-          <view class="home-sub-item" style="background:{{subject.colorRgba}};border-color:{{subject.colorRgb}};" bind:tap="toChildPage" data-id="{{album.id}}" data-type="{{album.type}}">
+          <view class="home-sub-item" style="background:{{subject.colorRgba}};border-color:{{subject.colorRgb}};" hover-class="card-active" hover-stay-time="100" bind:tap="toChildPage" data-id="{{album.id}}" data-type="{{album.type}}">
             <view class="home-sub-item__content" wx:if="{{album.themeStyle == 'base'}}">
               <view class="home-sub-item__header">
                 <image class="home-sub-item__title--icon" wx:if="{{album.iconUrl}}" src="{{album.iconUrl}}" />

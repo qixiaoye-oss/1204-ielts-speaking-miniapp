@@ -1,9 +1,9 @@
 <view class="series">
-  <view class="series__item {{showMode === 'full'?'full__active':''}}" bind:tap="changeShowMode" data-mode="full">
+  <view class="series__item {{showMode === 'full'?'full__active':''}}" hover-class="tap-active" hover-stay-time="100" bind:tap="changeShowMode" data-mode="full">
     <image src="/image/v2/list.png"></image>
     <text>列表显示</text>
   </view>
-  <view class="series__item {{showMode === 'simple'?'simple__active':''}}" bind:tap="changeShowMode" data-mode="simple">
+  <view class="series__item {{showMode === 'simple'?'simple__active':''}}" hover-class="tap-active" hover-stay-time="100" bind:tap="changeShowMode" data-mode="simple">
     <image src="/image/v2/point.png"></image>
     <text>标签显示</text>
   </view>
@@ -17,7 +17,7 @@
       </view>
     </view>
     <view class="chapter-cell" wx:if="{{showMode === 'full'}}">
-      <view class="chapter" wx:for="{{group.list}}" wx:for-item="chapter" wx:for-index="chapterIndex" wx:key="chapter" bind:tap="toUnit" data-item="{{chapter}}">
+      <view class="chapter" wx:for="{{group.list}}" wx:for-item="chapter" wx:for-index="chapterIndex" wx:key="chapter" hover-class="list-active" hover-stay-time="100" bind:tap="toUnit" data-item="{{chapter}}">
         <view class="chapter__header">
           <view class="chapter__header-title" style="background: {{chapter.titleBackgroundColor}};">
             <image class="chapter__title-icon" wx:if="{{chapter.iconUrl}}" src="{{chapter.iconUrl}}" />
@@ -56,7 +56,7 @@
       </view>
     </view>
     <view class="chapter__list--simple" wx:if="{{showMode === 'simple'}}">
-      <view wx:for="{{group.list}}" class="chapter--mastered" wx:for-item="chapter" wx:for-index="chapterIndex" wx:key="chapter" bind:tap="toUnit" data-item="{{chapter}}">
+      <view wx:for="{{group.list}}" class="chapter--mastered" wx:for-item="chapter" wx:for-index="chapterIndex" wx:key="chapter" hover-class="tap-active" hover-stay-time="100" bind:tap="toUnit" data-item="{{chapter}}">
         <view class="chapter__header-title " style="background: {{chapter.titleBackgroundColor}};">
           <image class="chapter__title-icon" wx:if="{{chapter.iconUrl}}" src="{{chapter.iconUrl}}" />
           <view class="chapter__title-text">{{chapter.title}}</view>

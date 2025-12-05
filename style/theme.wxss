@@ -223,3 +223,26 @@ page {
 .btn--dis {
   opacity: 0.3;
 }
+
+/* ========== 点击动效样式 ========== */
+
+/* 按钮点击反馈效果 */
+.tap-active {
+  opacity: 0.7;
+  transform: scale(0.98);
+  transition: all 0.1s ease-out;
+}
+
+/* 卡片点击效果（适用于首页卡片等大元素） */
+.card-active {
+  opacity: 0.85;
+  transform: scale(0.99);
+  transition: all 0.1s ease-out;
+}
+
+/* 列表项点击效果 */
+.list-active {
+  opacity: 0.8;
+  background-color: rgba(0, 0, 0, 0.03);
+  transition: all 0.1s ease-out;
+}

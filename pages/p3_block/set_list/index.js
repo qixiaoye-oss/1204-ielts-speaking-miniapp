@@ -25,7 +25,7 @@ Page({
       return
     }
     wx.navigateTo({
-      url: `/pages/p3-block/block-group/index?setId=${item.id}&dateLabel=${this.data.dateLabel.value}`,
+      url: `/pages/p3_block/block_group/index?setId=${item.id}&dateLabel=${this.data.dateLabel.value}`,
     })
   },
   // ===========业务操作 End===========

@@ -125,7 +125,7 @@ Page({
       ...e.currentTarget.dataset
     }
     wx.navigateTo({
-      url: '/pages/p2-block/block-group/index' + api.parseParams(item),
+      url: '/pages/p2_block/block_group/index' + api.parseParams(item),
     })
   },
   recordingOrClocking() {

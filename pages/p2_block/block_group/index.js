@@ -13,7 +13,7 @@ Page({
   toChildPage(e) {
     const item = e.currentTarget.dataset
     wx.navigateTo({
-      url: '/pages/p2-block/block-detail/index' + api.parseParams(item),
+      url: '/pages/p2_block/block_detail/index' + api.parseParams(item),
     })
   },
   // ===========业务操作 End===========

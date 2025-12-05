@@ -9,16 +9,16 @@
       <view class="user__no">（{{user.no}}）</view>
     </view>
   </view>
-  <view class="menu-item menu-item--access" bind:tap="toUpdateUserInfo">修改用户信息</view>
-  <view class="menu-item menu-item--access" bind:tap="showRole">查看权限有效期</view>
-  <view class="menu-item " bind:tap="showAudioType">
+  <view class="menu-item menu-item--access" hover-class="tap-active" bind:tap="toUpdateUserInfo">修改用户信息</view>
+  <view class="menu-item menu-item--access" hover-class="tap-active" bind:tap="showRole">查看权限有效期</view>
+  <view class="menu-item" hover-class="tap-active" bind:tap="showAudioType">
     <view>音频发音方式</view>
     <view wx:if="{{user.pronunciation === 'us'}}">美式</view>
     <view wx:if="{{user.pronunciation === 'uk'}}">英式</view>
   </view>
   <block wx:if="{{user.isManager == 1}}">
-    <view class="menu-item menu-item--access" bind:tap="toUpdateAuth">用户权限管理</view>
-    <view class="menu-item menu-item--access" bind:tap="checkUser">用户切换</view>
+    <view class="menu-item menu-item--access" hover-class="tap-active" bind:tap="toUpdateAuth">用户权限管理</view>
+    <view class="menu-item menu-item--access" hover-class="tap-active" bind:tap="checkUser">用户切换</view>
   </block>
 </view>
 <view class="version">版本：{{version || '2.8.5'}}</view>

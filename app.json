@@ -44,7 +44,7 @@
     "pages/story/record_detail/record_detail",
     "pages/material/recording/recording",
     "pages/material/record_detail/record_detail",
-    "pages/my/my",
+    "pages/user/user/user",
     "pages/user/login/login",
     "pages/teacher/widget/widget",
     "pages/teacher/user_permission/user_permission",
@@ -72,7 +72,7 @@
         "selectedIconPath": "image/v2/speaking_.png"
       },
       {
-        "pagePath": "pages/my/my",
+        "pagePath": "pages/user/user/user",
         "text": "我的",
         "iconPath": "image/v2/me.png",
         "selectedIconPath": "image/v2/me_.png"

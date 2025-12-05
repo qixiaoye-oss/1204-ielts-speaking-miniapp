@@ -1,7 +1,7 @@
 <import src="/templates/loading-progress.wxml"/>
 <template is="loadingProgress" data="{{loading, loadProgress}}"/>
 
-<view class="list_item_container" bind:tap="startPractice">
+<view class="list_item_container" hover-class="tap-active" bind:tap="startPractice">
   <view class="list_item_top">开始练习</view>
 </view>
 <view class="chapter-container">
@@ -15,7 +15,7 @@
     <view class="chapter-cell">
       <view class="chapter" wx:for="{{group.list}}" wx:for-item="chapter" wx:for-index="chapterIndex" wx:key="chapter">
         <view class="chapter__header">
-          <view class="chapter__header-title" bind:tap="toDetail" data-id="{{chapter.id}}">
+          <view class="chapter__header-title" hover-class="tap-active" bind:tap="toDetail" data-id="{{chapter.id}}">
             <image class="chapter__title-icon" wx:if="{{chapter.iconUrl}}" src="{{chapter.iconUrl}}" />
             <view class="chapter__title-text">{{chapter.title}}</view>
           </view>

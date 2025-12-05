@@ -1,5 +1,5 @@
 const api = getApp().api
-const loadingProgress = require('../../behaviors/loadingProgress')
+const loadingProgress = require('../../../behaviors/loadingProgress')
 Page({
   behaviors: [loadingProgress],
   data: {},

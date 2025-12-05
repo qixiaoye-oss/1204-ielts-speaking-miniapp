@@ -1,21 +1,21 @@
 <block wx:if="{{text}}">
-  <view wx:if="{{pattern === 'base'}}" class="~btn-action ~btn--audio {{disabled ? '~btn--dis' : ''}}" bind:tap="change">
+  <view wx:if="{{pattern === 'base'}}" class="~btn-action ~btn--audio {{disabled ? '~btn--dis' : ''}}" hover-class="tap-active" bind:tap="change">
     <view>{{text}}</view>
     <image src="{{imgUrl}}" class="{{imgDisabled ? '~btn--dis' : ''}}"></image>
   </view>
-  <view wx:if="{{pattern === 'correct'}}" class="~btn-action ~btn--correct {{disabled ? '~btn--dis' : ''}}" bind:tap="change">
+  <view wx:if="{{pattern === 'correct'}}" class="~btn-action ~btn--correct {{disabled ? '~btn--dis' : ''}}" hover-class="tap-active" bind:tap="change">
     <view>{{text}}</view>
     <image src="{{imgUrl}}" class="{{imgDisabled ? '~btn--dis' : ''}}"></image>
   </view>
-  <view wx:if="{{pattern === 'label'}}" class="~btn-action ~btn--label {{disabled ? '~btn--dis' : ''}}" bind:tap="change">
+  <view wx:if="{{pattern === 'label'}}" class="~btn-action ~btn--label {{disabled ? '~btn--dis' : ''}}" hover-class="tap-active" bind:tap="change">
     <view>{{text}}</view>
     <image src="{{imgUrl}}" class="{{imgDisabled ? '~btn--dis' : ''}}"></image>
   </view>
-  <view wx:if="{{pattern === 'exercise'}}" class="~btn-action ~btn--exercise {{disabled ? '~btn--dis' : ''}}" bind:tap="change">
+  <view wx:if="{{pattern === 'exercise'}}" class="~btn-action ~btn--exercise {{disabled ? '~btn--dis' : ''}}" hover-class="tap-active" bind:tap="change">
     <view>{{text}}</view>
     <image src="{{imgUrl}}" class="{{imgDisabled ? '~btn--dis' : ''}}"></image>
   </view>
-  <view wx:if="{{pattern === 'recording'}}" class="~btn-action ~btn--recording {{disabled ? '~btn--dis' : ''}}" bind:tap="change">
+  <view wx:if="{{pattern === 'recording'}}" class="~btn-action ~btn--recording {{disabled ? '~btn--dis' : ''}}" hover-class="tap-active" bind:tap="change">
     <view>{{text}}</view>
     <image src="{{imgUrl}}" class="{{imgDisabled ? '~btn--dis' : ''}}"></image>
     <block wx:if="{{badge}}">
@@ -23,7 +23,7 @@
       <view class="~btn-corner-mark ~btn--recording-corner-mark" wx:else style="border-color: {{color}};color: {{color}};">{{count}}</view>
     </block>
   </view>
-  <view wx:if="{{pattern === 'practice'}}" class="~btn-action ~btn--practice {{disabled ? '~btn--dis' : ''}}" bind:tap="change">
+  <view wx:if="{{pattern === 'practice'}}" class="~btn-action ~btn--practice {{disabled ? '~btn--dis' : ''}}" hover-class="tap-active" bind:tap="change">
     <view>{{text}}</view>
     <image src="{{imgUrl}}" class="{{imgDisabled ? '~btn--dis' : ''}}"></image>
     <block wx:if="{{badge}}">
@@ -31,12 +31,12 @@
       <view class="~btn-corner-mark ~btn--practice-corner-mark" wx:else style="border-color: {{color}};color: {{color}};">{{count}}</view>
     </block>
   </view>
-  <view wx:if="{{pattern === 'quit'}}" class="~btn-action ~btn--quit {{disabled ? '~btn--dis' : ''}}" bind:tap="change">
+  <view wx:if="{{pattern === 'quit'}}" class="~btn-action ~btn--quit {{disabled ? '~btn--dis' : ''}}" hover-class="tap-active" bind:tap="change">
     <view>{{text}}</view>
   </view>
 </block>
 <block wx:else>
-  <view class="~btn-action-icon ~btn--audio {{disabled ? '~btn--dis' : ''}}" bind:tap="change">
+  <view class="~btn-action-icon ~btn--audio {{disabled ? '~btn--dis' : ''}}" hover-class="tap-active" bind:tap="change">
     <image src="{{imgUrl}}" class="{{rotate ? 'rotate' : ''}}"></image>
   </view>
 </block>

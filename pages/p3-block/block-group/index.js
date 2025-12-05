@@ -28,13 +28,13 @@ Page({
       id: item.id,
     })
     wx.navigateTo({
-      url: `/pages/material/block-detail/index${param}`
+      url: `/pages/p3-block/block-detail/index${param}`
     })
   },
   toQuestionListPage(e) {
     const item = e.currentTarget.dataset
     wx.navigateTo({
-      url: `/pages/material/link-question/index?id=${item.id}&dateLabel=${this.options.dateLabel}`
+      url: `/pages/p3-block/link-question/index?id=${item.id}&dateLabel=${this.options.dateLabel}`
     })
   },
   // ===========业务操作 End===========

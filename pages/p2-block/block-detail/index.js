@@ -80,10 +80,10 @@ Page({
     let menu = [], urls = [];
     list.forEach(i => {
       menu.push(i.title + '（训练）')
-      urls.push(`/pages/story/recording/recording?id=${i.id}&blockId=${detail.id}&color=${detail.color}&background=${detail.backgroundColor}`)
+      urls.push(`/pages/p2-block/recording/recording?id=${i.id}&blockId=${detail.id}&color=${detail.color}&background=${detail.backgroundColor}`)
       if (i.recordId) {
         menu.push(i.title + '（训练记录）')
-        urls.push(`/pages/story/record_detail/record_detail?id=${i.recordId}&blockId=${detail.id}&color=${detail.color}&background=${detail.backgroundColor}`)
+        urls.push(`/pages/p2-block/record_detail/record_detail?id=${i.recordId}&blockId=${detail.id}&color=${detail.color}&background=${detail.backgroundColor}`)
       }
     });
     wx.showActionSheet({

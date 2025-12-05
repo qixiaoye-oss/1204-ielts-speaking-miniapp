@@ -27,8 +27,13 @@
     <footer grading="{{detail.grading}}" recordTotal="{{detail.recordTotal}}" hasAudio="{{detail.audioTotal == detail.sentenceTotal}}" bind:click="recordAndRate"></footer>
   </view>
   <view class="bottom_spacing"></view>
-  <buts wx:if="{{list.length > 0}}">
-    <but bind:change="goBack" text="返回" img-url="/image/v2/save-return.png" pattern='quit'></but>
-  </buts>
+  <view class="btn-page-bottom" wx:if="{{list.length > 0}}">
+    <view class="btn-group-layout-inline-center">
+      <btn-action type="quit" bindtap="goBack">
+        <view>返回</view>
+        <image src="/image/v2/save-return.png"></image>
+      </btn-action>
+    </view>
+  </view>
 </view>
 <no-data wx:else></no-data>

@@ -55,9 +55,16 @@
       </view>
     </view>
   </full-screen-view>
-  <buts>
-    <but bind:change="recordingOrClocking" badge count="{{recordingCount}}" text="打卡/练习" img-url="/image/v2/practice.png" pattern='practice' color="{{color}}"></but>
-  </buts>
+  <view class="btn-page-bottom">
+    <view class="btn-group-layout-inline-center">
+      <btn-action type="practice" bindtap="recordingOrClocking">
+        <view>打卡/练习</view>
+        <image src="/image/v2/practice.png"></image>
+        <view class="btn-corner-mark btn--practice-corner-mark" wx:if="{{recordingCount > 0}}" style="border-color: {{color}};color: {{color}};">{{recordingCount}}</view>
+        <view class="btn-corner-mark btn--practice-corner-mark" wx:else>{{recordingCount}}</view>
+      </btn-action>
+    </view>
+  </view>
 </block>
 <no-data wx:else></no-data>
 <custom_popus show="{{showPopus}}" bind:cancel="popupCancel" bind:confirm="popupConfirm" selected="{{level}}"></custom_popus>

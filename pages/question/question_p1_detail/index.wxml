@@ -61,9 +61,18 @@
     </block>
   </view>
 </full-screen-view>
-<buts>
-  <but wx:if="{{idArr.length > 0}}" disabled="{{index == 0}}" bind:change="changeQuestion" type="last" rotate img-url="/image/v2/next.png"></but>
-  <but bind:change="practice" text="{{menuName}}" img-url="/image/v2/practice.png" pattern='practice'></but>
-  <but wx:if="{{idArr.length > 0}}" disabled="{{index == (idArr.length -1)}}" bind:change="changeQuestion" type="next" img-url="/image/v2/next.png"></but>
-</buts>
+<view class="btn-page-bottom">
+  <view class="btn-group-layout-inline-center">
+    <btn-action-icon wx:if="{{idArr.length > 0}}" type="audio" bindtap="changeQuestion" data-type="last" class="{{index == 0 ? 'btn--dis' : ''}}">
+      <image src="/image/v2/next.png" style="transform: rotate(180deg)"></image>
+    </btn-action-icon>
+    <btn-action type="practice" bindtap="practice">
+      <view>{{menuName}}</view>
+      <image src="/image/v2/practice.png"></image>
+    </btn-action>
+    <btn-action-icon wx:if="{{idArr.length > 0}}" type="audio" bindtap="changeQuestion" data-type="next" class="{{index == (idArr.length -1) ? 'btn--dis' : ''}}">
+      <image src="/image/v2/next.png"></image>
+    </btn-action-icon>
+  </view>
+</view>
 <custom_popus show="{{showPopus}}" bind:cancel="popupCancel" bind:confirm="popupConfirm" selected="{{level}}"></custom_popus>

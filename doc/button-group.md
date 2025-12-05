@@ -7,8 +7,8 @@
 
 ## 版本
 
-**当前版本：** v1.5.1
-**发布日期：** 2025-12-04
+**当前版本：** v1.6.0
+**发布日期：** 2025-12-05
 
 ## 特性
 
@@ -169,41 +169,78 @@
 
 ---
 
-## 组件封装
+## 按钮组件
 
-本项目提供了两个封装组件，简化按钮组的使用：
+本项目提供了两个基础按钮组件，与参考项目保持一致：
 
-### `<buts>` 组件 (but-list)
+### `<btn-action>` 组件
 
-固定底部按钮组容器，默认使用单层布局。
+带文字和图标的按钮，通过 `type` 属性设置颜色样式。
 
 ```xml
-<buts>
-  <but text="提交" pattern="correct" bind:change="submit"></but>
-</buts>
+<!-- 在页面 json 中引入 -->
+{
+  "usingComponents": {
+    "btn-action": "/components/btn-action/index",
+    "btn-action-icon": "/components/btn-action-icon/index"
+  }
+}
+
+<!-- 在 wxml 中使用 -->
+<view class="btn-page-bottom">
+  <view class="btn-group-layout-inline-center">
+    <btn-action type="practice" bindtap="onTap">
+      <view>练习</view>
+      <image src="/image/v2/practice.png"></image>
+    </btn-action>
+  </view>
+</view>
 ```
 
-### `<but>` 组件 (but-item)
+**支持的 type 值**：
+- `audio` - 蓝色（音频相关）
+- `correct` - 绿色（确认）
+- `wrong` - 红色（错误）
+- `list` - 黄色（列表）
+- `setting` - 紫灰（设置）
+- `label` - 红色（标签）
+- `recording` - 黑色（录音）
+- `practice` - 深紫（练习）
+- `exercise` - 紫色（习题）
+- `quit` - 灰色边框（退出）
 
-单个按钮项，支持多种模式。
+### `<btn-action-icon>` 组件
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| `text` | String | '' | 按钮文字 |
-| `imgUrl` | String | '' | 图标URL |
-| `pattern` | String | 'base' | 按钮模式 |
-| `disabled` | Boolean | false | 是否禁用 |
-| `badge` | Boolean | false | 是否显示徽标 |
-| `count` | Number | 0 | 徽标数字 |
+纯图标按钮，用法类似：
 
-**支持的 pattern 值**：
-- `base` - 基础蓝色按钮
-- `correct` - 绿色确认按钮
-- `label` - 红色标签按钮
-- `exercise` - 紫色练习按钮
-- `recording` - 黑色录音按钮
-- `practice` - 深紫练习按钮
-- `quit` - 灰色退出按钮
+```xml
+<btn-action-icon type="audio" bindtap="onTap">
+  <image src="/image/v2/play.png"></image>
+</btn-action-icon>
+```
+
+### 禁用状态
+
+通过添加 `btn--dis` 类名实现禁用效果：
+
+```xml
+<btn-action type="audio" bindtap="onTap" class="{{disabled ? 'btn--dis' : ''}}">
+  <view>播放</view>
+  <image src="/image/v2/play.png"></image>
+</btn-action>
+```
+
+### 角标徽章
+
+使用 `btn-corner-mark` 类名：
+
+```xml
+<btn-action type="recording" bindtap="onTap">
+  <view>录音</view>
+  <image src="/image/v2/recording.png"></image>
+  <view class="btn-corner-mark btn--recording-corner-mark">5</view>
+</btn-action>
+```
 
 ---
 
@@ -277,13 +314,13 @@ page {
 style/
   button-group.wxss    # 按钮组样式库（核心）
 
-components/styled/
-  but-list/            # 按钮组容器组件
+components/
+  btn-action/          # 带文字图标的按钮组件
     index.wxml
     index.wxss
     index.js
     index.json
-  but-item/            # 按钮项组件
+  btn-action-icon/     # 纯图标按钮组件
     index.wxml
     index.wxss
     index.js
@@ -296,6 +333,12 @@ doc/
 ---
 
 ## 更新日志
+
+### v1.6.0 (2025-12-05)
+- 完全对齐参考项目架构
+- 移除 `but-list` 和 `but-item` 封装组件
+- 页面直接使用原生样式类 + `btn-action`/`btn-action-icon` 组件
+- 组件内直接 `@import` 样式文件，确保样式正确生效
 
 ### v1.5.1 (2025-12-04)
 - 从参考项目迁移规范化样式

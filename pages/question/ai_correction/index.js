@@ -233,7 +233,7 @@ Page({
   },
   toWordDetail({ currentTarget: { dataset } }) {
     wx.navigateTo({
-      url: '/pages/question/reading_detail/reading_detail' + api.parseParams(dataset),
+      url: '/pages/question/ai_correction_detail/index' + api.parseParams(dataset),
     })
   },
   //批量上传录音文件

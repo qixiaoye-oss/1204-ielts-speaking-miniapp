@@ -1,7 +1,7 @@
 /**
  * 按钮组样式库 (Button Group Styles)
- * @version 1.5.1
- * @date 2025-12-04
+ * @version 1.6.0
+ * @date 2025-12-05
  * @description 微信小程序通用按钮组 CSS 样式工具类库，包含固定底部容器、多种布局模式和蒙版功能
  * @note 这是一个纯 CSS 样式库，不是微信小程序自定义组件。通过 @import 引入后直接使用类名即可。
  *

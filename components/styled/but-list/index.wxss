@@ -1,8 +1,0 @@
-/**
- * but-list 组件样式
- *
- * 注意：主要样式已迁移至全局 button-group.wxss
- * 此组件通过外部样式类 (~btn-page-bottom, ~btn-group-layout-inline-center) 引用全局样式
- */
-
-/* 组件特有样式可在此扩展 */

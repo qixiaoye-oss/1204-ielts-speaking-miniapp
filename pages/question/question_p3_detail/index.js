@@ -125,7 +125,7 @@ Page({
     }
     // 新版开始跟读
     wx.navigateTo({
-      url: '/pages/question/reading/reading' + api.parseParams(param),
+      url: '/pages/question/ai_correction/index' + api.parseParams(param),
     })
   },
   gotoMaterialBlock(e) {

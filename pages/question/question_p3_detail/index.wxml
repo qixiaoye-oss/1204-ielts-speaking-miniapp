@@ -106,4 +106,4 @@
   </view>
 </block>
 <no-data wx:else></no-data>
-<custom_popus show="{{showPopus}}" bind:cancel="popupCancel" bind:confirm="popupConfirm" selected="{{level}}"></custom_popus>
+<custom-popup show="{{showPopus}}" bind:cancel="popupCancel" bind:confirm="popupConfirm" selected="{{level}}"></custom-popup>

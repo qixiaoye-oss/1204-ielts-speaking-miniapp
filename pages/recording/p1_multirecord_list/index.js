@@ -1,5 +1,5 @@
 const api = getApp().api
-const loadingProgress = require('../../../../behaviors/loadingProgress')
+const loadingProgress = require('../../../behaviors/loadingProgress')
 let audio = null
 let timer = null
 Page({
@@ -12,14 +12,6 @@ Page({
   onLoad(options) {
     this.startLoading()
     api.getUser(this)
-    if (options.userId == this.data.user.id || this.data.user.isManager == 1) {
-      this.listRecording(false)
-    } else {
-      api.modal("提示", '暂无权限', false)
-      return
-    }
-    this.getData(true)
-    this.listRecording(false)
     audio = wx.createInnerAudioContext()
     audio.onPlay(() => {
       console.log('开始播放', new Date().getTime());
@@ -31,17 +23,18 @@ Page({
       api.audioErr(err, audio.src)
       // api.modal("", "本模块电脑版播放功能需要等待微信官方更新，目前手机/平板可以正常播放。", false)
     })
+    if (options.userId == this.data.user.id || this.data.user.isManager == 1) {
+      this.listRecording(false)
+    } else {
+      api.modal("提示", '暂无权限', false)
+      return
+    }
   },
   onUnload() {
     audio.destroy()
   },
   onShareAppMessage() {
     return api.share('考雅狂狂说', this)
-  },
-  toDetail(e) {
-    // wx.navigateTo({
-    //   url: '../../history_record_detail/index?id=' + e.currentTarget.dataset.id + '&userId=' + api.getUserId() + '&mode=single',
-    // })
   },
   // ===========生命周期 End===========
   // ===========业务操作 Start===========
@@ -71,29 +64,7 @@ Page({
     })
   },
   audioBtn(e) {
-    const { list } = this.data
-    let index = e.currentTarget.dataset.index
-    const item = list[index]
-    if (item.publicStatus == '1') {
-      this.audioUpdate1(item.id)
-    } else {
-      this.audioUpdate2(item.id)
-    }
-  },
-  audioUpdate1(id) {
-    wx.showActionSheet({
-      itemList: ['取消公开', '删除音频'],
-      success: ((res) => {
-        if (res.tapIndex === 0) {
-          this.delPublic(id)
-        }
-        if (res.tapIndex === 1) {
-          this.delRecording(id)
-        }
-      })
-    })
-  },
-  audioUpdate2(id) {
+    let id = e.currentTarget.dataset.id
     wx.showActionSheet({
       itemList: ['删除音频'],
       success: ((res) => {
@@ -103,42 +74,26 @@ Page({
       })
     })
   },
-  // ===========业务操作 End===========
-  // ===========数据获取 Start===========
-  getData(isPull) {
-    api.request(this, '/v2/p1/detail', {
-      ...this.options,
-      userId: api.getUserId()
-    }, isPull).finally(() => {
-      this.finishLoading()
+  toDetail(e) {
+    wx.navigateTo({
+      url: '../history_record_detail/index?id=' + e.currentTarget.dataset.id + '&userId=' + api.getUserId() + '&mode=continuous',
     })
   },
+  // ===========业务操作 End===========
+  // ===========数据获取 Start===========
   listRecording(isPull) {
-    api.request(this, '/v2/p1/single/user/record', {
-      ...this.options,
-      userId: api.getUserId()
+    api.request(this, '/recording/list2Continuous', {
+      ...this.options
     }, isPull).finally(() => {
       this.finishLoading()
     })
   },
   delRecording(id) {
     const _this = this
-    api.request(this, '/v2/p1/single/remove', {
+    api.request(this, '/recording/del2Continuous', {
       id: id
     }, true).then(() => {
       api.toast("删除成功")
-      let timer = setTimeout(() => {
-        _this.listRecording(false)
-        clearTimeout(timer)
-      }, 2000);
-    })
-  },
-  delPublic(id) {
-    const _this = this
-    api.request(this, '/v2/p1/single/public-no', {
-      id: id
-    }, true).then(() => {
-      api.toast("取消成功")
       let timer = setTimeout(() => {
         _this.listRecording(false)
         clearTimeout(timer)

@@ -1,7 +1,0 @@
-{
-  "usingComponents": {
-    "no-data": "/components/no-data/index",
-    "buts": "/components/styled/but-list/index",
-    "but": "/components/styled/but-item/index"
-  }
-}

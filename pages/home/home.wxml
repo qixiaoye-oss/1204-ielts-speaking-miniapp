@@ -21,7 +21,7 @@
       </view>
       <view class="popular-science btn-action" style="background: {{popularScience.colorRgba}};" hover-class="tap-active" bind:tap="toPopularScienceListPage">
         <view style="color: {{popularScience.colorRgb}};">查看所有</view>
-        <image src="/image/v2/next.png"></image>
+        <image src="/image/v2/go_bt.png"></image>
       </view>
     </view>
   </view>

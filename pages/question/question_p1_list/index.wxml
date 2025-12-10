@@ -46,7 +46,7 @@
   <view class="btn-group-layout-inline-center">
     <btn-action type="recording" bindtap="recordingOrClocking">
       <view>连续录音</view>
-      <image src="/image/v2/recording.png"></image>
+      <image src="/image/v2/desktop_mic_bt.png"></image>
       <view class="btn-corner-mark btn--recording-corner-mark" wx:if="{{recordingCount > 0}}" style="border-color: {{color}};color: {{color}};">{{recordingCount}}</view>
       <view class="btn-corner-mark btn--recording-corner-mark" wx:else>{{recordingCount}}</view>
     </btn-action>

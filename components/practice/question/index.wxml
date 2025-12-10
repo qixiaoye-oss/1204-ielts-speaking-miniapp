@@ -27,7 +27,7 @@
 <view wx:if="{{detail.state == 'over'}}" class="recoding__complete">
   <image src="{{detail.iconUrl}}" class="recoding-complete__img"></image>
   <view class="recoding-complete__right">
-    <image src="/image/v2/check-mark-button.png" class="recoding-complete__img"></image>
+    <image src="/image/v2/correct_bt.png" class="recoding-complete__img"></image>
     <view class="label_cell_but {{detail.selected ?'label_cell_but_sel':''}}" bind:tap="keywordConfirm">不熟</view>
   </view>
 </view>

@@ -71,7 +71,7 @@
   <view class="btn-group-layout-inline-center">
     <btn-action type="label" bindtap="batchSaveRecord" class="{{!saveBatchButShow ? 'btn--dis' : ''}}">
       <view>提交并评分</view>
-      <image src="/image/v2/medal.png"></image>
+      <image src="/image/v2/medal_bt.png"></image>
     </btn-action>
   </view>
 </view>

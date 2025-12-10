@@ -3,11 +3,11 @@
 
 <view class="series">
   <view class="series__item {{showMode === 'full'?'full__active':''}}" hover-class="tap-active" bind:tap="changeShowMode" data-mode="full">
-    <image src="/image/v2/list.png"></image>
+    <image src="/image/v2/folder_bt.png"></image>
     <text>列表显示</text>
   </view>
   <view class="series__item {{showMode === 'simple'?'simple__active':''}}" hover-class="tap-active" bind:tap="changeShowMode" data-mode="simple">
-    <image src="/image/v2/point.png"></image>
+    <image src="/image/v2/pin_bt.png"></image>
     <text>标签显示</text>
   </view>
 </view>
@@ -26,7 +26,7 @@
             <image class="chapter__title-icon" wx:if="{{chapter.iconUrl}}" src="{{chapter.iconUrl}}" />
             <view class="chapter__title-text">{{chapter.title}}</view>
           </view>
-          <image class="chapter__header-mastered" wx:if="{{chapter.hasMastered}}" src="/image/v2/check-mark-button.png"></image>
+          <image class="chapter__header-mastered" wx:if="{{chapter.hasMastered}}" src="/image/v2/correct_bt.png"></image>
           <view class="chapter__tag">
             <view class="chapter__focus-tag" wx:if="{{chapter.description}}">{{chapter.description}}</view>
             <view class="chapter__auth-tag" wx:if="{{chapter.isChargeable == 1}}">权限</view>
@@ -64,7 +64,7 @@
           <image class="chapter__title-icon" wx:if="{{chapter.iconUrl}}" src="{{chapter.iconUrl}}" />
           <view class="chapter__title-text">{{chapter.title}}</view>
         </view>
-        <image class="chapter--mastered-img " wx:if="{{chapter.hasMastered}}" src="/image/v2/check-mark-button.png"></image>
+        <image class="chapter--mastered-img " wx:if="{{chapter.hasMastered}}" src="/image/v2/correct_bt.png"></image>
       </view>
     </view>
   </view>

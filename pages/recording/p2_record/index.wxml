@@ -45,19 +45,19 @@
     <block wx:if="{{status === 0}}">
       <btn-action type="audio" bindtap="gatUserAuthor">
         <view>点击开始答题/录音</view>
-        <image src="/image/v2/stop.png" class="btn--dis"></image>
+        <image src="/image/v2/stop_bt.png" class="btn--dis"></image>
       </btn-action>
     </block>
     <block wx:if="{{status === 1}}">
       <btn-action type="audio" bindtap="stopRecoding">
         <view>录音中，用时{{file.duration}}秒</view>
-        <image src="/image/v2/stop.png"></image>
+        <image src="/image/v2/stop_bt.png"></image>
       </btn-action>
     </block>
     <block wx:if="{{status === 2}}">
       <btn-action type="audio" bindtap="confirm">
         <view>点击提交保存</view>
-        <image src="/image/v2/down.png"></image>
+        <image src="/image/v2/down_bt.png"></image>
       </btn-action>
     </block>
   </view>

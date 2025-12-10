@@ -31,7 +31,7 @@
     <view class="btn-group-layout-inline-center">
       <btn-action type="quit" bindtap="goBack">
         <view>返回</view>
-        <image src="/image/v2/save-return.png"></image>
+        <image src="/image/v2/save_bt.png"></image>
       </btn-action>
     </view>
   </view>

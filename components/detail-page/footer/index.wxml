@@ -10,6 +10,6 @@
       </block>
     </view>
     <!-- <view class="detail-header__right-recording">录音/评分</view> -->
-    <image class="detail-body__content-icon" src="/image/v2/robot.png"></image>
+    <image class="detail-body__content-icon" src="/image/v2/robot_bt.png"></image>
   </view>
 </view>

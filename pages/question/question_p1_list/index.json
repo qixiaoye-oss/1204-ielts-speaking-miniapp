@@ -1,6 +1,3 @@
 {
-  "usingComponents": {
-    "btn-action": "/components/btn-action/index",
-    "btn-action-icon": "/components/btn-action-icon/index"
-  }
+  "usingComponents": {}
 }

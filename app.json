@@ -64,7 +64,11 @@
   },
   "style": "v2",
   "resizable": true,
-  "usingComponents": {},
+  "usingComponents": {
+    "tap-action": "/components/tap-action/index",
+    "btn-action": "/components/btn-action/index",
+    "btn-action-icon": "/components/btn-action-icon/index"
+  },
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents",

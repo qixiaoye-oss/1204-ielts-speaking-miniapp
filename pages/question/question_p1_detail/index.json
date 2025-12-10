@@ -4,8 +4,6 @@
     "header": "/components/detail-page/header/index",
     "footer": "/components/detail-page/footer/index",
     "sentence": "/components/detail-page/sentence/index",
-    "btn-action": "/components/btn-action/index",
-    "btn-action-icon": "/components/btn-action-icon/index",
     "custom_popus": "/components/custom_popup/custom_popup"
   }
 }

@@ -1,8 +1,6 @@
 {
   "usingComponents": {
     "progess": "/components/recording/single/progess/index",
-    "question": "/components/recording/single/question/index",
-    "btn-action": "/components/btn-action/index",
-    "btn-action-icon": "/components/btn-action-icon/index"
+    "question": "/components/recording/single/question/index"
   }
 }

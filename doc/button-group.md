@@ -7,22 +7,23 @@
 
 ## 版本
 
-**当前版本：** v1.6.0
-**发布日期：** 2025-12-05
+**当前版本：** v2.0.0
+**发布日期：** 2025-12-10
 
 ## 特性
 
 - 纯 CSS 实现，无需 js/json/wxml 文件
-- 高度灵活，自由组合结构和样式
+- **data-icon 图标颜色自动映射** (v2.0 新增)
+- **btn-pos-* 按钮位置类** (v2.0 新增)
+- **tap-action 组件支持** (v2.0 新增)
 - 固定底部按钮组容器（含蒙版A和蒙版B）
 - 双层结构布局（split）
 - 单行居中布局（inline-center）
-- 三分式布局（tripartite）
 - 基础按钮样式（带图标、纯图标）
 - 10种功能色彩类
+- 按钮动画（shake样式）
 - 零外部依赖，开箱即用
 - CSS变量配置，灵活自定义
-- 完整的蒙版系统，平滑视觉过渡
 
 ---
 
@@ -36,39 +37,55 @@
 @import "style/button-group.wxss";
 ```
 
-### 2. 使用按钮组
+### 2. 注册组件
 
-#### 示例1：单层按钮组（1-3个按钮）
+在页面或全局 `app.json` 中注册 `tap-action` 组件：
 
-适用于按钮数量较少且同等重要的场景。
+```json
+{
+  "usingComponents": {
+    "tap-action": "/components/tap-action/index"
+  }
+}
+```
+
+### 3. 使用示例
+
+#### 示例1：使用 tap-action 组件 (推荐)
 
 ```xml
 <view class="btn-page-bottom">
   <view class="btn-group-layout-inline-center">
-    <view class="btn-action btn--correct" bindtap="submit">
+    <tap-action icon="play" bind:tap="onPlay">
+      <view>播放</view>
+      <image src="/image/v2/play_bt.png"></image>
+    </tap-action>
+    <tap-action icon="correct" bind:tap="onSubmit">
       <view>提交</view>
-      <image src="/images/submit.png"></image>
-    </view>
+      <image src="/image/v2/correct_bt.png"></image>
+    </tap-action>
   </view>
 </view>
 ```
 
-#### 示例2：双层按钮组（4个以上或需区分主次）
-
-适用于按钮较多或需要区分主次操作的场景。
+#### 示例2：双层按钮组
 
 ```xml
 <view class="btn-page-bottom">
   <view class="btn-group-layout-split">
     <!-- 上层：主要操作 -->
     <view class="btn-group-layout-split__header">
-      <view class="btn-action btn--audio" bindtap="play">
-        <view>播放</view>
-        <image src="/images/play.png"></image>
+      <view class="btn-pos-left">
+        <tap-action icon="play" bind:tap="onPlay">
+          <view>播放</view>
+          <image src="/image/v2/play_bt.png"></image>
+        </tap-action>
       </view>
-      <view class="btn-action btn--correct" bindtap="submit">
-        <view>提交</view>
-        <image src="/images/submit.png"></image>
+      <view class="btn-pos-right">
+        <tap-action icon="correct" bind:tap="onSubmit">
+          <view>提交</view>
+          <image src="/image/v2/correct_bt.png"></image>
+        </tap-action>
       </view>
     </view>
 
@@ -77,50 +94,88 @@
 
     <!-- 下层：辅助操作 -->
     <view class="btn-group-layout-split__footer">
-      <view class="btn-action-icon btn--setting" bindtap="openSettings">
-        <image src="/images/setting.png"></image>
-      </view>
-      <view class="btn-action btn--list" bindtap="showList">
+      <tap-action icon="setting" bind:tap="openSettings">
+        <image src="/image/v2/setting_bt.png"></image>
+      </tap-action>
+      <tap-action icon="list" bind:tap="showList">
         <view>列表</view>
-        <image src="/images/list.png"></image>
-      </view>
+        <image src="/image/v2/list_bt.png"></image>
+      </tap-action>
     </view>
   </view>
 </view>
 ```
 
+#### 示例3：卡片点击效果
+
+```xml
+<tap-action type="card" bind:tap="onCardClick">
+  <view class="my-card">
+    <!-- 卡片内容 -->
+  </view>
+</tap-action>
+```
+
+---
+
+## tap-action 组件
+
+### 属性
+
+| 属性 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `type` | String | `'button'` | 模式：`'button'` 或 `'card'` |
+| `icon` | String | `''` | 图标名称，用于自动颜色映射 |
+| `disabled` | Boolean | `false` | 是否禁用 |
+| `throttle` | Number | `300` | 节流间隔(ms)，0 表示不节流 |
+
+### icon 颜色映射
+
+使用 `icon` 属性可自动应用对应的颜色样式：
+
+| icon 值 | 颜色 | 用途 |
+|---------|------|------|
+| `play`, `pause`, `save`, `replay`, `restart`, `submit`, `next`, `goto`, `updown` | 蓝色 #00A6ED | 音频、导航操作 |
+| `correct` | 绿色 #00D26A | 正确、确认 |
+| `flag` | 红色 #F8312F | 标记、标签 |
+| `visible`, `hidden` | 棕色 #7D4533 | 显示/隐藏 |
+| `list` | 橙色 #FFB02E | 列表操作 |
+| `setting` | 灰紫 #998EA4 | 设置 |
+| `me` | 深紫 #533566 | 个人中心 |
+
+---
+
+## 按钮位置类
+
+### 单层布局中使用
+
+```xml
+<view class="btn-group-layout-inline-center">
+  <view class="btn-pos-left">
+    <!-- 左侧按钮 -->
+  </view>
+  <view class="btn-pos-right">
+    <!-- 右侧按钮 -->
+  </view>
+</view>
+```
+
+### 位置类说明
+
+| 类名 | 说明 |
+|------|------|
+| `.btn-pos-left` | 左对齐，自动 `margin-right: auto` |
+| `.btn-pos-right` | 右对齐，自动 `margin-left: auto` |
+| `.btn-pos-center` | 居中对齐 |
+
 ---
 
 ## 布局选择指南
-
-### 单层布局 vs 双层布局
 
 | 布局类型 | 类名 | 适用场景 |
 |---------|------|---------|
 | **单层布局** | `btn-group-layout-inline-center` | 1-3个按钮，所有按钮同等重要 |
 | **双层布局** | `btn-group-layout-split` | 4+个按钮，或需区分主次操作 |
-
-### 常见错误
-
-**错误用法**：使用 `btn-group-layout-split` 但只放 `__footer`
-
-```xml
-<!-- 错误：只有单层内容却用双层布局 -->
-<view class="btn-group-layout-split">
-  <view class="btn-group-layout-split__footer">
-    <view class="btn-action btn--audio">播放</view>
-  </view>
-</view>
-```
-
-**正确用法**：
-
-```xml
-<!-- 正确：单层内容用单层布局 -->
-<view class="btn-group-layout-inline-center">
-  <view class="btn-action btn--audio">播放</view>
-</view>
-```
 
 ---
 
@@ -135,21 +190,6 @@
 | 容器 | `.btn-page-bottom` | 固定定位在视窗底部 |
 | 蒙版A | `::before` | 白色背景，覆盖到视窗底部 |
 | 蒙版B | `::after` | 白色渐变，平滑视觉过渡 |
-
-### 按钮组布局
-
-| 类名 | 用途 | 适用场景 |
-|------|------|---------|
-| `.btn-group-layout-split` | 双层结构 | 按钮数量 > 3 或需要区分层级 |
-| `.btn-group-layout-inline-center` | 单行居中 | 按钮数量 ≤ 3 且同等重要 |
-| `.btn-group-layout-tripartite` | 三分式 | 左/中/右 三段布局 |
-
-### 按钮样式
-
-| 类名 | 用途 | 包含内容 |
-|------|------|---------|
-| `.btn-action` | 带文字和图标的按钮 | 文字 + 图标 |
-| `.btn-action-icon` | 纯图标按钮 | 仅图标 |
 
 ### 功能色彩类
 
@@ -169,81 +209,6 @@
 
 ---
 
-## 按钮组件
-
-本项目提供了两个基础按钮组件，与参考项目保持一致：
-
-### `<btn-action>` 组件
-
-带文字和图标的按钮，通过 `type` 属性设置颜色样式。
-
-```xml
-<!-- 在页面 json 中引入 -->
-{
-  "usingComponents": {
-    "btn-action": "/components/btn-action/index",
-    "btn-action-icon": "/components/btn-action-icon/index"
-  }
-}
-
-<!-- 在 wxml 中使用 -->
-<view class="btn-page-bottom">
-  <view class="btn-group-layout-inline-center">
-    <btn-action type="practice" bindtap="onTap">
-      <view>练习</view>
-      <image src="/image/v2/practice.png"></image>
-    </btn-action>
-  </view>
-</view>
-```
-
-**支持的 type 值**：
-- `audio` - 蓝色（音频相关）
-- `correct` - 绿色（确认）
-- `wrong` - 红色（错误）
-- `list` - 黄色（列表）
-- `setting` - 紫灰（设置）
-- `label` - 红色（标签）
-- `recording` - 黑色（录音）
-- `practice` - 深紫（练习）
-- `exercise` - 紫色（习题）
-- `quit` - 灰色边框（退出）
-
-### `<btn-action-icon>` 组件
-
-纯图标按钮，用法类似：
-
-```xml
-<btn-action-icon type="audio" bindtap="onTap">
-  <image src="/image/v2/play.png"></image>
-</btn-action-icon>
-```
-
-### 禁用状态
-
-通过添加 `btn--dis` 类名实现禁用效果：
-
-```xml
-<btn-action type="audio" bindtap="onTap" class="{{disabled ? 'btn--dis' : ''}}">
-  <view>播放</view>
-  <image src="/image/v2/play.png"></image>
-</btn-action>
-```
-
-### 角标徽章
-
-使用 `btn-corner-mark` 类名：
-
-```xml
-<btn-action type="recording" bindtap="onTap">
-  <view>录音</view>
-  <image src="/image/v2/recording.png"></image>
-  <view class="btn-corner-mark btn--recording-corner-mark">5</view>
-</btn-action>
-```
-
----
-
 ## 自定义配置
 
 ### 覆盖默认配置
@@ -260,9 +225,6 @@ page {
 
   /* 修改按钮间距 */
   --button-group-gap: 20px;
-
-  /* 修改功能色彩 */
-  --button-color-audio: #0088CC;
 }
 ```
 
@@ -288,7 +250,7 @@ page {
 --button-group-bottom-distance: 20px;
 --button-group-left-distance: 20px;
 --button-group-right-distance: 20px;
---button-group-z-index: 1000;
+--button-group-z-index: 100;
 
 /* 蒙版配置 */
 --button-group-mask-bg: #FFFFFF;
@@ -297,14 +259,27 @@ page {
 
 ---
 
-## 高度计算
+## 兼容性
 
-为避免固定底部按钮组遮挡内容，需要为页面内容设置 `padding-bottom`：
+### 旧版组件
 
-| 布局类型 | 按钮组高度 | 推荐 padding-bottom |
-|---------|-----------|---------------------|
-| 单层按钮组 | ~67px | 82px (67 + 15) |
-| 双层按钮组 | ~110px | 125px (110 + 15) |
+为保持向后兼容，旧版 `btn-action` 和 `btn-action-icon` 组件仍可使用：
+
+```xml
+<!-- 旧版用法（仍然有效） -->
+<btn-action type="audio" bind:tap="onPlay">
+  <view>播放</view>
+  <image src="/image/v2/play_bt.png"></image>
+</btn-action>
+```
+
+### 推荐迁移
+
+建议逐步迁移到 `tap-action` 组件，以获得：
+- 内置防抖机制
+- icon 颜色自动映射
+- card 模式支持
+- disabled 属性支持
 
 ---
 
@@ -315,16 +290,13 @@ style/
   button-group.wxss    # 按钮组样式库（核心）
 
 components/
-  btn-action/          # 带文字图标的按钮组件
+  tap-action/          # 统一点击组件（推荐）
     index.wxml
     index.wxss
     index.js
     index.json
-  btn-action-icon/     # 纯图标按钮组件
-    index.wxml
-    index.wxss
-    index.js
-    index.json
+  btn-action/          # 旧版按钮组件（兼容）
+  btn-action-icon/     # 旧版图标按钮组件（兼容）
 
 doc/
   button-group.md      # 本文档
@@ -334,19 +306,23 @@ doc/
 
 ## 更新日志
 
+### v2.0.0 (2025-12-10)
+- 完全迁移自参考项目 (1203-ielts-listening-training-miniapp)
+- 新增 `tap-action` 组件，支持 button 和 card 两种模式
+- 新增 `icon` 属性颜色自动映射功能
+- 新增 `btn-pos-left/right/center` 位置类
+- 新增内置防抖机制 (throttle)
+- 新增 `disabled` 属性支持
+- 保留旧版 `btn-action`/`btn-action-icon` 组件兼容性
+
 ### v1.6.0 (2025-12-05)
 - 完全对齐参考项目架构
 - 移除 `but-list` 和 `but-item` 封装组件
-- 页面直接使用原生样式类 + `btn-action`/`btn-action-icon` 组件
-- 组件内直接 `@import` 样式文件，确保样式正确生效
 
 ### v1.5.1 (2025-12-04)
 - 从参考项目迁移规范化样式
 - 统一 CSS 变量命名
 - 添加完整蒙版系统
-- 按钮圆角调整为 3px
-- 添加三分式布局支持
-- 创建完整使用文档
 
 ---
 

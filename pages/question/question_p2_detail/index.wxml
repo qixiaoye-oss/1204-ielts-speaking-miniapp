@@ -14,7 +14,7 @@
           <text>{{detail.supplementaryContent}}</text>
         </view>
       </view>
-      <image class="unit-detail__icon" wx:if="{{detail.audioUrl}}" src="/image/v2/speaker-high-volume.png" />
+      <image class="unit-detail__icon" wx:if="{{detail.audioUrl}}" src="/image/v2/speaker_bt.png" />
     </view>
     <view class="series" wx:if="{{seriesList.length > 0}}">
       <view class="series__item {{seriesIndex == index ?'series__active':''}}" hover-class="tap-active" bind:tap="checkSeries" wx:for="{{seriesList}}" wx:key="item" data-index="{{index}}">
@@ -57,12 +57,12 @@
   </full-screen-view>
   <view class="btn-page-bottom">
     <view class="btn-group-layout-inline-center">
-      <btn-action type="practice" bindtap="recordingOrClocking">
+      <tap-action icon="controller" bind:tap="recordingOrClocking">
         <view>打卡/练习</view>
-        <image src="/image/v2/practice.png"></image>
+        <image src="/image/v2/controller_bt.png"></image>
         <view class="btn-corner-mark btn--practice-corner-mark" wx:if="{{recordingCount > 0}}" style="border-color: {{color}};color: {{color}};">{{recordingCount}}</view>
         <view class="btn-corner-mark btn--practice-corner-mark" wx:else>{{recordingCount}}</view>
-      </btn-action>
+      </tap-action>
     </view>
   </view>
 </block>

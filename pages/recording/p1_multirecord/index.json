@@ -1,7 +1,5 @@
 {
   "usingComponents": {
-    "no-data": "/components/no-data/index",
-    "btn-action": "/components/btn-action/index",
-    "btn-action-icon": "/components/btn-action-icon/index"
+    "no-data": "/components/no-data/index"
   }
 }

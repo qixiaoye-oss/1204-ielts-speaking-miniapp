@@ -1,67 +1,77 @@
 /**
- * 按钮组样式库 (Button Group Styles)
- * @version 1.6.0
- * @date 2025-12-05
- * @description 微信小程序通用按钮组 CSS 样式工具类库，包含固定底部容器、多种布局模式和蒙版功能
- * @note 这是一个纯 CSS 样式库，不是微信小程序自定义组件。通过 @import 引入后直接使用类名即可。
+ * 按钮组样式 (Button Group Style)
+ * @version 2.0.0
+ * @date 2025-12-10
+ * @description 按钮组件的CSS样式文件，用于管理按钮组、按钮等元素的样式。支持多种按钮类型、位置和状态，包括导入使用说明。
+ * @note 查看本文件的CSS样式使用说明，可参考 @import 引入的说明文件。
+ *
+ * @changelog
+ *   v2.0.0 (2025-12-10) - 完全迁移自参考项目，新增 btn-pos-* 位置类、data-icon 颜色映射、tap-action 组件支持
+ *   v1.6.0 (2025-12-05) - 完全对齐参考项目架构
  *
  * @features
  *   - 纯 CSS 实现，无需 js/json/wxml 文件
+ *   - data-icon 图标颜色自动映射
  *   - 固定底部按钮组容器（含蒙版A和蒙版B）
  *   - 双层结构布局（split）
  *   - 单行居中布局（inline-center）
- *   - 三分式布局（tripartite）
+ *   - 按钮位置类（btn-pos-left/right/center）
  *   - 基础按钮样式（带图标、纯图标）
- *   - 10种功能色彩类
+ *   - 按钮动画（shake样式）
  *   - 零外部依赖，开箱即用
  */
 
-/* ==================== 配置变量 ==================== */
-/* 使用者可在 app.wxss 或页面 wxss 中覆盖这些变量以自定义样式 */
+/* ==================== 全局变量定义 ==================== */
+/* 从app.wxss继承wxss样式变量，可在 app.wxss 中覆盖这些变量以自定义样式 */
 
 page {
-  /* 基础配置 */
+  /* 边框相关变量 */
   --button-group-border-width: 1px;
-  --button-group-border-color: rgba(0, 0, 0, 0.3);  /* 边框颜色 */
-  --button-group-border-radius: 9px;           /* 容器圆角 */
-  --button-group-padding: 15px;                /* 容器内边距 */
-  --button-group-gap: 15px;                    /* 按钮间距 */
+  --button-group-border-color: rgba(0, 0, 0, 0.3); /* 边框颜色 */
+  --button-group-border-radius: 9px; /* 圆角半径 */
+  --button-group-padding: 15px; /* 按钮组内边距 */
+  --button-group-gap: 15px; /* 按钮组间距 */
 
-  /* 按钮基础配置 */
-  --button-font-size: 15px;                    /* 按钮文字大小 */
-  --button-line-height: 15px;                  /* 按钮行高 */
-  --button-padding: 5px;                       /* 按钮内边距 */
-  --button-border-radius: 3px;                 /* 按钮圆角 */
-  --button-icon-size: 25px;                    /* 图标尺寸 */
-  --button-icon-margin: 5px;                   /* 图标与文字间距 */
+  /* 按钮相关变量 */
+  --button-font-size: 15px; /* 按钮字体大小 */
+  --button-line-height: 15px; /* 按钮行高 */
+  --button-padding: 5px; /* 按钮内边距 */
+  --button-border-radius: 3px; /* 按钮圆角 */
+  --button-icon-size: 25px; /* 图标尺寸 */
+  --button-icon-margin: 5px; /* 图标与文字间距 */
 
-  /* 固定底部容器配置 */
-  --button-group-bottom-distance: 20px;        /* 距底部距离 */
-  --button-group-left-distance: 20px;          /* 距左侧距离 */
-  --button-group-right-distance: 20px;         /* 距右侧距离 */
-  --button-group-z-index: 1000;                /* 层级 */
+  /* 按钮组底部距离 */
+  --button-group-bottom-distance: 20px; /* 距离底部距离 */
+  --button-group-left-distance: 20px; /* 距离左边距离 */
+  --button-group-right-distance: 20px; /* 距离右边距离 */
+  --button-group-z-index: 100; /* 层级 */
 
-  /* 蒙版配置 */
-  --button-group-mask-bg: #FFFFFF;             /* 蒙版背景色 */
-  --button-group-mask-gradient-height: 15px;   /* 渐变蒙版高度 */
+  /* 蒙层相关变量 */
+  --button-group-mask-bg: #FFFFFF; /* 蒙层背景色 */
+  --button-group-mask-gradient-height: 15px; /* 蒙层高度 */
 
-  /* 功能色彩（可根据项目主题色调整） */
-  --button-color-audio: #00A6ED;               /* 音频播放 - 蓝色 */
-  --button-color-correct: #00D26A;             /* 正确确认 - 绿色 */
-  --button-color-wrong: #F92F60;               /* 错误删除 - 红色 */
-  --button-color-list: #FFB02D;                /* 列表导航 - 黄色 */
-  --button-color-setting: #998EA4;             /* 设置配置 - 紫灰 */
-  --button-color-visible: #7D4533;             /* 显示隐藏 - 棕色 */
-  --button-color-label: #F8312F;               /* 标记标签 - 红色 */
-  --button-color-recording: #212121;           /* 录音相关 - 黑色 */
-  --button-color-practice: #433B6B;            /* 练习模式 - 深紫 */
-  --button-color-exercise: #533566;            /* 习题练习 - 紫色 */
-  --button-color-disabled: #CCCCCC;            /* 禁用状态 - 灰色 */
+  /* 按钮颜色系统 */
+  --button-color-audio: #00A6ED; /* 音频类 - 蓝色 */
+  --button-color-correct: #00D26A; /* 正确答案 - 绿色 */
+  --button-color-wrong: #F92F60; /* 错误答案 - 红色 */
+  --button-color-list: #FFB02D; /* 列表按钮 - 橙色 */
+  --button-color-setting: #998EA4; /* 设置按钮 - 灰紫 */
+  --button-color-visible: #7D4533; /* 显示隐藏 - 棕色 */
+  --button-color-label: #F8312F; /* 标签类 - 红色 */
+  --button-color-recording: #212121; /* 录音中 - 黑色 */
+  --button-color-practice: #433B6B; /* 练习模式 - 紫色 */
+  --button-color-exercise: #533566; /* 习题模式 - 深紫 */
+  --button-color-disabled: #CCCCCC; /* 禁用状态 - 灰色 */
 }
 
-/* ==================== 1. 基础按钮样式 ==================== */
+/* ==================== 1. 按钮样式 ==================== */
 
-/* 带文字和图标的按钮 */
+/**
+ * 按钮基础样式
+ * 宽度自适应，可包含icon+text、text、icon等多种组合
+ * - icon后面有text时，icon与text之间有gap，最后一个元素margin-left为0
+ * - text单独存在时，font-size和padding维持一致
+ */
 .btn-action {
   font-size: var(--button-font-size);
   line-height: var(--button-line-height);
@@ -73,12 +83,18 @@ page {
   justify-content: center;
   position: relative;
   box-sizing: border-box;
+  width: fit-content;
+  white-space: nowrap;
 }
 
 .btn-action image {
   flex-shrink: 0;
   width: var(--button-icon-size);
   height: var(--button-icon-size);
+}
+
+/* 非第一个子元素的icon加左边距 */
+.btn-action image:not(:first-child) {
   margin-left: var(--button-icon-margin);
 }
 
@@ -100,8 +116,7 @@ page {
   height: var(--button-icon-size);
 }
 
-/* ==================== 2. 按钮组布局 - 双层结构 ==================== */
-/* 适用场景：按钮数量 > 3 或需要区分主次操作（上层主操作，下层辅助操作） */
+/* ==================== 2. 按钮组布局 - split排列 ==================== */
 
 .btn-group-layout-split {
   border: var(--button-group-border-width) solid var(--button-group-border-color);
@@ -109,11 +124,10 @@ page {
   box-sizing: border-box;
 }
 
-/* 上层（Header） */
+/* 头部（Header） */
 .btn-group-layout-split__header {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   gap: var(--button-group-gap);
   padding: var(--button-group-padding);
 }
@@ -125,33 +139,17 @@ page {
   background: var(--button-group-border-color);
 }
 
-/* 下层（Footer） */
+/* 页脚（Footer） */
 .btn-group-layout-split__footer {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   gap: var(--button-group-gap);
   padding: var(--button-group-padding);
 }
 
-/* Footer 中最后一个 btn-action 靠右对齐 */
-.btn-group-layout-split__footer > btn-action:last-child,
-.btn-group-layout-split__footer > .btn-action:last-child {
-  margin-left: auto;
-}
-
-/* Footer 中只有一个按钮时居中 */
-.btn-group-layout-split__footer > btn-action:only-child,
-.btn-group-layout-split__footer > .btn-action:only-child,
-.btn-group-layout-split__footer > btn-action-icon:only-child,
-.btn-group-layout-split__footer > .btn-action-icon:only-child {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* ==================== 3. 按钮组布局 - 单行居中 ==================== */
-/* 适用场景：按钮数量 1-3 个，且所有按钮同等重要 */
+/* ==================== 3. 按钮组布局 - inline-center排列 ==================== */
 
 .btn-group-layout-inline-center {
   border: var(--button-group-border-width) solid var(--button-group-border-color);
@@ -164,51 +162,14 @@ page {
   box-sizing: border-box;
 }
 
-/* ==================== 4. 按钮组布局 - 三分式 ==================== */
-/* 适用场景：一行三段式水平布局（左 / 中 / 右，带间隔线） */
-
-.btn-group-layout-tripartite {
-  border: var(--button-group-border-width) solid var(--button-group-border-color);
-  border-radius: var(--button-group-border-radius);
-  display: flex;
-  align-items: center;
-  padding: var(--button-group-padding);
-  box-sizing: border-box;
-}
-
-.btn-group-layout-tripartite__left {
-  flex: 1;
-  display: flex;
-  justify-content: flex-start;
-}
-
-.btn-group-layout-tripartite__center {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
-.btn-group-layout-tripartite__right {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.btn-group-layout-tripartite__divider {
-  width: var(--button-group-border-width);
-  height: 20px;
-  background: var(--button-group-border-color);
-  margin: 0 var(--button-group-gap);
-}
-
-/* ==================== 5. 固定底部容器（含蒙版） ==================== */
+/* ==================== 4. 底部按钮组（页面底部固定定位） ==================== */
 
 /**
- * .btn-page-bottom 是一个完整的固定底部按钮组容器
- * 包含三个核心部分：
- * 1. 容器定位：固定在视窗底部
- * 2. 蒙版A（::before）：白色背景，覆盖到视窗底部
- * 3. 蒙版B（::after）：白色渐变，实现平滑过渡
+ * .btn-page-bottom 适用于需要在页面底部固定显示的按钮组
+ * 同时支持::before和::after伪元素来实现蒙层效果
+ * 1. ::before伪元素在按钮组上方显示蒙层
+ * 2. ::after伪元素在按钮组下方显示渐变蒙层
+ * 3. 可根据需要调整距离和蒙层高度
  */
 .btn-page-bottom {
   position: fixed;
@@ -219,8 +180,8 @@ page {
 }
 
 /**
- * 蒙版A：白色背景
- * 作用：从按钮组顶部向下覆盖到视窗底部，防止滚动内容透出
+ * ::before伪元素创建上方蒙层
+ * 用于遮挡底部按钮组上方的内容
  */
 .btn-page-bottom::before {
   content: '';
@@ -234,8 +195,8 @@ page {
 }
 
 /**
- * 蒙版B：渐变过渡
- * 作用：从按钮组顶部向上渐变到透明，实现平滑视觉过渡
+ * ::after伪元素创建下方蒙层
+ * 用于遮挡底部按钮组下方的内容
  */
 .btn-page-bottom::after {
   content: '';
@@ -248,7 +209,187 @@ page {
   pointer-events: none;
 }
 
-/* ==================== 6. 功能色彩类 ==================== */
+/* ==================== 5. 禁用状态 ==================== */
+
+/* 禁用按钮样式 */
+.btn--dis {
+  opacity: 0.3;
+}
+
+/* ==================== 6. 按钮位置样式 ==================== */
+
+/**
+ * 按钮位置定位
+ * - 左侧：.btn-pos-left / .btn-pos-right / .btn-pos-center 对应不同位置
+ * - 间距：margin-left 通过自动计算实现，gap默认为 15px
+ * - 对齐方式：flex布局，center对齐，space-between分散对齐
+ *
+ * 示例：
+ * <view class="btn-group-layout-split__header">
+ *   <view class="btn-pos-left">
+ *     <tap-action icon="play">播放1</tap-action>
+ *     <tap-action icon="pause">播放2</tap-action>
+ *   </view>
+ *   <view class="btn-pos-right">
+ *     <tap-action icon="list">列表1</tap-action>
+ *   </view>
+ * </view>
+ */
+
+/* 左边按钮 */
+.btn-pos-left {
+  display: flex;
+  align-items: center;
+  gap: var(--button-group-gap);
+  margin-right: auto;
+}
+
+/* 右边按钮 */
+.btn-pos-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--button-group-gap);
+  margin-left: auto;
+}
+
+/* 居中按钮 */
+.btn-pos-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--button-group-gap);
+}
+
+/* 左侧分组 */
+.btn-pos-left-group {
+  display: flex;
+  align-items: center;
+  gap: var(--button-group-gap);
+  margin-right: auto;
+}
+
+.btn-pos-right-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--button-group-gap);
+  margin-left: auto;
+}
+
+.btn-pos-dual-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--button-group-gap);
+}
+
+/* ==================== 7. icon图标样式 - data-icon 颜色映射 ==================== */
+
+/**
+ * icon 图标 - 颜色映射
+ * 使用 data-icon 属性指定图标，图标会自动上色
+ *
+ * 使用示例：
+ * <tap-action icon="save">
+ *    <view>保存</view>
+ *    <image src="/image/v2/save_bt.png"></image>
+ * </tap-action>
+ *
+ * <tap-action icon="play">
+ *    <image src="/image/v2/play_bt.png"></image>
+ * </tap-action>
+ */
+
+/* 蓝色 #00A6ED */
+[data-icon="save"],
+[data-icon="play"],
+[data-icon="pause"],
+[data-icon="replay"],
+[data-icon="restart"],
+[data-icon="submit"],
+[data-icon="next"],
+[data-icon="goto"],
+[data-icon="updown"],
+[data-icon="go"],
+[data-icon="stop"],
+[data-icon="down"] {
+  color: #00A6ED;
+  background-color: rgba(0, 166, 237, 0.15);
+}
+
+/* 绿色 #00D26A */
+[data-icon="correct"] {
+  color: #00D26A;
+  background-color: rgba(0, 210, 106, 0.15);
+}
+
+/* 红色 #F8312F */
+[data-icon="flag"],
+[data-icon="medal"],
+[data-icon="heart"] {
+  color: #F8312F;
+  background-color: rgba(248, 49, 47, 0.15);
+}
+
+/* 棕色 #7D4533 */
+[data-icon="visible"],
+[data-icon="hidden"] {
+  color: #7D4533;
+  background-color: rgba(125, 69, 51, 0.15);
+}
+
+/* 橙色 #FFB02E */
+[data-icon="list"],
+[data-icon="folder"] {
+  color: #FFB02E;
+  background-color: rgba(255, 176, 46, 0.15);
+}
+
+/* 灰紫 #998EA4 */
+[data-icon="setting"] {
+  color: #998EA4;
+  background-color: rgba(153, 142, 164, 0.15);
+}
+
+/* 深紫 #533566 */
+[data-icon="me"],
+[data-icon="mic"] {
+  color: #533566;
+  background-color: rgba(83, 53, 102, 0.15);
+}
+
+/* 紫色 #433B6B */
+[data-icon="controller"] {
+  color: #433B6B;
+  background-color: rgba(67, 59, 107, 0.15);
+}
+
+/* 黑色 #212121 */
+[data-icon="desktop_mic"] {
+  color: #212121;
+  background-color: rgba(33, 33, 33, 0.15);
+}
+
+/* 粉色 #F70A8D */
+[data-icon="pin"] {
+  color: #F70A8D;
+  background-color: rgba(247, 10, 141, 0.15);
+}
+
+/* 灰紫 #CDC4D6 */
+[data-icon="robot"] {
+  color: #CDC4D6;
+  background-color: rgba(205, 196, 214, 0.15);
+}
+
+/* 灰色 #9B9B9B */
+[data-icon="link"] {
+  color: #9B9B9B;
+  background-color: rgba(155, 155, 155, 0.15);
+}
+
+/* ==================== 8. 功能色彩类（兼容旧版） ==================== */
 
 /* 音频播放相关操作 */
 .btn--audio {
@@ -276,11 +417,13 @@ page {
 
 /* 设置、配置 */
 .btn--setting {
+  color: var(--button-color-setting);
   background-color: rgba(153, 142, 164, 0.15);
 }
 
 /* 显示/隐藏切换 */
 .btn--visible {
+  color: var(--button-color-visible);
   background-color: rgba(125, 69, 51, 0.15);
 }
 
@@ -314,14 +457,23 @@ page {
   background-color: rgba(83, 53, 102, 0.15);
 }
 
-/* 禁用状态 */
-.btn--dis {
-  opacity: 0.3;
+/* 退出/放弃按钮 */
+.btn--quit {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  color: #212121;
 }
 
-/* ==================== 7. 辅助类 ==================== */
+/* 灰色文字 */
+.grey-font-color {
+  color: rgba(0, 0, 0, 0.3);
+}
 
-/* 按钮角标（用于显示数字或状态） */
+/* ==================== 9. 按钮角标 ==================== */
+
+/**
+ * 按钮角标样式（右上角红点等）
+ * 显示新消息或其他提示信息
+ */
 .btn-corner-mark {
   position: absolute;
   top: -10px;
@@ -351,35 +503,46 @@ page {
   border-color: var(--button-color-practice);
 }
 
-/* 晃动动画 - 用于提示用户点击 */
-@keyframes btn-shake {
-  0%, 100% { transform: translateX(0); }
-  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
-  20%, 40%, 60%, 80% { transform: translateX(4px); }
-}
+/* ==================== 10. 按钮动画 ==================== */
 
+/* 抖动动画 - 提示用户按钮可交互 */
 .btn--shake {
   animation: btn-shake 0.6s ease-in-out;
 }
 
-/* ==================== 8. 特殊按钮样式 ==================== */
-
-/* 退出/放弃按钮 */
-.btn--quit {
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  color: #212121;
+@keyframes btn-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(3px); }
 }
 
-/* 灰色文字 */
-.grey-font-color {
-  color: rgba(0, 0, 0, 0.3);
-}
-
-/* ==================== 9. 点击反馈效果 ==================== */
-
-/* 通用点击效果 - 用于按钮和卡片 */
+/**
+ * 按钮点击反馈
+ * 当用户点击<tap-action>时，产生视觉反馈
+ * 降低不透明度，缩放至0.98，过渡动画0.1s ease-out
+ */
 .tap-active {
   opacity: 0.7;
   transform: scale(0.98);
   transition: all 0.1s ease-out;
+}
+
+/* ==================== 11. 按钮文本内容 ==================== */
+
+/**
+ * 按钮文本内容样式
+ * 设置按钮内文本的字体大小、行高、对齐方式
+ */
+.btn-text-content {
+  flex: 1;
+  font-size: 15px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* 卡片布局 - 使卡片占据完整宽度 */
+.tap-card {
+  width: 100%;
 }

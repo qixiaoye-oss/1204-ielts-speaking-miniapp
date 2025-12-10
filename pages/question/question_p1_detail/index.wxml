@@ -4,17 +4,17 @@
 <full-screen-view animation="{{animationData}}">
   <view class="unit-detail" style="background:{{detail.questionBackgroundColor}};border-color: {{detail.questionBorderColor}};">
     <view class="unit-detail__text" bind:tap="playMainAudio">{{detail.question}}</view>
-    <image class="unit-detail__icon" wx:if="{{detail.audioUrl}}" src="/image/v2/speaker-high-volume.png" />
+    <image class="unit-detail__icon" wx:if="{{detail.audioUrl}}" src="/image/v2/speaker_bt.png" />
   </view>
   <view class="series" wx:if="{{menus.length > 1}}">
     <block wx:for="{{menus}}" wx:key="item">
       <view wx:if="{{seriesIndex == index }}" class="series__item series__active" style="background: {{detail.questionBackgroundColor}};" hover-class="tap-active" bind:tap="checkSeries" data-index="{{index}}">
         <view>{{item.title}}</view>
-        <image class=" series__item--preferred" wx:if="{{item.isPreferred}}" src="/image/v2/check-mark-button.png"></image>
+        <image class=" series__item--preferred" wx:if="{{item.isPreferred}}" src="/image/v2/correct_bt.png"></image>
       </view>
       <view wx:else class="series__item" hover-class="tap-active" bind:tap="checkSeries" data-index="{{index}}">
         <view>{{item.title}}</view>
-        <image class=" series__item--preferred" wx:if="{{item.isPreferred}}" src="/image/v2/check-mark-button.png"></image>
+        <image class=" series__item--preferred" wx:if="{{item.isPreferred}}" src="/image/v2/correct_bt.png"></image>
       </view>
     </block>
   </view>
@@ -40,8 +40,8 @@
         </view>
         <view class="public-record">
           <view class="public-record__audio" bind:tap="playUserAudio" data-index="{{index}}">
-            <image class="user-head" src="/image/v2/play.png" wx:if="{{item.player == 'stop'}}"></image>
-            <image class="user-head" src="/image/v2/pause_1.png" wx:if="{{item.player == 'play'}}"></image>
+            <image class="user-head" src="/image/v2/play_bt.png" wx:if="{{item.player == 'stop'}}"></image>
+            <image class="user-head" src="/image/v2/pause_bt.png" wx:if="{{item.player == 'play'}}"></image>
             <view style="width: {{item.width}}px;"></view>
             <view>{{item.duration}}"</view>
           </view>
@@ -63,16 +63,16 @@
 </full-screen-view>
 <view class="btn-page-bottom">
   <view class="btn-group-layout-inline-center">
-    <btn-action-icon wx:if="{{idArr.length > 0}}" type="audio" bindtap="changeQuestion" data-type="last" class="{{index == 0 ? 'btn--dis' : ''}}">
-      <image src="/image/v2/next.png" style="transform: rotate(180deg)"></image>
-    </btn-action-icon>
-    <btn-action type="practice" bindtap="practice">
+    <tap-action wx:if="{{idArr.length > 0}}" icon="go" bind:tap="changeQuestion" data-type="last" disabled="{{index == 0}}">
+      <image src="/image/v2/go_bt.png" style="transform: rotate(180deg)"></image>
+    </tap-action>
+    <tap-action icon="controller" bind:tap="practice">
       <view>{{menuName}}</view>
-      <image src="/image/v2/practice.png"></image>
-    </btn-action>
-    <btn-action-icon wx:if="{{idArr.length > 0}}" type="audio" bindtap="changeQuestion" data-type="next" class="{{index == (idArr.length -1) ? 'btn--dis' : ''}}">
-      <image src="/image/v2/next.png"></image>
-    </btn-action-icon>
+      <image src="/image/v2/controller_bt.png"></image>
+    </tap-action>
+    <tap-action wx:if="{{idArr.length > 0}}" icon="go" bind:tap="changeQuestion" data-type="next" disabled="{{index == (idArr.length -1)}}">
+      <image src="/image/v2/go_bt.png"></image>
+    </tap-action>
   </view>
 </view>
 <custom_popus show="{{showPopus}}" bind:cancel="popupCancel" bind:confirm="popupConfirm" selected="{{level}}"></custom_popus>

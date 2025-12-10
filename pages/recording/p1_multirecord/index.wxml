@@ -22,33 +22,33 @@
   <view class="bottom_spacing"></view>
   <view class="btn-page-bottom">
     <view class="btn-group-layout-inline-center">
-      <btn-action type="quit" bindtap="cancel">
+      <tap-action icon="save" bind:tap="cancel">
         <view>放弃</view>
-      </btn-action>
+      </tap-action>
       <view class="flex1"></view>
       <block wx:if="{{status === 0}}">
-        <btn-action type="audio" bindtap="gatUserAuthor">
+        <tap-action icon="stop" bind:tap="gatUserAuthor">
           <view>点击开始答题/录音</view>
-          <image src="/image/v2/stop.png"></image>
-        </btn-action>
+          <image src="/image/v2/stop_bt.png"></image>
+        </tap-action>
       </block>
       <block wx:if="{{status === 1 && (nowPlayAudioIndex < (list.length - 1))}}">
-        <btn-action type="audio" bindtap="nextRecoding" class="{{audioStatus === 'play' ? 'btn--dis' : ''}}">
+        <tap-action icon="go" bind:tap="nextRecoding" disabled="{{audioStatus === 'play'}}">
           <view>请回答.../点击下一题</view>
-          <image src="/image/v2/next.png"></image>
-        </btn-action>
+          <image src="/image/v2/go_bt.png"></image>
+        </tap-action>
       </block>
       <block wx:if="{{status === 1 && (nowPlayAudioIndex == (list.length - 1))}}">
-        <btn-action type="audio" bindtap="stopRecoding" class="{{audioStatus === 'play' ? 'btn--dis' : ''}}">
+        <tap-action icon="down" bind:tap="stopRecoding" disabled="{{audioStatus === 'play'}}">
           <view>请回答最后一题...</view>
-          <image src="/image/v2/down.png"></image>
-        </btn-action>
+          <image src="/image/v2/down_bt.png"></image>
+        </tap-action>
       </block>
       <block wx:if="{{status === 2}}">
-        <btn-action type="audio" bindtap="stopRecoding" class="btn--dis">
+        <tap-action icon="down" bind:tap="stopRecoding" disabled="{{true}}">
           <view>请回答最后一题...</view>
-          <image src="/image/v2/down.png"></image>
-        </btn-action>
+          <image src="/image/v2/down_bt.png"></image>
+        </tap-action>
       </block>
     </view>
   </view>

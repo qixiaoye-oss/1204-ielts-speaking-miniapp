@@ -29,10 +29,10 @@
   <view class="bottom_spacing"></view>
   <view class="btn-page-bottom" wx:if="{{list.length > 0}}">
     <view class="btn-group-layout-inline-center">
-      <btn-action type="quit" bindtap="goBack">
+      <tap-action icon="save" bind:tap="goBack">
         <view>返回</view>
-        <image src="/image/v2/save-return.png"></image>
-      </btn-action>
+        <image src="/image/v2/save_bt.png"></image>
+      </tap-action>
     </view>
   </view>
 </view>

@@ -11,7 +11,7 @@
           <text>{{detail.supplementaryContent}}</text>
         </view>
       </view>
-      <image class="unit-detail__icon" wx:if="{{detail.audioUrl}}" src="/image/v2/speaker-high-volume.png" />
+      <image class="unit-detail__icon" wx:if="{{detail.audioUrl}}" src="/image/v2/speaker_bt.png" />
     </view>
     <view class="link-block" hover-class="tap-active" bind:tap="gotoMaterialBlock" wx:for="{{materials}}" wx:key="item" data-id="{{item.id}}">
       <view class="link-block__title">
@@ -90,18 +90,18 @@
   </full-screen-view>
   <view class="btn-page-bottom">
     <view class="btn-group-layout-inline-center">
-      <btn-action-icon wx:if="{{idArr.length > 0}}" type="audio" bindtap="changeQuestion" data-type="last" class="{{index == 0 ? 'btn--dis' : ''}}">
-        <image src="/image/v2/next.png" style="transform: rotate(180deg)"></image>
-      </btn-action-icon>
-      <btn-action type="recording" bindtap="recordingOrClocking">
+      <tap-action wx:if="{{idArr.length > 0}}" icon="go" bind:tap="changeQuestion" data-type="last" disabled="{{index == 0}}">
+        <image src="/image/v2/go_bt.png" style="transform: rotate(180deg)"></image>
+      </tap-action>
+      <tap-action icon="desktop_mic" bind:tap="recordingOrClocking">
         <view>单题打卡/录音</view>
-        <image src="/image/v2/recording.png"></image>
+        <image src="/image/v2/desktop_mic_bt.png"></image>
         <view class="btn-corner-mark btn--recording-corner-mark" wx:if="{{recordingCount > 0}}" style="border-color: {{textColor}};color: {{textColor}};">{{recordingCount}}</view>
         <view class="btn-corner-mark btn--recording-corner-mark" wx:else>{{recordingCount}}</view>
-      </btn-action>
-      <btn-action-icon wx:if="{{idArr.length > 0}}" type="audio" bindtap="changeQuestion" data-type="next" class="{{index == (idArr.length -1) ? 'btn--dis' : ''}}">
-        <image src="/image/v2/next.png"></image>
-      </btn-action-icon>
+      </tap-action>
+      <tap-action wx:if="{{idArr.length > 0}}" icon="go" bind:tap="changeQuestion" data-type="next" disabled="{{index == (idArr.length -1)}}">
+        <image src="/image/v2/go_bt.png"></image>
+      </tap-action>
     </view>
   </view>
 </block>

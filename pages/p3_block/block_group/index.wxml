@@ -19,7 +19,7 @@
         </view>
         <view class="chapter__intervals"></view>
         <view class="chapter__footer">
-          <image class="chapter__footer-icon" src="/image/v2/ballot-box-with-ballot.png" />
+          <image class="chapter__footer-icon" src="/image/v2/clock_in_bt.png" />
           <view class="tag tag__multi tag__multi--gray" wx:if="{{chapter.signInTotal == 0}}">
             <view>打卡</view>
             <view class="tag__intervals"></view>
@@ -56,7 +56,7 @@
         </view>
         <view class="chapter__intervals"></view>
         <view class="chapter__footer" catchtap="toQuestionListPage" data-id="{{chapter.id}}" data-date-label="{{options.dateLabel}}">
-          <image class="chapter__footer-icon" src="/image/v2/link.png" />
+          <image class="chapter__footer-icon" src="/image/v2/link_bt.png" />
           <view class="chapter__footer-link">引用{{chapter.linkTotal}}次</view>
           <view class="chapter__footer-tip">点击查看</view>
         </view>

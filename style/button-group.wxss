@@ -326,8 +326,7 @@ page {
 
 /* 红色 #F8312F */
 [data-icon="flag"],
-[data-icon="medal"],
-[data-icon="heart"] {
+[data-icon="medal"] {
   color: #F8312F;
   background-color: rgba(248, 49, 47, 0.15);
 }
@@ -340,8 +339,7 @@ page {
 }
 
 /* 橙色 #FFB02E */
-[data-icon="list"],
-[data-icon="folder"] {
+[data-icon="list"] {
   color: #FFB02E;
   background-color: rgba(255, 176, 46, 0.15);
 }
@@ -353,8 +351,7 @@ page {
 }
 
 /* 深紫 #533566 */
-[data-icon="me"],
-[data-icon="mic"] {
+[data-icon="me"] {
   color: #533566;
   background-color: rgba(83, 53, 102, 0.15);
 }
@@ -369,24 +366,6 @@ page {
 [data-icon="desktop_mic"] {
   color: #212121;
   background-color: rgba(33, 33, 33, 0.15);
-}
-
-/* 粉色 #F70A8D */
-[data-icon="pin"] {
-  color: #F70A8D;
-  background-color: rgba(247, 10, 141, 0.15);
-}
-
-/* 灰紫 #CDC4D6 */
-[data-icon="robot"] {
-  color: #CDC4D6;
-  background-color: rgba(205, 196, 214, 0.15);
-}
-
-/* 灰色 #9B9B9B */
-[data-icon="link"] {
-  color: #9B9B9B;
-  background-color: rgba(155, 155, 155, 0.15);
 }
 
 /* ==================== 8. 功能色彩类（兼容旧版） ==================== */

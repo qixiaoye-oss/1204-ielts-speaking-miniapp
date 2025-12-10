@@ -1,5 +1,4 @@
 /* tap-action 组件样式 */
-@import "/style/button-group.wxss";
 
 /* 宿主元素 - 使响应式触摸反馈的样式应用于整个组件 */
 :host {

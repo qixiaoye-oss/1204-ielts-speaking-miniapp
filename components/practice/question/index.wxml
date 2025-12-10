@@ -7,7 +7,7 @@
       <view class="recoding__header-tip">
         <view class="sentence_instruction" style="color: {{color}};background: {{background}};">{{detail.instruction}}</view>
         <block wx:if="{{detail.state == 'answer' }}">
-          <image src="/image/v2/speaker-high-volume.png" wx:if="{{detail.sampleAudio}}" class="recoding-complete__img" bind:tap="listenStatementAudio"></image>
+          <image src="/image/v2/speaker_bt.png" wx:if="{{detail.sampleAudio}}" class="recoding-complete__img" bind:tap="listenStatementAudio"></image>
         </block>
       </view>
       <view class="sentence_cover" wx:if="{{detail.statementContent}}">{{detail.statementContent}}</view>

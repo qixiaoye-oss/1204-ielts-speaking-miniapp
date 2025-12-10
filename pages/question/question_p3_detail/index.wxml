@@ -11,7 +11,7 @@
           <text>{{detail.supplementaryContent}}</text>
         </view>
       </view>
-      <image class="unit-detail__icon" wx:if="{{detail.audioUrl}}" src="/image/v2/speaker-high-volume.png" />
+      <image class="unit-detail__icon" wx:if="{{detail.audioUrl}}" src="/image/v2/speaker_bt.png" />
     </view>
     <view class="link-block" hover-class="tap-active" bind:tap="gotoMaterialBlock" wx:for="{{materials}}" wx:key="item" data-id="{{item.id}}">
       <view class="link-block__title">

@@ -14,7 +14,7 @@
           <text>{{detail.supplementaryContent}}</text>
         </view>
       </view>
-      <image class="unit-detail__icon" wx:if="{{detail.audioUrl}}" src="/image/v2/speaker-high-volume.png" />
+      <image class="unit-detail__icon" wx:if="{{detail.audioUrl}}" src="/image/v2/speaker_bt.png" />
     </view>
     <view class="series" wx:if="{{seriesList.length > 0}}">
       <view class="series__item {{seriesIndex == index ?'series__active':''}}" hover-class="tap-active" bind:tap="checkSeries" wx:for="{{seriesList}}" wx:key="item" data-index="{{index}}">

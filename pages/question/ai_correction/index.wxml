@@ -39,16 +39,16 @@
         <view class="recording__status-none" wx:if="{{sentence.recordingStatus === 'stopped'}}" bind:tap="recordingChange" data-index="{{sentenceIndex}}"></view>
         <view class="recording__status-active" wx:if="{{sentence.recordingStatus === 'playing'}}" bind:tap="recordingChange" data-index="{{sentenceIndex}}"></view>
         <block wx:if="{{sentence.recordingStatus === 'playing'}}">
-          <image src="/image/v2/left_red.png" class="recording__img"></image>
+          <image src="/image/v2/stop_bt.png" class="recording__img"></image>
           <view>录制中</view>
         </block>
         <block wx:if="{{sentence.recordingUrl && sentence.recordingStatus === 'stopped'}}">
-          <image src="/image/v2/left_grey.png" class="recording__img"></image>
+          <image src="/image/v2/stop_bt.png" class="recording__img"></image>
           <view class="recording__file-empty">重录</view>
         </block>
       </view>
       <view class="recording__middle">
-        <image wx:if="{{sentence.recordingStatus === 'playing'}}" class="recording__status-img" src="/image/v2/palying_dis.png"></image>
+        <image wx:if="{{sentence.recordingStatus === 'playing'}}" class="recording__status-img" src="/image/v2/stop_bt.png"></image>
         <block wx:else>
           <view class="recording__file-empty" wx:if="{{!sentence.recordingUrl}}">暂无录音</view>
           <view class="audio__play" wx:else bind:tap="recordingPlayChange" data-index="{{sentenceIndex}}">

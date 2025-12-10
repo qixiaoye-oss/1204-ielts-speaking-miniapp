@@ -1,0 +1,19 @@
+/* tap-action 组件样式 */
+@import "/style/button-group.wxss";
+
+/* 宿主元素 - 使响应式触摸反馈的样式应用于整个组件 */
+:host {
+  display: block;
+}
+
+/* 按下效果 - 通过改变透明度和缩放来实现点击反馈 */
+.tap-active {
+  opacity: 0.7;
+  transform: scale(0.98);
+  transition: all 0.1s ease-out;
+}
+
+/* 卡片布局 - 使卡片占据完整宽度 */
+.tap-card {
+  width: 100%;
+}

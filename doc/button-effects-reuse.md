@@ -47,13 +47,13 @@
 <!-- 按钮模式 - 自动颜色映射 -->
 <tap-action icon="play" bind:tap="onPlay">
   <view>播放</view>
-  <image src="/image/v2/play_bt.png"></image>
+  <image src="/images/v2/play_bt.png"></image>
 </tap-action>
 
 <!-- 按钮模式 - 禁用状态 -->
 <tap-action icon="submit" disabled="{{isSubmitting}}" bind:tap="onSubmit">
   <view>提交</view>
-  <image src="/image/v2/submit_bt.png"></image>
+  <image src="/images/v2/submit_bt.png"></image>
 </tap-action>
 
 <!-- 卡片模式 -->
@@ -67,11 +67,11 @@
 ```xml
 <btn-action type="audio" bind:tap="onPlay">
   <view>播放</view>
-  <image src="/image/play.png"></image>
+  <image src="/images/play.png"></image>
 </btn-action>
 
 <btn-action-icon type="setting" bind:tap="openSettings">
-  <image src="/image/setting.png"></image>
+  <image src="/images/setting.png"></image>
 </btn-action-icon>
 ```
 
@@ -82,7 +82,7 @@
 ```xml
 <view class="btn-action" data-icon="play" hover-class="tap-active" bind:tap="onPlay">
   <view>播放</view>
-  <image src="/image/v2/play_bt.png"></image>
+  <image src="/images/v2/play_bt.png"></image>
 </view>
 
 <view class="my-card" hover-class="tap-active" bind:tap="onCardClick">

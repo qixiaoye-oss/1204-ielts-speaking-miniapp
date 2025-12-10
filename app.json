@@ -51,14 +51,14 @@
       {
         "pagePath": "pages/home/home",
         "text": "口语",
-        "iconPath": "image/v2/speaking.png",
-        "selectedIconPath": "image/v2/speaking_active.png"
+        "iconPath": "images/v2/speaking.png",
+        "selectedIconPath": "images/v2/speaking_active.png"
       },
       {
         "pagePath": "pages/user/user/user",
         "text": "我的",
-        "iconPath": "image/v2/me.png",
-        "selectedIconPath": "image/v2/me_active.png"
+        "iconPath": "images/v2/me.png",
+        "selectedIconPath": "images/v2/me_active.png"
       }
     ]
   },

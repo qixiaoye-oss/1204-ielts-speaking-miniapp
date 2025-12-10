@@ -29,8 +29,8 @@
   <view>{{file.time}}</view>
   <view class="layout_flex">
     <view class="audio_duration" style="margin-right: 10px;">{{file.duration}}秒</view>
-    <image class="img20" wx:if="{{audioStatus == 'stop'}}" src="/image/icon/play.png" bind:tap="playAudio"></image>
-    <image class="img20" wx:else src="/image/icon/pause.png" bind:tap="stopAudio"></image>
+    <image class="img20" wx:if="{{audioStatus == 'stop'}}" src="/images/icon/play.png" bind:tap="playAudio"></image>
+    <image class="img20" wx:else src="/images/icon/pause.png" bind:tap="stopAudio"></image>
   </view>
 </view>
 <view class="f12 recording_tip" wx:if="{{detail.type == 2}}">请先自行计时1分钟做准备，准备好后点击开始录制；回答完毕后点击结束停止录制。时间限制2分钟以内。</view>
@@ -45,19 +45,19 @@
     <block wx:if="{{status === 0}}">
       <tap-action icon="stop" bind:tap="gatUserAuthor">
         <view>点击开始答题/录音</view>
-        <image src="/image/v2/stop_bt.png"></image>
+        <image src="/images/v2/stop_bt.png"></image>
       </tap-action>
     </block>
     <block wx:if="{{status === 1}}">
       <tap-action icon="stop" bind:tap="stopRecoding">
         <view>录音中，用时{{file.duration}}秒</view>
-        <image src="/image/v2/stop_bt.png"></image>
+        <image src="/images/v2/stop_bt.png"></image>
       </tap-action>
     </block>
     <block wx:if="{{status === 2}}">
       <tap-action icon="down" bind:tap="confirm">
         <view>点击提交保存</view>
-        <image src="/image/v2/down_bt.png"></image>
+        <image src="/images/v2/down_bt.png"></image>
       </tap-action>
     </block>
   </view>

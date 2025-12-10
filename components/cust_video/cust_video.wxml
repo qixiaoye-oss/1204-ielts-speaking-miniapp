@@ -3,8 +3,8 @@
     <text class="watermark" wx:for="{{location}}" wx:key="index" style="{{'right:'+(item * 40)+'%'}}">{{watermark}}</text>
     <view class='slider-container' wx:if="{{showControl}}">
       <view class="videoBtnBox">
-        <image src="/image/video/pause.png" class="pauseBtn" wx:if="{{videoBtn}}" catchtap="pause"></image>
-        <image src="/image/video/play.png" class="playBtn" wx:if="{{!videoBtn}}" catchtap="play"></image>
+        <image src="/images/video/pause.png" class="pauseBtn" wx:if="{{videoBtn}}" catchtap="pause"></image>
+        <image src="/images/video/play.png" class="playBtn" wx:if="{{!videoBtn}}" catchtap="play"></image>
       </view>
       <text class="text">{{vleftTime}}</text>
       <slider bindchange="sliderChange" bindchanging="sliderChanging" step="1" value="{{sliderValue}}" backgroundColor="rgba(255,255,255,0.4)" activeColor="rgba(255,255,255,0.8)" block-color="#ffffff" block-size="10" />
@@ -20,7 +20,7 @@
         <view>{{playbackRateStr}}</view>
       </view>
       <view class="videoFullBtnBox">
-        <image src="/image/video/fullbg.png" class="fullBtn" catchtap="videoAllscreen"></image>
+        <image src="/images/video/fullbg.png" class="fullBtn" catchtap="videoAllscreen"></image>
       </view>
     </view>
   </t-video>

@@ -12,7 +12,7 @@
               <view class="home-sub-item__description--text" style="color: {{popularScience.colorRgb}};">{{album.subtitle}}</view>
               <view class="home-sub-item__title--text">{{album.title}}</view>
               <view class="helpful-count">
-                <image src="/image/helpful.png"></image>
+                <image src="/images/helpful.png"></image>
                 <view>{{album.helpfulCount}}人觉得有用</view>
               </view>
             </view>
@@ -21,7 +21,7 @@
       </view>
       <view class="popular-science btn-action" style="background: {{popularScience.colorRgba}};" hover-class="tap-active" bind:tap="toPopularScienceListPage">
         <view style="color: {{popularScience.colorRgb}};">查看所有</view>
-        <image src="/image/v2/go_bt.png"></image>
+        <image src="/images/v2/go_bt.png"></image>
       </view>
     </view>
   </view>

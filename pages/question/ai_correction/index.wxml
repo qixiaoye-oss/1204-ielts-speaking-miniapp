@@ -39,21 +39,21 @@
         <view class="recording__status-none" wx:if="{{sentence.recordingStatus === 'stopped'}}" bind:tap="recordingChange" data-index="{{sentenceIndex}}"></view>
         <view class="recording__status-active" wx:if="{{sentence.recordingStatus === 'playing'}}" bind:tap="recordingChange" data-index="{{sentenceIndex}}"></view>
         <block wx:if="{{sentence.recordingStatus === 'playing'}}">
-          <image src="/image/v2/stop_bt.png" class="recording__img"></image>
+          <image src="/images/v2/stop_bt.png" class="recording__img"></image>
           <view>录制中</view>
         </block>
         <block wx:if="{{sentence.recordingUrl && sentence.recordingStatus === 'stopped'}}">
-          <image src="/image/v2/stop_bt.png" class="recording__img"></image>
+          <image src="/images/v2/stop_bt.png" class="recording__img"></image>
           <view class="recording__file-empty">重录</view>
         </block>
       </view>
       <view class="recording__middle">
-        <image wx:if="{{sentence.recordingStatus === 'playing'}}" class="recording__status-img" src="/image/v2/stop_bt.png"></image>
+        <image wx:if="{{sentence.recordingStatus === 'playing'}}" class="recording__status-img" src="/images/v2/stop_bt.png"></image>
         <block wx:else>
           <view class="recording__file-empty" wx:if="{{!sentence.recordingUrl}}">暂无录音</view>
           <view class="audio__play" wx:else bind:tap="recordingPlayChange" data-index="{{sentenceIndex}}">
-            <image src=" /image/v2/pause.png" class="audio__play-pause-img" wx:if="{{sentence.recordingPlayStatus === 'playing'}}"></image>
-            <image src=" /image/v2/playing.png" class="audio__play-img" wx:if="{{sentence.recordingPlayStatus === 'stopped'}}"></image>
+            <image src=" /images/v2/pause.png" class="audio__play-pause-img" wx:if="{{sentence.recordingPlayStatus === 'playing'}}"></image>
+            <image src=" /images/v2/playing.png" class="audio__play-img" wx:if="{{sentence.recordingPlayStatus === 'stopped'}}"></image>
           </view>
         </block>
       </view>
@@ -71,7 +71,7 @@
   <view class="btn-group-layout-inline-center">
     <tap-action icon="medal" bind:tap="batchSaveRecord" disabled="{{!saveBatchButShow}}">
       <view>提交并评分</view>
-      <image src="/image/v2/medal_bt.png"></image>
+      <image src="/images/v2/medal_bt.png"></image>
     </tap-action>
   </view>
 </view>

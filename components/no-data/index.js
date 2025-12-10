@@ -7,7 +7,7 @@ Component({
   properties: {
     image: {
       type: String,
-      value: "/image/icon/nodata.png"
+      value: "/images/icon/nodata.png"
     },
     text: {
       type: String,

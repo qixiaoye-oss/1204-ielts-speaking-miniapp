@@ -30,16 +30,16 @@
   </full-screen-view>
   <view class="btn-page-bottom" wx:if="{{list.length > 0}}">
     <view class="btn-group-layout-inline-center">
-      <btn-action-icon type="audio" bindtap="changeQuestion" data-type="last" class="{{blockIndex == 0 ? 'btn--dis' : ''}}">
+      <tap-action icon="go" bind:tap="changeQuestion" data-type="last" disabled="{{blockIndex == 0}}">
         <image src="/image/v2/go_bt.png" style="transform: rotate(180deg)"></image>
-      </btn-action-icon>
-      <btn-action type="quit" bindtap="goBack">
+      </tap-action>
+      <tap-action icon="save" bind:tap="goBack">
         <view>返回</view>
         <image src="/image/v2/save_bt.png"></image>
-      </btn-action>
-      <btn-action-icon type="audio" bindtap="changeQuestion" data-type="next" class="{{blockIndex == (idArr.length -1) ? 'btn--dis' : ''}}">
+      </tap-action>
+      <tap-action icon="go" bind:tap="changeQuestion" data-type="next" disabled="{{blockIndex == (idArr.length -1)}}">
         <image src="/image/v2/go_bt.png"></image>
-      </btn-action-icon>
+      </tap-action>
     </view>
   </view>
 </block>

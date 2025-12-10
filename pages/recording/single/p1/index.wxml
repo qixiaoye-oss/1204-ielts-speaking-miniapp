@@ -36,27 +36,27 @@
 </view>
 <view class="btn-page-bottom">
   <view class="btn-group-layout-inline-center">
-    <btn-action type="quit" bindtap="cancel">
+    <tap-action icon="save" bind:tap="cancel">
       <view>放弃</view>
-    </btn-action>
+    </tap-action>
     <view class="flex1"></view>
     <block wx:if="{{recorderState === 'stop'}}">
-      <btn-action type="audio" bindtap="gatUserAuthor">
+      <tap-action icon="stop" bind:tap="gatUserAuthor">
         <view>点击开始录音</view>
-        <image src="/image/v2/stop_bt.png" class="btn--dis"></image>
-      </btn-action>
+        <image src="/image/v2/stop_bt.png"></image>
+      </tap-action>
     </block>
     <block wx:if="{{recorderState === 'play'}}">
-      <btn-action type="audio" bindtap="stopRecoding">
+      <tap-action icon="down" bind:tap="stopRecoding">
         <view>点击结束录音</view>
         <image src="/image/v2/down_bt.png"></image>
-      </btn-action>
+      </tap-action>
     </block>
     <block wx:if="{{recorderState === 'over'}}">
-      <btn-action type="audio" bindtap="confirm">
+      <tap-action icon="down" bind:tap="confirm">
         <view>点击提交保存</view>
         <image src="/image/v2/down_bt.png"></image>
-      </btn-action>
+      </tap-action>
     </block>
   </view>
 </view>

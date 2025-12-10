@@ -63,16 +63,16 @@
 </full-screen-view>
 <view class="btn-page-bottom">
   <view class="btn-group-layout-inline-center">
-    <btn-action-icon wx:if="{{idArr.length > 0}}" type="audio" bindtap="changeQuestion" data-type="last" class="{{index == 0 ? 'btn--dis' : ''}}">
+    <tap-action wx:if="{{idArr.length > 0}}" icon="go" bind:tap="changeQuestion" data-type="last" disabled="{{index == 0}}">
       <image src="/image/v2/go_bt.png" style="transform: rotate(180deg)"></image>
-    </btn-action-icon>
-    <btn-action type="practice" bindtap="practice">
+    </tap-action>
+    <tap-action icon="controller" bind:tap="practice">
       <view>{{menuName}}</view>
       <image src="/image/v2/controller_bt.png"></image>
-    </btn-action>
-    <btn-action-icon wx:if="{{idArr.length > 0}}" type="audio" bindtap="changeQuestion" data-type="next" class="{{index == (idArr.length -1) ? 'btn--dis' : ''}}">
+    </tap-action>
+    <tap-action wx:if="{{idArr.length > 0}}" icon="go" bind:tap="changeQuestion" data-type="next" disabled="{{index == (idArr.length -1)}}">
       <image src="/image/v2/go_bt.png"></image>
-    </btn-action-icon>
+    </tap-action>
   </view>
 </view>
 <custom_popus show="{{showPopus}}" bind:cancel="popupCancel" bind:confirm="popupConfirm" selected="{{level}}"></custom_popus>

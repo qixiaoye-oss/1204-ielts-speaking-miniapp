@@ -31,14 +31,14 @@
   <view class="btn-page-bottom" wx:if="{{list.length > 0}}">
     <view class="btn-group-layout-inline-center">
       <tap-action icon="go" bind:tap="changeQuestion" data-type="last" disabled="{{blockIndex == 0}}">
-        <image src="/image/v2/go_bt.png" style="transform: rotate(180deg)"></image>
+        <image src="/images/v2/go_bt.png" style="transform: rotate(180deg)"></image>
       </tap-action>
       <tap-action icon="save" bind:tap="goBack">
         <view>返回</view>
-        <image src="/image/v2/save_bt.png"></image>
+        <image src="/images/v2/save_bt.png"></image>
       </tap-action>
       <tap-action icon="go" bind:tap="changeQuestion" data-type="next" disabled="{{blockIndex == (idArr.length -1)}}">
-        <image src="/image/v2/go_bt.png"></image>
+        <image src="/images/v2/go_bt.png"></image>
       </tap-action>
     </view>
   </view>

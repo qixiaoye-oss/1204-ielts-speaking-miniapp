@@ -58,11 +58,11 @@
   <view class="btn-group-layout-inline-center">
     <tap-action icon="play" bind:tap="onPlay">
       <view>播放</view>
-      <image src="/image/v2/play_bt.png"></image>
+      <image src="/images/v2/play_bt.png"></image>
     </tap-action>
     <tap-action icon="correct" bind:tap="onSubmit">
       <view>提交</view>
-      <image src="/image/v2/correct_bt.png"></image>
+      <image src="/images/v2/correct_bt.png"></image>
     </tap-action>
   </view>
 </view>
@@ -78,13 +78,13 @@
       <view class="btn-pos-left">
         <tap-action icon="play" bind:tap="onPlay">
           <view>播放</view>
-          <image src="/image/v2/play_bt.png"></image>
+          <image src="/images/v2/play_bt.png"></image>
         </tap-action>
       </view>
       <view class="btn-pos-right">
         <tap-action icon="correct" bind:tap="onSubmit">
           <view>提交</view>
-          <image src="/image/v2/correct_bt.png"></image>
+          <image src="/images/v2/correct_bt.png"></image>
         </tap-action>
       </view>
     </view>
@@ -95,11 +95,11 @@
     <!-- 下层：辅助操作 -->
     <view class="btn-group-layout-split__footer">
       <tap-action icon="setting" bind:tap="openSettings">
-        <image src="/image/v2/setting_bt.png"></image>
+        <image src="/images/v2/setting_bt.png"></image>
       </tap-action>
       <tap-action icon="list" bind:tap="showList">
         <view>列表</view>
-        <image src="/image/v2/list_bt.png"></image>
+        <image src="/images/v2/list_bt.png"></image>
       </tap-action>
     </view>
   </view>
@@ -269,7 +269,7 @@ page {
 <!-- 旧版用法（仍然有效） -->
 <btn-action type="audio" bind:tap="onPlay">
   <view>播放</view>
-  <image src="/image/v2/play_bt.png"></image>
+  <image src="/images/v2/play_bt.png"></image>
 </btn-action>
 ```
 

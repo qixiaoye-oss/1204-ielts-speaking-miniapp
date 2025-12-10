@@ -3,7 +3,7 @@
 
 <view class="user-page">
   <view class="user-info">
-    <image class="user__avatar" src="{{user.headUrl || '/image/wechat.png'}}" mode="cover" />
+    <image class="user__avatar" src="{{user.headUrl || '/images/wechat.png'}}" mode="cover" />
     <view class="user__nickname">
       <view>{{user.nickName || '微信用户'}}</view>
       <view class="user__no">（{{user.no}}）</view>

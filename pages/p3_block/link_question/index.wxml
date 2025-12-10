@@ -11,7 +11,7 @@
     </view>
     <view class="chapter__intervals"></view>
     <view class="chapter__footer">
-      <image class="chapter__footer-icon" src="/image/v2/clock_in_bt.png" />
+      <image class="chapter__footer-icon" src="/images/v2/clock_in_bt.png" />
       <block wx:if="{{chapter.signInTotal === 0}}">
         <view class="tag tag__multi tag__multi--gray">
           <view>录音</view>

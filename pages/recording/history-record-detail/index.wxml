@@ -10,7 +10,7 @@
   </view>
   <view class="recording_cell radius10 layout_flex f_ac">
     <image class="img20" wx:if="{{nowPlayStatus == 'stop'}}" src="/images/icon/play.png" bind:tap="playRecording" data-index="{{index}}"></image>
-    <image class="img20" wx:else src="/images/icon/pause.png" bind:tap="stopAduio"></image>
+    <image class="img20" wx:else src="/images/icon/pause.png" bind:tap="stopAudio"></image>
     <view class="progress">
       <view class="progress_item" style="width: {{progress + '%'}};"></view>
     </view>

@@ -32,7 +32,7 @@ Page({
       // api.modal("", "本模块电脑版播放功能需要等待微信官方更新，目前手机/平板可以正常播放。", false)
     })
     if (this.data.user.id == options.userId || this.data.user.isManager == '1') {
-      this.getRecord(false)
+      this.fetchRecordingDetail(false)
     } else {
       api.modal("提示", '暂无权限', false)
       return
@@ -54,7 +54,7 @@ Page({
     this.audioTimeUpdate()
   },
   playWord(e) {
-    this.stopAduio()
+    this.stopAudio()
     let nowPlayIndex = e.currentTarget.dataset.index
     // console.log(list[nowPlayIndex].wbg)
     audio.startTime = wordArr[nowPlayIndex].wbg
@@ -82,7 +82,7 @@ Page({
       })
     }, 10);
   },
-  stopAduio() {
+  stopAudio() {
     for (let i = 0; i < 4; i++) {
       audio.currentTime
       audio.duration
@@ -98,7 +98,7 @@ Page({
   },
   // ===========业务操作 End===========
   // ===========数据获取 Start===========
-  getRecord(isPull) {
+  fetchRecordingDetail(isPull) {
     api.request(this, '/recording/getContinuousDetail', {
       ...this.options
     }, isPull).then(res => {

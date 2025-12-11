@@ -43,13 +43,13 @@
     </tap-action>
     <view class="flex1"></view>
     <block wx:if="{{status === 0}}">
-      <tap-action icon="stop" bind:tap="gatUserAuthor">
+      <tap-action icon="stop" bind:tap="checkRecordPermission">
         <view>点击开始答题/录音</view>
         <image src="/images/v2/stop_bt.png"></image>
       </tap-action>
     </block>
     <block wx:if="{{status === 1}}">
-      <tap-action icon="stop" bind:tap="stopRecoding">
+      <tap-action icon="stop" bind:tap="stopRecording">
         <view>请回答（{{file.duration}}秒）.../点击结束</view>
         <image src="/images/v2/stop_bt.png"></image>
       </tap-action>

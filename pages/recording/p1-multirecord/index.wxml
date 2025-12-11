@@ -24,7 +24,7 @@
     <view class="layout_flex f_ac">
       <view class="audio_duration" style="margin-right: 10px;">{{file.duration}}秒</view>
       <image class="img20" wx:if="{{audioStatus == 'stop'}}" src="/images/icon/play.png" bind:tap="playRecordedAudio"></image>
-      <image class="img20" wx:else src="/images/icon/pause.png" bind:tap="stopAduio"></image>
+      <image class="img20" wx:else src="/images/icon/pause.png" bind:tap="stopAudio"></image>
     </view>
   </view>
   <view class="bottom_spacing"></view>
@@ -35,19 +35,19 @@
       </tap-action>
       <view class="flex1"></view>
       <block wx:if="{{status === 0}}">
-        <tap-action icon="stop" bind:tap="gatUserAuthor">
+        <tap-action icon="stop" bind:tap="checkRecordPermission">
           <view>点击开始答题/录音</view>
           <image src="/images/v2/stop_bt.png"></image>
         </tap-action>
       </block>
       <block wx:if="{{status === 1 && (nowPlayAudioIndex < (list.length - 1))}}">
-        <tap-action icon="go" bind:tap="nextRecoding" disabled="{{audioStatus === 'play'}}">
+        <tap-action icon="go" bind:tap="nextQuestion" disabled="{{audioStatus === 'play'}}">
           <view>请回答.../点击下一题</view>
           <image src="/images/v2/go_bt.png"></image>
         </tap-action>
       </block>
       <block wx:if="{{status === 1 && (nowPlayAudioIndex == (list.length - 1))}}">
-        <tap-action icon="stop" bind:tap="stopRecoding" disabled="{{audioStatus === 'play'}}">
+        <tap-action icon="stop" bind:tap="stopRecording" disabled="{{audioStatus === 'play'}}">
           <view>请回答.../点击结束</view>
           <image src="/images/v2/stop_bt.png"></image>
         </tap-action>

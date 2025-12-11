@@ -1,7 +1,7 @@
 # 按钮组样式文档 (Button Group Style)
 
 > 文件位置: `style/button-group.wxss`
-> 版本: 2.0.0
+> 版本: 2.1.0
 > 更新日期: 2025-12-11
 
 ## 概述

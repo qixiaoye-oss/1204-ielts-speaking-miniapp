@@ -193,8 +193,9 @@ Page({
     })
   },
   toRecordList(param) {
+    param.type = 1
     wx.navigateTo({
-      url: '/pages/recording/p1-single-record-list/index' + api.parseParams(param),
+      url: '/pages/recording/p1p2p3-record-list/index' + api.parseParams(param),
     })
   },
   // 打卡

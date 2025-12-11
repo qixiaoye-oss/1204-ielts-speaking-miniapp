@@ -1,13 +1,20 @@
 <import src="/templates/loading-progress.wxml"/>
 <template is="loadingProgress" data="{{loading, loadProgress}}"/>
 
-<view class="layout_flex_col content_cell">
+<view class="layout_flex_col content_cell" style="background:{{background}}">
   <view class="question_content">
-    <text>{{detail.question}}</text>
+    <text>{{detail.content || detail.question}}</text>
+  </view>
+  <view class="additional_content" wx:if="{{detail.additionalContent}}">
+    <text>{{detail.additionalContent}}</text>
+  </view>
+  <view class="supplementary_content" wx:if="{{detail.supplementaryContent}}">
+    <view class="f9 cell_lable_mini content_tag layout_flex f_cen2">补</view>
+    <text>{{detail.supplementaryContent}}</text>
   </view>
 </view>
 <view wx:for="{{list}}" wx:key="item" class="recording_cell layout_flex f_ac f_jb fwb f14">
-  <view>{{item.recordingTime}}</view>
+  <view hover-class="tap-active" bind:tap="toDetail" data-id="{{item.id}}">{{item.recordingTime}}</view>
   <view class="layout_flex f_ac">
     <view class="audio_duration">{{item.duration}}秒</view>
     <image class="img20 mi10" wx:if="{{item.playStatus == 'stop'}}" src="/images/icon/play.png" bind:tap="playRecording" data-index="{{index}}"></image>

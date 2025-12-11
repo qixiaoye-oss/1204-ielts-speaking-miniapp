@@ -167,7 +167,7 @@ Page({
   },
   toRecordList(param) {
     wx.navigateTo({
-      url: '/pages/recording/p2p3-record-list/index' + api.parseParams(param),
+      url: '/pages/recording/p1p2p3-record-list/index' + api.parseParams(param),
     })
   },
   punching() {

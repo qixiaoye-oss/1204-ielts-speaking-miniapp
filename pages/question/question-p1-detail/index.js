@@ -164,6 +164,40 @@ Page({
       })
     })
   },
+  // 单题录音或打卡
+  recordingOrClocking() {
+    const _this = this
+    const recordingCount = this.data.recordingCount || 0
+    wx.showActionSheet({
+      itemList: ['仅打卡', '录音', '历史录音（' + recordingCount + '）条'],
+      success: ((res) => {
+        let param = {
+          userId: api.getUserId(),
+          ...this.data.queryParam
+        }
+        if (res.tapIndex === 0) {
+          _this.punching()
+        }
+        if (res.tapIndex === 1) {
+          _this.toRecording(param)
+        }
+        if (res.tapIndex === 2) {
+          _this.toRecordList(param)
+        }
+      })
+    })
+  },
+  toRecording(param) {
+    wx.navigateTo({
+      url: '/pages/recording/p1-single-record/index' + api.parseParams(param),
+    })
+  },
+  toRecordList(param) {
+    param.type = 1
+    wx.navigateTo({
+      url: '/pages/recording/p1p2p3-record-list/index' + api.parseParams(param),
+    })
+  },
   // 打卡
   punching() {
     this.setData({

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "历史录音",
+  "usingComponents": {
+    "no-data": "/components/no-data/index"
+  }
+}

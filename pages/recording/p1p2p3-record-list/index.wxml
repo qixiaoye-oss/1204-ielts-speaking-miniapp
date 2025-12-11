@@ -3,7 +3,7 @@
 
 <view class="layout_flex_col content_cell" style="background:{{background}}">
   <view class="question_content">
-    <text>{{detail.content}}</text>
+    <text>{{detail.content || detail.question}}</text>
   </view>
   <view class="additional_content" wx:if="{{detail.additionalContent}}">
     <text>{{detail.additionalContent}}</text>
@@ -22,3 +22,4 @@
     <image class="img20" src="/images/icon/more.png" bind:tap="audioBtn" data-id="{{item.id}}"></image>
   </view>
 </view>
+<no-data wx:if="{{list.length == 0}}" text="暂无录音"></no-data>

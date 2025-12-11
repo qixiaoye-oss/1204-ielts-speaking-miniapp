@@ -1,0 +1,18 @@
+<import src="/templates/loading-progress.wxml"/>
+<template is="loadingProgress" data="{{loading, loadProgress}}"/>
+
+<view class="layout_flex_col content_cell">
+  <view class="question_content">
+    <text>{{detail.question}}</text>
+  </view>
+</view>
+<view wx:for="{{list}}" wx:key="item" class="recording_cell layout_flex f_ac f_jb fwb f14">
+  <view>{{item.recordingTime}}</view>
+  <view class="layout_flex f_ac">
+    <view class="audio_duration">{{item.duration}}秒</view>
+    <image class="img20 mi10" wx:if="{{item.playStatus == 'stop'}}" src="/images/icon/play.png" bind:tap="playRecording" data-index="{{index}}"></image>
+    <image class="img20 mi10" wx:else src="/images/icon/pause.png" bind:tap="stopAudio"></image>
+    <image class="img20" src="/images/icon/more.png" bind:tap="audioBtn" data-id="{{item.id}}"></image>
+  </view>
+</view>
+<no-data wx:if="{{list.length == 0}}" text="暂无录音"></no-data>

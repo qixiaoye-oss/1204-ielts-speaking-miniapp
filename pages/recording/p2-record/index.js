@@ -184,9 +184,8 @@ Page({
       duration: this.data.duration
     }
     api.request(this, '/recording/save', param, true, "POST").then(res => {
-      wx.redirectTo({
-        url: '../list/list' + api.parseParams(this.options),
-      })
+      wx.disableAlertBeforeUnload()
+      wx.navigateBack()
     })
   },
 })

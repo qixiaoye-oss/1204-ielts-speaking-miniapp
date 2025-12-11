@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "parse-text": "/components/styled/parse-text/index",
+    "parse-text": "/components/parse-text/index",
     "no-data": "/components/no-data/index"
   }
 }

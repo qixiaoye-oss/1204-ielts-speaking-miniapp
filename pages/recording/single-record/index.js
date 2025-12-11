@@ -66,6 +66,7 @@ const RECORDER_CONFIG = {
 }
 
 let timer = null
+let dotsTimer = null  // 动态点定时器
 let manager = null
 let audio = null
 
@@ -117,6 +118,9 @@ Page({
     }
     if (timer) {
       clearInterval(timer)
+    }
+    if (dotsTimer) {
+      clearInterval(dotsTimer)
     }
   },
 
@@ -198,10 +202,28 @@ Page({
   // 开始听题（仅 P1/P3）
   startListening() {
     this.setData({ status: 0.5 })
+    this.startDotsTimer()
     this.playQuestionAudio()
   },
 
+  // 动态点定时器
+  startDotsTimer() {
+    let dotCount = 1
+    dotsTimer = setInterval(() => {
+      dotCount = dotCount >= 3 ? 1 : dotCount + 1
+      this.setData({ dots: '.'.repeat(dotCount) })
+    }, 500)
+  },
+
+  stopDotsTimer() {
+    if (dotsTimer) {
+      clearInterval(dotsTimer)
+      dotsTimer = null
+    }
+  },
+
   startRecording() {
+    this.stopDotsTimer()  // 停止听题阶段的动态点定时器
     this.setData({
       status: 1,
       nowTime: Date.now()

@@ -161,8 +161,9 @@ Page({
     })
   },
   toRecording(param) {
+    param.recordType = 3
     wx.navigateTo({
-      url: '/pages/recording/p3-record/index' + api.parseParams(param),
+      url: '/pages/recording/single-record/index' + api.parseParams(param),
     })
   },
   toRecordList(param) {

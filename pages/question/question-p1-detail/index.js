@@ -188,8 +188,9 @@ Page({
     })
   },
   toRecording(param) {
+    param.recordType = 1
     wx.navigateTo({
-      url: '/pages/recording/p1-single-record/index' + api.parseParams(param),
+      url: '/pages/recording/single-record/index' + api.parseParams(param),
     })
   },
   toRecordList(param) {

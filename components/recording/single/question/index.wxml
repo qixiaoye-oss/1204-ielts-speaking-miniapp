@@ -1,8 +1,0 @@
-<view class="question" style="background: {{background}};border-color: {{borderColor}};">
-  <view class="question__content">{{detail.content}}</view>
-  <view class="question__content--additional" wx:if="{{detail.additionalContent}}">{{detail.additionalContent}}</view>
-  <view class="question__content--supplementary" wx:if="{{detail.supplementaryContent}}">
-    <view class="question__content--tag">补</view>
-    <text>{{detail.supplementaryContent}}</text>1111
-  </view>
-</view>

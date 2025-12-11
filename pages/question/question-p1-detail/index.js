@@ -283,17 +283,10 @@ Page({
   },
   // 处理打卡菜单
   createMenus() {
-    const { detail, list } = this.data
+    const { detail } = this.data
     let menuName = '打卡'
     let munuUrls = ['']
     let menuNames = ['打卡']
-    if (detail.recordStatus === '1') {
-      menuName = menuName + '/录音'
-      munuUrls.push(`/pages/recording/single/p1/index?questionId=${detail.id}&setId=${this.options.setId}`)
-      menuNames.push("录音")
-      munuUrls.push(`/pages/recording/single/p1-history/index?questionId=${detail.id}&setId=${this.options.setId}`)
-      menuNames.push("历史录音")
-    }
     this.setData({
       menuName: menuName,
       munuUrls: munuUrls,

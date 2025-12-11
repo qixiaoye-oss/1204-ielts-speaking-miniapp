@@ -25,8 +25,6 @@
     "pages/recording/p1-multirecord/index",
     "pages/recording/p1-multirecord-list/index",
     "pages/recording/history-record-detail/index",
-    "pages/recording/single/p1/index",
-    "pages/recording/single/p1-history/index",
     "pages/user/user/user",
     "pages/user/login/login",
     "pages/teacher/widget/widget",

@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "progess": "/components/recording/single/progess/index",
-    "question": "/components/recording/single/question/index"
-  }
-}

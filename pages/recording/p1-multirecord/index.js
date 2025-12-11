@@ -32,7 +32,7 @@ Page({
     // 音频控件
     audio = wx.createInnerAudioContext()
     audio.onEnded(() => {
-      this.stopAduio()
+      this.stopAudio()
     })
     audio.onError((res) => {
       console.log(res);
@@ -64,7 +64,7 @@ Page({
   },
   onShow() {
     this.startLoading()
-    this.listData(true)
+    this.fetchQuestionList(true)
     wx.getSetting({
       success(res) {
         if (!res.authSetting['scope.record']) {
@@ -92,7 +92,7 @@ Page({
   },
   // ===========生命周期 End===========
   // ===========业务操作 Start===========
-  gatUserAuthor() {
+  checkRecordPermission() {
     const { recorderManagerConfig } = this.data
     wx.getSetting({
       success(res) {
@@ -112,19 +112,19 @@ Page({
       [`newList[0].finish`]: true
     })
     this.startTimer()
-    this.startPlayingQuesionAudio()
+    this.playQuestionAudio()
   },
-  nextRecoding() {
-    let palyIndex = this.data.nowPlayAudioIndex + 1
-    audio.src = this.data.list[palyIndex]
-    let path = `newList[` + palyIndex + `].finish`
+  nextQuestion() {
+    let playIndex = this.data.nowPlayAudioIndex + 1
+    audio.src = this.data.list[playIndex]
+    let path = `newList[` + playIndex + `].finish`
     this.setData({
-      nowPlayAudioIndex: palyIndex,
+      nowPlayAudioIndex: playIndex,
       [path]: true
     })
     this.playAudio()
   },
-  stopRecoding() {
+  stopRecording() {
     this.setData({ status: 2, pageUnload: false })
     manager.stop()
     clearInterval(timer)
@@ -138,7 +138,7 @@ Page({
       })
     }, 100);
   },
-  startPlayingQuesionAudio() {
+  playQuestionAudio() {
     audio.src = this.data.list[this.data.nowPlayAudioIndex]
     this.playAudio()
   },
@@ -149,7 +149,7 @@ Page({
       audioStatus: 'play'
     })
   },
-  stopAduio() {
+  stopAudio() {
     if (!audio.paused) {
       audio.stop()
     }
@@ -181,7 +181,7 @@ Page({
   },
   // ===========业务操作 End===========
   // ===========数据获取 Start===========
-  listData(isPull) {
+  fetchQuestionList(isPull) {
     api.request(this, '/question/listAudioUrl', {
       userId: api.getUserId(),
       ...this.options

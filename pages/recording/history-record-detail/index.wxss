@@ -1,35 +1,6 @@
+@import "/style/recording.wxss";
+
+/* 录音详情页面特有样式 */
 .recording_cell {
-  padding: 15px 20px;
-  border: 1px solid var(--old-main-color);
-}
-
-.progress {
-  flex: 1;
-  height: 8px;
-  border-radius: 8px;
-  border: 1px solid var(--background-color-2);
-  box-sizing: border-box;
-  overflow: hidden;
-  margin-left: 20px;
-}
-
-.progress_item {
-  height: 6px;
-  background-color: var(--old-main-color);
-}
-
-.word {
-  margin-right: 6px;
-  display: inline-block;
-}
-
-.word_sel {
-  background-color: var(--background-color-1);
-  border-radius: 4px;
-}
-
-.recording_tip {
-  border: 1px solid #F9C176;
-  padding: 10px;
-  background: #FEF0DF;
+  border-color: var(--old-main-color);
 }

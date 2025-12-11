@@ -24,7 +24,7 @@ Page({
     })
     audio = wx.createInnerAudioContext()
     audio.onEnded(() => {
-      this.stopAduio()
+      this.stopAudio()
     })
     audio.onError((res) => {
       console.log(res);
@@ -47,7 +47,7 @@ Page({
       api.recorderErr("P2", res.errMsg)
     })
     manager.onStart(() => {
-      this.startRecoding()
+      this.startRecording()
     })
     wx.enableAlertBeforeUnload({
       message: "未保存录音退出将丢失录音文件，是否退出？",
@@ -55,7 +55,7 @@ Page({
   },
   onShow() {
     this.startLoading()
-    this.getData(true)
+    this.fetchQuestionDetail(true)
     wx.getSetting({
       success(res) {
         if (!res.authSetting['scope.record']) {
@@ -80,19 +80,19 @@ Page({
   },
   // ===========生命周期 End===========
   // ===========业务操作 Start===========
-  gatUserAuthor() {
+  checkRecordPermission() {
     const then = this
     wx.getSetting({
       success(res) {
         if (res.authSetting['scope.record']) {
-          then.initRecoding()
+          then.initRecorder()
         } else {
           api.toast("未开启麦克风权限无法进行录音")
         }
       }
     })
   },
-  initRecoding() {
+  initRecorder() {
     let duration = 60000
     if (this.data.detail.type == 2) {
       duration = 120000
@@ -106,15 +106,15 @@ Page({
       frameSize: 50
     })
   },
-  startRecoding() {
+  startRecording() {
     this.setData({
       status: 1,
       nowTime: Date.now(),
     })
     this.recordingTimer()
-    this.startPlayingQuesionAudio()
+    this.playQuestionAudio()
   },
-  stopRecoding() {
+  stopRecording() {
     this.setData({
       status: 2,
     })
@@ -130,7 +130,7 @@ Page({
       })
     }, 100);
   },
-  startPlayingQuesionAudio() {
+  playQuestionAudio() {
     if (this.data.detail.audioUrl) {
       audio.src = this.data.detail.audioUrl
       this.playAudio()
@@ -143,7 +143,7 @@ Page({
       audioStatus: 'play'
     })
   },
-  stopAduio() {
+  stopAudio() {
     if (!audio.paused) {
       audio.stop()
     }
@@ -165,8 +165,7 @@ Page({
   },
   // ===========业务操作 End===========
   // ===========数据获取 Start===========
-  getData(isPull) {
-    const _this = this
+  fetchQuestionDetail(isPull) {
     api.request(this, '/question/detailNoAnswer', {
       userId: api.getUserId(),
       ...this.options

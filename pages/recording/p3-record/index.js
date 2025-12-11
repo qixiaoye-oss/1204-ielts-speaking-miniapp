@@ -31,7 +31,7 @@ Page({
   onLoad(options) {
     audio = wx.createInnerAudioContext()
     audio.onEnded(() => {
-      this.stopAduio()
+      this.stopAudio()
     })
     audio.onError((res) => {
       console.log(res);
@@ -56,7 +56,7 @@ Page({
     })
     manager.onStart(() => {
       console.log("开始录音监听")
-      this.startRecoding()
+      this.startRecording()
     })
 
     wx.enableAlertBeforeUnload({
@@ -65,7 +65,7 @@ Page({
   },
   onShow() {
     this.startLoading()
-    this.listData(true)
+    this.fetchQuestionList(true)
     wx.getSetting({
       success(res) {
         if (!res.authSetting['scope.record']) {
@@ -76,10 +76,6 @@ Page({
       }
     })
   },
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() { },
   /**
    * 生命周期函数--监听页面卸载
    */
@@ -93,7 +89,7 @@ Page({
   },
   // ===========生命周期 End===========
   // ===========业务操作 Start===========
-  gatUserAuthor() {
+  checkRecordPermission() {
     const { recorderManagerConfig } = this.data
     wx.getSetting({
       success(res) {
@@ -106,42 +102,31 @@ Page({
       }
     })
   },
-  startRecoding() {
+  startRecording() {
     this.setData({
       status: 1,
       nowTime: Date.now()
     })
     this.recordingTimer()
-    this.startPlayingQuesionAudio()
+    this.playQuestionAudio()
   },
-  nextRecoding() {
+  nextQuestion() {
     const { nowPlayAudioIndex } = this.data
-    let palyIndex = nowPlayAudioIndex + 1
-    audio.src = this.data.list[palyIndex].audioUrl
+    let playIndex = nowPlayAudioIndex + 1
+    audio.src = this.data.list[playIndex].audioUrl
     this.setData({
-      nowPlayAudioIndex: palyIndex,
-      [`list[${palyIndex}].finishCount`]: 1
+      nowPlayAudioIndex: playIndex,
+      [`list[${playIndex}].finishCount`]: 1
     })
     this.playAudio()
   },
-  stopRecoding() {
+  stopRecording() {
     this.setData({
       status: 2,
       pageUnload: false
     })
     manager.stop()
     clearInterval(timer)
-  },
-  resetRecoding() {
-    this.stopAduio()
-    this.setData({
-      [`file.name`]: '',
-      [`file.url`]: '',
-      [`file.duration`]: 0,
-      [`file.time`]: '',
-      nowPlayAudioIndex: 0
-    })
-    this.startRecoding()
   },
   recordingTimer() {
     timer = setInterval(() => {
@@ -152,7 +137,7 @@ Page({
       })
     }, 100);
   },
-  startPlayingQuesionAudio() {
+  playQuestionAudio() {
     const { nowPlayAudioIndex } = this.data
     audio.src = this.data.list[nowPlayAudioIndex].audioUrl
     this.playAudio()
@@ -167,7 +152,7 @@ Page({
       audioStatus: 'play'
     })
   },
-  stopAduio() {
+  stopAudio() {
     if (!audio.paused) {
       audio.stop()
     }
@@ -199,7 +184,7 @@ Page({
   },
   // ===========业务操作 End===========
   // ===========数据获取 Start===========
-  listData(isPull) {
+  fetchQuestionList(isPull) {
     api.request(this, '/question/v2/p3/audios', { userId: api.getUserId(), ...this.options }, isPull).finally(() => {
       this.finishLoading()
     })

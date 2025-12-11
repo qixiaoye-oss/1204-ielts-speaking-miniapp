@@ -1,21 +1,21 @@
 <import src="/templates/loading-progress.wxml"/>
 <template is="loadingProgress" data="{{loading, loadProgress}}"/>
 
+<!-- 录音进度条 -->
 <view class="layout_flex progress_cell">
-  <view class="progress_item progress_100" wx:if="{{status === 1}}"></view>
-  <view class="grey_b2 progress_item" wx:else></view>
+  <view class="progress_item {{status === 1 ? 'progress_100' : 'grey_b2'}}"></view>
 </view>
-<view class="layout_flex f_ac f_jb f14 recorder_cell_play" wx:if="{{status === 1}}">
-  <view>录音中</view>
+
+<!-- 录音状态 -->
+<view class="layout_flex f_ac f_jb f14 {{status === 1 ? 'recorder_cell_play' : status === 0.5 ? 'recorder_cell_play' : 'recorder_cell grey_c6 grey_b1'}}">
+  <view>{{status === 1 ? '录音中' : status === 0.5 ? '听题中' : '未开始'}}</view>
   <view>已录制{{file.duration}}s</view>
 </view>
-<view class="layout_flex f_ac f_jb f14 recorder_cell grey_c6 grey_b1" wx:else>
-  <view>未开始</view>
-  <view>已录制{{file.duration}}s</view>
-</view>
-<view class="layout_flex_col content_cell" style="background: {{background}};">
+
+<!-- 题目内容 -->
+<view class="layout_flex_col content_cell" style="{{background ? 'background:' + background : ''}}">
   <view class="question_content">
-    <text>{{detail.content}}</text>
+    <text>{{detail.question || detail.content}}</text>
   </view>
   <view class="additional_content" wx:if="{{detail.additionalContent}}">
     <text>{{detail.additionalContent}}</text>
@@ -25,17 +25,24 @@
     <text>{{detail.supplementaryContent}}</text>
   </view>
 </view>
+
+<!-- 录音文件播放 -->
 <view class="cell layout_flex f_ac f_jb fwb f14 radius9" wx:if="{{file.url}}">
   <view>{{file.time}}</view>
   <view class="layout_flex">
     <view class="audio_duration" style="margin-right: 10px;">{{file.duration}}秒</view>
-    <image class="img20" wx:if="{{audioStatus == 'stop'}}" src="/images/icon/play.png" bind:tap="playAudio"></image>
+    <image class="img20" wx:if="{{audioStatus == 'stop'}}" src="/images/icon/play.png" bind:tap="playRecordedAudio"></image>
     <image class="img20" wx:else src="/images/icon/pause.png" bind:tap="stopAudio"></image>
   </view>
 </view>
-<view class="f12 recording_tip" wx:if="{{detail.type == 2}}">请先自行计时1分钟做准备，准备好后点击开始录制；回答完毕后点击结束停止录制。时间限制2分钟以内。</view>
-<view class="f12 recording_tip" wx:else>点击开始录制后，系统会自动读题（单题），听后直接作答即可；回答完毕后点击结束停止录制。时间限制1分钟以内。</view>
+
+<!-- 提示信息 -->
+<view class="f12 recording_tip" wx:if="{{recordType === 2}}">点击开始后直接录音，回答完毕后点击结束停止录制。时间限制2分钟以内。</view>
+<view class="f12 recording_tip" wx:else>点击开始录制后，系统会自动读题，听后直接作答即可；回答完毕后点击结束停止录制。时间限制2分钟以内。</view>
+
 <view class="bottom_spacing"></view>
+
+<!-- 底部按钮 -->
 <view class="btn-page-bottom">
   <view class="btn-group-layout-inline-center">
     <tap-action icon="save" bind:tap="cancel">
@@ -48,9 +55,15 @@
         <image src="/images/v2/stop_bt.png"></image>
       </tap-action>
     </block>
+    <block wx:if="{{status === 0.5}}">
+      <tap-action icon="stop" disabled="{{true}}">
+        <view>请听题{{dots}}</view>
+        <image src="/images/v2/stop_bt.png"></image>
+      </tap-action>
+    </block>
     <block wx:if="{{status === 1}}">
       <tap-action icon="stop" bind:tap="stopRecording">
-        <view>请回答（{{file.duration}}秒）.../点击结束</view>
+        <view>请回答{{dots}}/{{file.duration}}s/点击结束</view>
         <image src="/images/v2/stop_bt.png"></image>
       </tap-action>
     </block>

@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "progress": "/components/practice/progress",
-    "no-data": "/components/no-data/index"
-  }
-}

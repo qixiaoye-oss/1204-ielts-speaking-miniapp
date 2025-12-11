@@ -42,6 +42,7 @@
     </view>
   </view>
 </view>
+<!-- 隐藏连续录音入口
 <view class="btn-page-bottom">
   <view class="btn-group-layout-inline-center">
     <tap-action icon="desktop_mic" bind:tap="recordingOrClocking">
@@ -52,4 +53,5 @@
     </tap-action>
   </view>
 </view>
+-->
 <no-data wx:if="{{list.length == 0}}"></no-data>

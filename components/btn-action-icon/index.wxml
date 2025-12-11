@@ -1,3 +1,0 @@
-<view class="btn-action-icon btn--{{type}}" hover-class="tap-active" bindtap="onTap">
-  <slot></slot>
-</view>

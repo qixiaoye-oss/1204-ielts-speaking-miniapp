@@ -49,7 +49,6 @@ Page({
         status: 2,
       })
       clearInterval(timer)
-      this.confirm()
     })
     manager.onError((res) => {
       // api.modal("录音模块启动失败", res.errMsg, false)
@@ -156,6 +155,13 @@ Page({
     }
     this.setData({
       audioStatus: 'stop'
+    })
+  },
+  playRecordedAudio() {
+    audio.src = this.data.file.url
+    audio.play()
+    this.setData({
+      audioStatus: 'play'
     })
   },
   cancel() {

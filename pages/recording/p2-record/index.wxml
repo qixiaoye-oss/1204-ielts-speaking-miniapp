@@ -50,13 +50,13 @@
     </block>
     <block wx:if="{{status === 1}}">
       <tap-action icon="stop" bind:tap="stopRecoding">
-        <view>录音中，用时{{file.duration}}秒</view>
+        <view>请回答（{{file.duration}}秒）...点击结束</view>
         <image src="/images/v2/stop_bt.png"></image>
       </tap-action>
     </block>
     <block wx:if="{{status === 2}}">
       <tap-action icon="down" bind:tap="confirm">
-        <view>点击提交保存</view>
+        <view>提交保存</view>
         <image src="/images/v2/down_bt.png"></image>
       </tap-action>
     </block>

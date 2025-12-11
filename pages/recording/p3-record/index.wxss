@@ -11,3 +11,12 @@
 .text_right {
   text-align: right;
 }
+
+.recording_cell {
+  padding: 15px 20px;
+  border: 1px solid var(--solid-border-color);
+}
+
+.audio_duration {
+  color: rgba(0, 0, 0, 0.6);
+}

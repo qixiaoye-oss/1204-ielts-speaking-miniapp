@@ -470,13 +470,31 @@ page {
   background: #FFFFFF;
 }
 
-/* 录音角标颜色 */
+/* 角标颜色 - 自动继承 data-icon 主色 */
+[data-icon="controller"] .btn-corner-mark {
+  color: #433B6B;
+  border-color: #433B6B;
+}
+
+[data-icon="desktop_mic"] .btn-corner-mark {
+  color: #212121;
+  border-color: #212121;
+}
+
+[data-icon="save"] .btn-corner-mark,
+[data-icon="play"] .btn-corner-mark,
+[data-icon="go"] .btn-corner-mark {
+  color: #00A6ED;
+  border-color: #00A6ED;
+}
+
+/* 兼容旧版 - 录音角标颜色 */
 .btn--recording-corner-mark {
   color: var(--button-color-recording);
   border-color: var(--button-color-recording);
 }
 
-/* 练习角标颜色 */
+/* 兼容旧版 - 练习角标颜色 */
 .btn--practice-corner-mark {
   color: var(--button-color-practice);
   border-color: var(--button-color-practice);

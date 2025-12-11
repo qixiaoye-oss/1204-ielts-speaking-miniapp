@@ -60,8 +60,7 @@
       <tap-action icon="controller" bind:tap="recordingOrClocking">
         <view>打卡/录音</view>
         <image src="/images/v2/controller_bt.png"></image>
-        <view class="btn-corner-mark btn--practice-corner-mark" wx:if="{{recordingCount > 0}}" style="border-color: {{color}};color: {{color}};">{{recordingCount}}</view>
-        <view class="btn-corner-mark btn--practice-corner-mark" wx:else>{{recordingCount}}</view>
+        <view class="btn-corner-mark" wx:if="{{recordingCount > 0}}">{{recordingCount}}</view>
       </tap-action>
     </view>
   </view>

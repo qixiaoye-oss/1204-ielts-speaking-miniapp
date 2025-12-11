@@ -96,8 +96,7 @@
       <tap-action icon="controller" bind:tap="recordingOrClocking">
         <view>打卡/录音</view>
         <image src="/images/v2/controller_bt.png"></image>
-        <view class="btn-corner-mark btn--recording-corner-mark" wx:if="{{recordingCount > 0}}" style="border-color: {{textColor}};color: {{textColor}};">{{recordingCount}}</view>
-        <view class="btn-corner-mark btn--recording-corner-mark" wx:else>{{recordingCount}}</view>
+        <view class="btn-corner-mark" wx:if="{{recordingCount > 0}}">{{recordingCount}}</view>
       </tap-action>
       <tap-action wx:if="{{idArr.length > 0}}" icon="go" bind:tap="changeQuestion" data-type="next" disabled="{{index == (idArr.length -1)}}">
         <image src="/images/v2/go_bt.png"></image>

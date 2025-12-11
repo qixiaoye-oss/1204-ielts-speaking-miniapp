@@ -48,7 +48,7 @@
       </block>
       <block wx:if="{{status === 1 && (nowPlayAudioIndex == (list.length - 1))}}">
         <tap-action icon="stop" bind:tap="stopRecoding" disabled="{{audioStatus === 'play'}}">
-          <view>请回答...点击结束</view>
+          <view>请回答.../点击结束</view>
           <image src="/images/v2/stop_bt.png"></image>
         </tap-action>
       </block>

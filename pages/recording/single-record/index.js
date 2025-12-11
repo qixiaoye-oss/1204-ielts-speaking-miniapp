@@ -82,7 +82,8 @@ Page({
       duration: 0
     },
     audioStatus: 'stop',
-    duration: 0
+    duration: 0,
+    dots: '.'  // 动态点，循环显示 . .. ...
   },
 
   onLoad(options) {
@@ -215,13 +216,17 @@ Page({
   },
 
   recordingTimer() {
+    let dotCount = 1
     timer = setInterval(() => {
       const { nowTime } = this.data
       const difference = Date.now() - nowTime
+      // 动态点循环：. → .. → ... → .
+      dotCount = dotCount >= 3 ? 1 : dotCount + 1
       this.setData({
-        'file.duration': Math.round(difference / 1000)
+        'file.duration': Math.round(difference / 1000),
+        dots: '.'.repeat(dotCount)
       })
-    }, 100)
+    }, 500)
   },
 
   // =========== 音频播放 ===========

@@ -9,6 +9,7 @@ const loadingProgress = require('../../../behaviors/loadingProgress')
 const CONFIG = {
   1: {
     errorTag: 'P1',
+    needPlayQuestion: true,  // P1 需要先播放题目音频
     detailApi: '/v2/p1/detail',
     saveApi: '/v2/p1/single/save',
     uploadPath: '/oral/recording/',
@@ -22,6 +23,7 @@ const CONFIG = {
   },
   2: {
     errorTag: 'P2',
+    needPlayQuestion: false,  // P2 直接开始录音
     detailApi: '/question/detailNoAnswer',
     saveApi: '/recording/save',
     uploadPath: '/oral/recording/',
@@ -37,6 +39,7 @@ const CONFIG = {
   },
   3: {
     errorTag: 'P3',
+    needPlayQuestion: true,  // P3 需要先播放题目音频
     detailApi: '/question/v2/p3/audios',
     saveApi: '/recording/save',
     uploadPath: '/oral/continuousRecording/',
@@ -120,7 +123,15 @@ Page({
   initAudio() {
     audio = wx.createInnerAudioContext()
     audio.onEnded(() => {
-      this.stopAudio()
+      const { status, recordType } = this.data
+      const config = CONFIG[recordType]
+      // 听题状态下音频播放完成，开始录音
+      if (status === 0.5 && config.needPlayQuestion) {
+        this.setData({ audioStatus: 'stop' })
+        manager.start(RECORDER_CONFIG)
+      } else {
+        this.stopAudio()
+      }
     })
     audio.onError((res) => {
       console.log('音频错误:', res)
@@ -165,15 +176,28 @@ Page({
   // =========== 录音操作 ===========
   checkRecordPermission() {
     const that = this
+    const config = CONFIG[this.data.recordType]
     wx.getSetting({
       success(res) {
         if (res.authSetting['scope.record']) {
-          manager.start(RECORDER_CONFIG)
+          if (config.needPlayQuestion) {
+            // P1/P3: 先播放题目音频，进入听题状态
+            that.startListening()
+          } else {
+            // P2: 直接开始录音
+            manager.start(RECORDER_CONFIG)
+          }
         } else {
           api.toast('未开启麦克风权限无法进行录音')
         }
       }
     })
+  },
+
+  // 开始听题（仅 P1/P3）
+  startListening() {
+    this.setData({ status: 0.5 })
+    this.playQuestionAudio()
   },
 
   startRecording() {
@@ -182,7 +206,6 @@ Page({
       nowTime: Date.now()
     })
     this.recordingTimer()
-    this.playQuestionAudio()
   },
 
   stopRecording() {
